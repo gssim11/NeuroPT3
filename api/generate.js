@@ -28,8 +28,8 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: '프롬프트가 제공되지 않았습니다.' });
         }
 
-        // 3. 외부 API용 안정화 모델(gemini-1.5-flash)로 엔드포인트 수정
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        // 3. 모델명을 명확한 'gemini-1.5-flash-latest' 로 변경하여 404 에러 방지
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
         
         const response = await fetch(apiUrl, {
             method: 'POST',
