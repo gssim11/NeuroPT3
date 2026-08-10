@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신경계물리치료학 및 운동 가이드 (AI 기능 탑재)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- 마크다운 렌더링을 위한 marked.js 추가 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
+        /* === [완전 오프라인] FontAwesome 6.5.1 인라인 서브셋 (사용 아이콘 62종만) === */
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(data:font/woff2;base64,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) format("woff2");}
+@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:block;src:url(data:font/woff2;base64,d09GMgABAAAAAAKUAAoAAAAABWwAAAJOAwUDAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAANMqDWAE2AiQDCMsGBCAFgygHIBu7BCAuB+zG8RtCEYJuexmiEN6bd1TG27OIWoII/v9/v7bPfTLmqFZxS5DxkiZFUmL9SCRUOo01+R/Ma0rh4ujmPHfiwa7YP/3R3CYmP5O2HW6hJTwlWqFCIh9SNC4AJH5kyD2z5pHXX3WN9X7+mnq8tR0uC3hK7x+tggrn0RrRxtnapE0+3WRM6SfKMPz0f0An4PWjEUAXegHh+GF18r28RnA4vSqW3d9f8t/xUEmBvjmBIABt41dgBAIY4IAmHIk4wQgEj8nTkf7bFYVTUAACpImlhD6ayNcXJtcA1E1d5CwjeMtyHXw4mE4s4+y0AsTAELzNZWqg0trUL8RYAAzySAFEjpSZQoRtCh5UwAh6oO0NUwLq6e0CVMMkdOPpxMqYpZ2Wig/nAWLwz0AIMJ1qTYgGP/x6ZflqfTxurvIM79u+C5kImZao66pcQ1HbRkiX1e7f4rj5WPap0ZvkQlRV9TxVw7WR+8zTYgDEumS16yKEoiBnDt/LYlHmeYmcC3w2spCX7phSpVw1DFU1AITTNEV9kJmPJakUfVeRl8UB2waxIoZJo+A8ELjguOqtprLx5UQD4LfZcHj6P1uALJdb8JNZra3YByBc3tQGQ/9nXMv8k5sIrMrwCEc+ByxAhnyxROUbZT74jj2PXF/GDzz5PSoykxjz7A6eTka9wQUg1SggtNvI53Pctc52qzblALoxQydEWCUQ710tynhkY5l/laPjaXiSQuvkbLTbAINBwRNJJAaJyaAB5Ib5N+u1wSYmamqiZtY/UR3XOo4D) format("woff2");}
+.fa,.fas,.fa-solid,.far,.fa-regular{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto;}
+.fas,.fa-solid{font-family:"Font Awesome 6 Free";font-weight:900;}
+.far,.fa-regular{font-family:"Font Awesome 6 Free";font-weight:400;}
+.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em;}
+.fa-fw{text-align:center;width:1.25em;}
+.fa-arrow-up:before{content:"\f062"}.fa-baby:before{content:"\f77c"}.fa-baby-carriage:before{content:"\f77d"}.fa-bolt:before{content:"\f0e7"}.fa-bone:before{content:"\f5d7"}.fa-book-medical:before{content:"\f7e6"}.fa-bookmark:before{content:"\f02e"}.fa-brain:before{content:"\f5dc"}.fa-bullseye:before{content:"\f140"}.fa-chart-bar:before{content:"\f080"}.fa-chart-line:before{content:"\f201"}.fa-chart-pie:before{content:"\f200"}.fa-clipboard-check:before{content:"\f46c"}.fa-clipboard-list:before{content:"\f46d"}.fa-code-branch:before{content:"\f126"}.fa-cogs:before{content:"\f085"}.fa-cubes:before{content:"\f1b3"}.fa-diagram-project:before{content:"\f542"}.fa-dna:before{content:"\f471"}.fa-dumbbell:before{content:"\f44b"}.fa-exclamation-circle:before{content:"\f06a"}.fa-exclamation-triangle:before{content:"\f071"}.fa-face-meh:before{content:"\f11a"}.fa-file-medical:before{content:"\f477"}.fa-gauge-high:before{content:"\f625"}.fa-hand-back-fist:before{content:"\f255"}.fa-hands:before{content:"\f2a7"}.fa-heart-pulse:before{content:"\f21e"}.fa-layer-group:before{content:"\f5fd"}.fa-lightbulb:before{content:"\f0eb"}.fa-microscope:before{content:"\f610"}.fa-notes-medical:before{content:"\f481"}.fa-pen:before{content:"\f304"}.fa-pen-alt:before{content:"\f305"}.fa-pencil-alt:before{content:"\f303"}.fa-person-falling:before{content:"\e546"}.fa-person-stretching:before{content:"\f554"}.fa-person-walking:before{content:"\f554"}.fa-print:before{content:"\f02f"}.fa-procedures:before{content:"\f487"}.fa-robot:before{content:"\f544"}.fa-rotate-left:before{content:"\f2ea"}.fa-route:before{content:"\f4d7"}.fa-ruler:before{content:"\f545"}.fa-scale-balanced:before{content:"\f24e"}.fa-scale-unbalanced:before{content:"\f515"}.fa-search:before{content:"\f002"}.fa-shoe-prints:before{content:"\f54b"}.fa-sitemap:before{content:"\f0e8"}.fa-smile-beam:before{content:"\f5b8"}.fa-stairs:before{content:"\e289"}.fa-stethoscope:before{content:"\f0f1"}.fa-tags:before{content:"\f02c"}.fa-timeline:before{content:"\e29c"}.fa-triangle-exclamation:before{content:"\f071"}.fa-up-down:before{content:"\f338"}.fa-user-md:before{content:"\f0f0"}.fa-vial:before{content:"\f492"}.fa-virus:before{content:"\e074"}.fa-virus-covid:before{content:"\e4a8"}.fa-walking:before{content:"\f554"}.fa-wheelchair:before{content:"\f193"}
+
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
         html {
             scroll-behavior: smooth;
@@ -382,9 +389,599 @@
         #notification.show {
             transform: translateX(0);
         }
+
+        /* === [통합 보강] 비교·평가·기전·요약 섹션 (라이트 테마) === */
+        .comp-table { width:100%; border-collapse:collapse; margin-top:1rem; font-size:0.93rem; border-radius:0.75rem; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+        .comp-table th, .comp-table td { padding:0.65rem 0.85rem; text-align:left; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+        .comp-table thead th { background:#1e40af; color:#fff; font-weight:700; }
+        .comp-table tbody tr:nth-child(even){ background:#f8fafc; }
+        .comp-table td:first-child{ font-weight:600; color:#1e3a8a; background:#eff6ff; width:24%; }
+        .comp-table .umn{ color:#b91c1c; font-weight:600; }
+        .comp-table .lmn{ color:#1d4ed8; font-weight:600; }
+        .vs-grid{ display:grid; grid-template-columns:1fr 44px 1fr; gap:0.8rem; align-items:stretch; margin-top:1rem; }
+        @media(max-width:768px){ .vs-grid{ grid-template-columns:1fr; } .vs-badge{ padding:0.3rem 0; } }
+        .vs-card{ border-radius:0.9rem; padding:1.1rem 1.25rem; border:1px solid #e2e8f0; }
+        .vs-card.red{ background:#fef2f2; border-color:#fecaca; }
+        .vs-card.blue{ background:#eff6ff; border-color:#bfdbfe; }
+        .vs-card h4{ font-weight:700; font-size:1.12rem; margin-bottom:0.55rem; }
+        .vs-card.red h4{ color:#b91c1c; }
+        .vs-card.blue h4{ color:#1d4ed8; }
+        .vs-card .row{ display:flex; justify-content:space-between; gap:0.6rem; padding:0.32rem 0; border-bottom:1px dashed #e5e7eb; font-size:0.9rem; }
+        .vs-card .row:last-child{ border-bottom:none; }
+        .vs-card .row span:first-child{ color:#64748b; flex:0 0 38%; }
+        .vs-card .row span:last-child{ text-align:right; font-weight:600; color:#0f172a; }
+        .vs-badge{ display:flex; align-items:center; justify-content:center; font-weight:800; color:#94a3b8; }
+        .grade-row{ display:grid; grid-template-columns:96px 1fr; gap:0.75rem; padding:0.55rem 0.8rem; border-radius:0.6rem; background:#f8fafc; margin-bottom:0.45rem; border:1px solid #eef2f7; }
+        .grade-row .g{ font-weight:800; color:#1e40af; font-size:0.92rem; }
+        .grade-row .d{ font-size:0.9rem; color:#334155; }
+        .grade-row .d strong{ color:#0f172a; }
+        .qr-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
+        .qr-card{ background:#fff; border:1px solid #e2e8f0; border-radius:0.9rem; padding:1rem 1.1rem; box-shadow:0 1px 2px rgba(0,0,0,0.05); }
+        .qr-card h4{ font-weight:700; color:#1e3a8a; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.45rem; }
+        .qr-card .qr-row{ display:flex; justify-content:space-between; gap:0.5rem; padding:0.26rem 0; border-bottom:1px dashed #eef2f7; font-size:0.88rem; }
+        .qr-card .qr-row:last-child{ border-bottom:none; }
+        .qr-card .qr-row b{ color:#2563eb; }
+        .pathway{ display:flex; flex-wrap:wrap; align-items:center; gap:0.55rem; margin-top:1rem; }
+        .pathway .node{ background:#eef2ff; border:1px solid #c7d2fe; color:#3730a3; border-radius:0.6rem; padding:0.55rem 0.9rem; font-weight:600; font-size:0.9rem; }
+        .pathway .node small{ display:block; color:#6366f1; font-weight:500; }
+        .pathway .arrow{ color:#6366f1; font-weight:800; }
+        .bmn-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0.8rem; margin-top:1rem; }
+        .bmn-card{ text-align:center; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:0.8rem; padding:1rem; }
+        .bmn-card .big{ font-size:1.8rem; }
+        .evidence{ background:#f0f9ff; border-left:5px solid #0284c7; border-radius:0.5rem; padding:0.9rem 1.1rem; margin-top:1.1rem; font-size:0.9rem; color:#0c4a6e; }
+        .evidence .ev-head{ font-weight:700; color:#075985; margin-bottom:0.35rem; }
+        .evidence ul{ margin:0.3rem 0 0 0; padding-left:1.1rem; }
+        .evidence li{ margin-bottom:0.25rem; }
+        .ev-tag{ display:inline-block; font-size:0.7rem; font-weight:700; padding:1px 7px; border-radius:999px; margin-right:5px; vertical-align:middle; }
+        .ev-tag.fact{ background:#dcfce7; color:#166534; }
+        .ev-tag.guide{ background:#dbeafe; color:#1e40af; }
+        .ev-tag.review{ background:#fef3c7; color:#92400e; }
+        .ev-tag.rct{ background:#ede9fe; color:#6b21a8; }
+        .ev-tag.assume{ background:#f1f5f9; color:#475569; }
+        .evidence a{ color:#0369a1; text-decoration:underline; word-break:break-all; }
+        .assess-pills{ display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.4rem 0 1.2rem; }
+        .assess-pills .pill{ background:#1e40af; color:#fff; border-radius:999px; padding:0.32rem 0.8rem; font-size:0.83rem; font-weight:600; }
+        .assess-pills .pill small{ font-weight:400; opacity:0.85; }
+        .ref-list{ font-size:0.82rem; color:#475569; line-height:1.65; padding-left:1.1rem; }
+        .ref-list li{ margin-bottom:0.4rem; }
+        .ref-list a{ color:#2563eb; text-decoration:underline; word-break:break-all; }
+        .method-note{ background:#fffbeb; border:1px dashed #f59e0b; border-radius:0.6rem; padding:0.9rem 1.1rem; margin-top:1rem; font-size:0.85rem; color:#78350f; }
+
+
+        /* ===== [오프라인 폴백] Tailwind CDN 미로드 시 최소 레이아웃 보장 =====
+           온라인에서 Tailwind가 로드되면 런타임 주입 스타일이 뒤에 와서 우선 적용됨 */
+        .container{max-width:1100px;width:100%}
+        .mx-auto{margin-left:auto;margin-right:auto}
+        .mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}
+        .mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.mb-12{margin-bottom:3rem}
+        .mr-2{margin-right:.5rem}.mr-3{margin-right:.75rem}.mr-4{margin-right:1rem}
+        .p-2{padding:.5rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}
+        .py-2{padding-top:.5rem;padding-bottom:.5rem}.px-4{padding-left:1rem;padding-right:1rem}.pr-3{padding-right:.75rem}
+        .text-xs{font-size:.75rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}
+        .text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}
+        .font-bold{font-weight:700}.font-semibold{font-weight:600}
+        .text-white{color:#fff}.text-gray-400{color:#9ca3af}.text-gray-600{color:#4b5563}.text-gray-700{color:#374151}.text-gray-800{color:#1f2937}
+        .text-slate-500{color:#64748b}.text-slate-600{color:#475569}
+        .text-red-600{color:#dc2626}.text-red-700{color:#b91c1c}
+        .text-blue-500{color:#3b82f6}.text-blue-600{color:#2563eb}.text-blue-700{color:#1d4ed8}.text-green-700{color:#15803d}
+        .text-center{text-align:center}
+        .bg-slate-50{background-color:#f8fafc}.bg-red-50{background-color:#fef2f2}.bg-red-100{background-color:#fee2e2}.bg-red-500{background-color:#ef4444}
+        .bg-green-500{background-color:#22c55e}.bg-blue-100{background-color:#dbeafe}
+        .border{border:1px solid #e5e7eb}.border-slate-300{border-color:#cbd5e1}
+        .rounded-md{border-radius:.375rem}.rounded-lg{border-radius:.5rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}
+        .shadow-lg{box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)}
+        .flex{display:flex}.grid{display:grid}.hidden{display:none}.block{display:block}.inline{display:inline}
+        .items-center{align-items:center}.w-full{width:100%}
+        .grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+        .gap-4{gap:1rem}.gap-8{gap:2rem}
+        .space-y-2>*+*{margin-top:.5rem}.space-y-4>*+*{margin-top:1rem}.space-x-2>*+*{margin-left:.5rem}
+        @media(min-width:768px){
+          .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+          .md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+          .md\:text-5xl{font-size:3rem;line-height:1}
+          .md\:text-base{font-size:1rem}
+          .md\:p-8{padding:2rem}
+          .md\:w-auto{width:auto}
+        }
+
+        /* ===== [오프라인 운동처방 엔진] 입력 폼 & 결과 스타일 ===== */
+        .rx-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1rem}
+        .rx-field label{display:block;font-weight:600;color:#334155;font-size:.88rem;margin-bottom:.3rem}
+        .rx-field select,.rx-field input,.rx-field textarea{width:100%;padding:.55rem .7rem;border:1px solid #cbd5e1;border-radius:.5rem;font-size:.92rem;background:#fff;font-family:inherit;color:#0f172a}
+        .rx-field select:focus,.rx-field input:focus,.rx-field textarea:focus{outline:2px solid #93c5fd;border-color:#3b82f6}
+        .rx-goals{grid-column:1/-1}
+        .rx-goal-grid{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.4rem}
+        .rx-goal-grid label{display:inline-flex;align-items:center;gap:.4rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:999px;padding:.35rem .85rem;font-size:.86rem;cursor:pointer;font-weight:500;color:#334155}
+        .rx-goal-grid input{accent-color:#2563eb}
+        .rx-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}
+        .rx-btn{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;border:none;border-radius:.6rem;padding:.7rem 1.3rem;font-weight:700;cursor:pointer;font-size:.95rem;transition:transform .15s,box-shadow .15s}
+        .rx-btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px -6px rgba(37,99,235,.5)}
+        .rx-btn.sec{background:#e2e8f0;color:#334155}
+        .rx-btn.sec:hover{box-shadow:none}
+        #rxResult{display:none;margin-top:1.5rem;border-top:2px dashed #cbd5e1;padding-top:1.2rem}
+        .rx-summary{background:#eff6ff;border:1px solid #bfdbfe;border-radius:.9rem;padding:1.1rem 1.25rem;margin-bottom:1rem}
+        .rx-summary h3{font-size:1.25rem;font-weight:700;color:#1e3a8a;margin-bottom:.5rem;display:flex;align-items:center}
+        .rx-core{font-size:.92rem;color:#334155;margin-top:.4rem;line-height:1.55}
+        .rx-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0}
+        .rx-chip{background:#1e40af;color:#fff;border-radius:999px;padding:.25rem .7rem;font-size:.8rem;font-weight:600}
+        .rx-chip.alt{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe}
+        .rx-block{margin-top:1.1rem}
+        .rx-block>h4{font-size:1.05rem;font-weight:700;color:#1e40af;margin-bottom:.55rem;display:flex;align-items:center}
+        .rx-warn{background:#fffaeb;border-left:5px solid #f59e0b;border-radius:.5rem;padding:.9rem 1.1rem}
+        .rx-warn>h4{color:#b45309}
+        .rx-warn ul{margin:0;padding-left:1.2rem}
+        .rx-warn li{margin-bottom:.3rem;color:#78350f;font-size:.92rem}
+        @media print{
+          nav,.rx-form,.gemini-btn,#scrollTopBtn{display:none!important}
+          .infographic-section{box-shadow:none;page-break-inside:avoid;border:1px solid #e2e8f0}
+          body{background:#fff}
+        }
+
+
+        /* ============================================================
+           DESIGN REFRESH v2 — 디자인 시스템 정리 (색·타이포·간격·깊이 통일)
+           원본 규칙 뒤에 위치하여 동일 특이도에서 우선 적용. 내용/구조 변경 없음.
+           ============================================================ */
+        :root{
+          --c-primary:#2563eb; --c-primary-strong:#1d4ed8; --c-primary-deep:#17255a;
+          --c-primary-050:#eff5ff; --c-primary-100:#dbe7fe; --c-primary-border:#cfe0fb;
+          --ink:#0f172a; --ink-2:#334155; --ink-3:#64748b; --ink-4:#94a3b8;
+          --bg:#eef2f8; --surface:#ffffff; --line:#e6eaf1;
+          --amber:#f59e0b; --amber-bg:#fffbeb;
+          --green:#16a34a; --green-bg:#f0fdf4;
+          --sky:#0ea5e9; --sky-bg:#f0f9ff;
+          --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+          --sh-sm:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.07);
+          --sh-md:0 6px 18px -6px rgba(15,23,42,.12), 0 2px 6px -2px rgba(15,23,42,.06);
+          --sh-lg:0 18px 40px -12px rgba(15,23,42,.20);
+        }
+        /* ---- Base ---- */
+        body{
+          font-family:'Noto Sans KR','Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,-apple-system,sans-serif;
+          color:var(--ink-2); line-height:1.72; letter-spacing:-.01em;
+          background-color:var(--bg);
+          background-image:linear-gradient(180deg,#e6efff 0%, rgba(230,239,255,0) 460px);
+          background-repeat:no-repeat;
+          -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+        }
+        ::selection{background:#c7dbfe;color:#0b1e46}
+        a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+          outline:3px solid rgba(37,99,235,.38); outline-offset:2px; border-radius:8px;
+        }
+        /* ---- Hero ---- */
+        #page-top{margin-bottom:2.75rem;padding-top:1.25rem}
+        #page-top h1{
+          font-size:clamp(1.95rem,4.2vw,3rem); font-weight:800; color:var(--ink);
+          letter-spacing:-.025em; line-height:1.18;
+          display:inline-block; position:relative; padding-bottom:.7rem;
+        }
+        #page-top h1::after{
+          content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+          width:76px; height:4px; border-radius:var(--r-pill);
+          background:linear-gradient(90deg,var(--c-primary),#60a5fa);
+        }
+        #page-top p{color:var(--ink-3);font-size:1.06rem;margin-top:1.1rem;max-width:62ch;margin-left:auto;margin-right:auto}
+        /* ---- Section shells ---- */
+        .infographic-section{
+          background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg);
+          padding:2rem 2.15rem; box-shadow:var(--sh-md); scroll-margin-top:1.25rem;
+          transition:box-shadow .25s ease;
+        }
+        /* ---- Titles ---- */
+        .section-title{
+          font-size:clamp(1.55rem,2.6vw,2rem); font-weight:800; color:var(--c-primary-deep);
+          letter-spacing:-.02em; border-bottom:2px solid var(--line);
+          padding-bottom:.65rem; margin-bottom:1.5rem; position:relative;
+        }
+        .section-title::after{content:'';position:absolute;left:0;bottom:-2px;width:64px;height:2px;background:var(--c-primary);border-radius:2px}
+        .section-title i{color:var(--c-primary)}
+        .subsection-title{font-size:1.3rem;font-weight:700;color:var(--c-primary-strong);letter-spacing:-.01em;margin-top:1.75rem;margin-bottom:.9rem}
+        .subsection-title i{color:var(--c-primary);margin-right:.6rem}
+        /* ---- Navigation ---- */
+        nav{
+          background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+          border:1px solid var(--line); border-radius:var(--r-lg); padding:.9rem 1rem; box-shadow:var(--sh-sm);
+        }
+        .nav-container{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+        nav a{
+          padding:.48rem 1rem; border-radius:var(--r-pill); font-weight:600; font-size:.9rem;
+          background:transparent; color:var(--ink-3); border:1px solid transparent; white-space:nowrap;
+          transition:background .18s,color .18s,border-color .18s,box-shadow .18s;
+        }
+        nav a:hover{background:var(--c-primary-050);color:var(--c-primary-strong);border-color:var(--c-primary-border);transform:none;box-shadow:none}
+        nav a.active{background:var(--c-primary);color:#fff;border-color:var(--c-primary);box-shadow:0 3px 10px -3px rgba(37,99,235,.55);transform:none;font-weight:700}
+        nav a.ai-support-link{background:linear-gradient(135deg,#eef4ff,#e2eafe);color:var(--c-primary-strong);border-color:var(--c-primary-border);font-weight:700}
+        nav a.ai-support-link:hover{background:linear-gradient(135deg,#e2eafe,#d5e0fd);color:var(--c-primary-deep)}
+        /* ---- Search ---- */
+        .search-container{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:1.15rem 1.25rem}
+        #searchInput{border:1.5px solid var(--line);border-radius:var(--r-md);font-size:1rem}
+        #searchInput:focus{border-color:var(--c-primary);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+        /* ---- Cards ---- */
+        .stat-card{background:var(--c-primary-050);border-left:4px solid var(--c-primary);border-radius:var(--r-md)}
+        .clinical-feature{background:#f4f7fb;border:1px solid var(--line);border-radius:var(--r-md)}
+        .clinical-pearl{background:var(--amber-bg);border-left:5px solid var(--amber);border-radius:var(--r-md);color:#78350f}
+        .exam-tip{background:var(--green-bg);border-left:5px solid var(--green);border-radius:var(--r-md)}
+        .method-note{border-radius:var(--r-md)}
+        /* ---- Buttons ---- */
+        .gemini-btn{background:var(--c-primary-050);color:var(--c-primary-strong);border:1px solid var(--c-primary-border);box-shadow:none;font-weight:600;border-radius:var(--r-md);padding:.6rem 1.15rem}
+        .gemini-btn:hover{background:var(--c-primary-100);transform:none;box-shadow:var(--sh-sm)}
+        .rx-btn{border-radius:var(--r-md)}
+        /* ---- Reference tables ---- */
+        .comp-table{border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-sm)}
+        .comp-table thead th{background:var(--c-primary-strong)}
+        .comp-table td:first-child{background:var(--c-primary-050);color:var(--c-primary-deep)}
+        .comp-table tbody tr{transition:background .15s}
+        .comp-table tbody tr:hover{background:#eef4ff}
+        /* ---- Misc component radius harmonize ---- */
+        .evidence,.qr-card,.vs-card,.bmn-card,.rx-summary{border-radius:var(--r-md)}
+        /* ---- Scroll-top ---- */
+        #scrollTopBtn{background:var(--c-primary);border-radius:14px;width:3.25rem;height:3.25rem;box-shadow:var(--sh-lg)}
+        #scrollTopBtn:hover{background:var(--c-primary-strong);transform:translateY(-2px) scale(1.03)}
+        /* ---- Footer ---- */
+        .site-footer{margin-top:3rem;padding:2.6rem 1.5rem;background:linear-gradient(180deg,#12213f,#0b1730);border-radius:var(--r-lg);text-align:center;color:#c7d2e4}
+        .site-footer .foot-brand{font-weight:800;color:#fff;font-size:1.12rem;letter-spacing:-.01em}
+        .site-footer .foot-sub{margin-top:.45rem;color:#9fb0d0;font-weight:600}
+        .site-footer .foot-meta{margin-top:.65rem;font-size:.85rem;color:#8092b4}
+        .site-footer .foot-copy{margin-top:1.1rem;font-size:.78rem;color:#63769c}
+        /* ---- Responsive polish ---- */
+        @media(max-width:640px){
+          .infographic-section{padding:1.4rem 1.15rem}
+          .comp-table{font-size:.8rem}
+          .comp-table th,.comp-table td{padding:.5rem .55rem}
+        }
+        @media print{
+          body{background:#fff}
+          .site-footer{background:#0b1730 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        }
+
+    
+        /* === [완전 오프라인] Tailwind 폴백 보강 (오프라인 레이아웃 정합) === */
+        .relative{position:relative;}
+        .absolute{position:absolute;}
+        .fixed{position:fixed;}
+        .top-0{top:0;}.top-5{top:1.25rem;}
+        .right-0{right:0;}.right-5{right:1.25rem;}
+        .ml-4{margin-left:1rem;}
+        .mt-3{margin-top:.75rem;}
+        .text-green-600{color:#16a34a;}
+        .text-orange-600{color:#ea580c;}
+        .text-sky-600{color:#0284c7;}
+        .text-slate-800{color:#1e293b;}
+        .bg-green-100{background-color:#dcfce7;}
+        .list-disc{list-style-type:disc;}
+        .list-inside{list-style-position:inside;}
+        .transition,.transition-colors,.transition-shadow{transition-duration:.15s;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-property:all;}
+        .hover\:bg-red-600:hover{background-color:#dc2626;}
+        .hover\:shadow-xl:hover{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);}
+        @media (min-width:768px){
+          .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr));}
+          .md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+          .md\:p-8{padding:2rem;}
+          .md\:text-5xl{font-size:3rem;line-height:1;}
+          .md\:text-base{font-size:1rem;line-height:1.5rem;}
+        }
+        @media (min-width:1024px){
+          .lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+          .lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+        }
+
+    
+        /* === [처방 인쇄/PDF] 결과만 깔끔히 출력 === */
+        @media print {
+          body * { visibility: hidden !important; }
+          #rxResult, #rxResult * { visibility: visible !important; }
+          #rxResult { position: absolute !important; left: 0; top: 0; width: 100%;
+                      box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; background: #fff !important; }
+          #rxResult .rx-block { break-inside: avoid; page-break-inside: avoid; }
+          #rxResult h4 { break-after: avoid; }
+          #rxResult a { text-decoration: none !important; color: #000 !important; }
+          .no-print { display: none !important; }
+          @page { margin: 1.4cm; }
+        }
+
+    
+        /* === [국시 문제] 인터랙티브 확인문제 (오프라인) === */
+        .quiz-scorebar{position:sticky;top:0;z-index:5;background:#1e40af;color:#fff;border-radius:.6rem;padding:.6rem 1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;font-weight:600;}
+        .quiz-scorebar button{background:#fff;color:#1e40af;border:none;border-radius:.4rem;padding:.35rem .9rem;font-weight:700;cursor:pointer;font-size:.85rem;}
+        .quiz-scorebar button:hover{background:#e0e7ff;}
+        .quiz-chapter{margin-top:1.4rem;}
+        .quiz-q{background:#fff;border:1px solid #e2e8f0;border-radius:.8rem;padding:1rem 1.1rem;margin-bottom:.85rem;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+        .quiz-stem{font-weight:600;color:#0f172a;margin-bottom:.7rem;line-height:1.5;}
+        .quiz-stem .qnum{display:inline-block;background:#eff6ff;color:#1e40af;font-weight:800;border-radius:.35rem;padding:0 .45rem;margin-right:.45rem;}
+        .quiz-opts{display:flex;flex-direction:column;gap:.4rem;}
+        .quiz-opt{text-align:left;border:1px solid #e2e8f0;background:#f8fafc;border-radius:.5rem;padding:.55rem .8rem;cursor:pointer;font-size:.92rem;transition:background .12s,border-color .12s;display:flex;gap:.55rem;align-items:flex-start;color:#1e293b;font-family:inherit;line-height:1.45;}
+        .quiz-opt:hover:not(:disabled){background:#eff6ff;border-color:#bfdbfe;}
+        .quiz-opt .marker{font-weight:800;color:#64748b;flex:0 0 auto;}
+        .quiz-opt:disabled{cursor:default;}
+        .quiz-opt.correct{background:#dcfce7;border-color:#86efac;color:#166534;}
+        .quiz-opt.correct .marker{color:#166534;}
+        .quiz-opt.wrong{background:#fee2e2;border-color:#fca5a5;color:#991b1b;}
+        .quiz-opt.wrong .marker{color:#991b1b;}
+        .quiz-exp{margin-top:.6rem;background:#f0f9ff;border-left:4px solid #0284c7;border-radius:.4rem;padding:.6rem .85rem;font-size:.88rem;color:#0c4a6e;display:none;line-height:1.6;}
+        .quiz-exp.show{display:block;}
+        .quiz-exp .lab{font-weight:700;color:#075985;}
+
+    
+        /* === [챕터별 확인문제] 인라인 확인문제 래퍼 === */
+        .chapter-quiz{margin-top:1.5rem;border:1px solid #c7d2fe;border-left:5px solid #4f46e5;background:#eef2ff;border-radius:.7rem;padding:.9rem 1.1rem;}
+        .chapter-quiz-label{font-weight:800;color:#4338ca;margin-bottom:.55rem;font-size:.95rem;display:flex;align-items:center;gap:.4rem;}
+        .chapter-quiz .quiz-stem{color:#1e1b4b;}
+        .chapter-quiz-retry{margin-top:.6rem;background:#4f46e5;color:#fff;border:none;border-radius:.4rem;padding:.3rem .8rem;font-size:.82rem;font-weight:600;cursor:pointer;}
+        .chapter-quiz-retry:hover{background:#4338ca;}
+
+    
+        /* === [챕터별 확인문제] 다문항 지원 보충 === */
+        .chapter-quiz-item{padding-top:.2rem;}
+        .chapter-quiz-item + .chapter-quiz-item{margin-top:1rem;padding-top:1rem;border-top:1px dashed #c7d2fe;}
+        .chapter-quiz-qnum{font-weight:700;color:#6366f1;font-size:.82rem;margin-bottom:.3rem;}
+
+    
+        /* ==================================================================
+           [코스믹 테마] 라이트/다크 + 성운·별필드 (오리지널, 외부 이미지 0)
+           ================================================================== */
+        :root[data-theme="light"]{ color-scheme: light; }
+        :root[data-theme="dark"]{
+          color-scheme: dark;
+          /* --- 다크(코스믹) 토큰 재정의: 기존 컴포넌트가 자동 적응 --- */
+          --c-primary:#7aa2ff; --c-primary-strong:#9dbcff; --c-primary-deep:#d6e0ff;
+          --c-primary-050:rgba(122,162,255,.12); --c-primary-100:rgba(122,162,255,.18); --c-primary-border:rgba(122,162,255,.34);
+          --ink:#e9edfb; --ink-2:#c6cee7; --ink-3:#9aa4c4; --ink-4:#727c9c;
+          --bg:#070a18; --surface:rgba(18,23,44,.72); --line:rgba(165,183,232,.15);
+          --amber:#fbbf24; --amber-bg:rgba(245,158,11,.13);
+          --green:#34d399; --green-bg:rgba(52,211,153,.12);
+          --sky:#38bdf8; --sky-bg:rgba(56,189,248,.12);
+          --sh-sm:0 1px 2px rgba(0,0,0,.5); --sh-md:0 10px 30px -10px rgba(0,0,0,.6); --sh-lg:0 24px 55px -18px rgba(0,0,0,.7);
+        }
+
+        /* --- 배경 코스믹 레이어 (고정) --- */
+        #cosmos{ position:fixed; inset:0; z-index:-2; pointer-events:none; }
+        #starfield{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
+        :root[data-theme="light"] #cosmos{
+          background:
+            radial-gradient(1200px 720px at 10% -8%, rgba(129,140,248,.16), transparent 60%),
+            radial-gradient(1000px 620px at 110% 4%, rgba(56,189,248,.14), transparent 60%),
+            radial-gradient(900px 900px at 50% 122%, rgba(167,139,250,.10), transparent 60%),
+            linear-gradient(180deg, #f4f7ff, #eef2f8);
+        }
+        :root[data-theme="dark"] #cosmos{
+          background:
+            radial-gradient(1100px 720px at 8% -6%, rgba(99,102,241,.38), transparent 55%),
+            radial-gradient(1000px 680px at 112% 3%, rgba(14,165,233,.30), transparent 55%),
+            radial-gradient(920px 720px at 80% 120%, rgba(168,85,247,.32), transparent 55%),
+            radial-gradient(680px 500px at 28% 90%, rgba(236,72,153,.18), transparent 60%),
+            linear-gradient(180deg, #0a0e22 0%, #080b1c 55%, #070a18 100%);
+        }
+        :root[data-theme="light"] body{ background:transparent; }
+        :root[data-theme="dark"]{ background:#070a18; }
+        :root[data-theme="dark"] body{ background:transparent !important; color:var(--ink); }
+
+        /* --- 테마 토글 버튼 --- */
+        #themeToggle{ position:fixed; top:14px; right:14px; z-index:60; width:44px; height:44px; border-radius:50%;
+          border:1px solid var(--line); background:var(--surface); color:var(--ink-2); cursor:pointer;
+          display:inline-flex; align-items:center; justify-content:center; box-shadow:var(--sh-sm);
+          -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); transition:color .2s, border-color .2s, transform .2s; }
+        #themeToggle:hover{ color:var(--c-primary); border-color:var(--c-primary-border); transform:translateY(-1px); }
+        #themeToggle svg{ width:20px; height:20px; display:block; }
+        #themeToggle .ico-sun, #themeToggle .ico-moon{ display:none; }
+        :root[data-theme="light"] #themeToggle .ico-moon{ display:block; }
+        :root[data-theme="dark"] #themeToggle .ico-sun{ display:block; }
+
+        /* --- 다크: 유리 패널 느낌 --- */
+        :root[data-theme="dark"] .infographic-section{ -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+          background:rgba(18,23,44,.72); border-color:rgba(165,183,232,.14); }
+
+        /* --- 다크: 하드코딩 색상 컴포넌트 보정 --- */
+        :root[data-theme="dark"] .highlight{ color:#9dbcff; }
+        :root[data-theme="dark"] .emphasis{ background:rgba(122,162,255,.18); color:#d6e0ff; }
+        :root[data-theme="dark"] .clinical-pearl{ color:#fde68a; }
+        :root[data-theme="dark"] nav a.ai-support-link{ background:linear-gradient(135deg,rgba(122,162,255,.18),rgba(139,92,246,.2)); color:#d6e0ff; border-color:rgba(122,162,255,.32); }
+        :root[data-theme="dark"] nav a.ai-support-link:hover{ background:linear-gradient(135deg,rgba(122,162,255,.26),rgba(139,92,246,.28)); color:#eaf0ff; }
+        /* 모달 */
+        :root[data-theme="dark"] .modal-container{ background:#0f1428; border:1px solid var(--line); }
+        :root[data-theme="dark"] .modal-title{ color:#d6e0ff; }
+        :root[data-theme="dark"] .modal-content{ color:var(--ink-2); }
+        :root[data-theme="dark"] .modal-content strong{ color:#d6e0ff; }
+        :root[data-theme="dark"] .modal-content th{ background:rgba(122,162,255,.12); color:#d6e0ff; }
+        :root[data-theme="dark"] .loader{ border-color:rgba(255,255,255,.15); border-bottom-color:var(--c-primary); }
+        /* 비교표 */
+        :root[data-theme="dark"] .comp-table th, :root[data-theme="dark"] .comp-table td{ border-bottom-color:var(--line); }
+        :root[data-theme="dark"] .comp-table thead th{ background:#1e2a52; }
+        :root[data-theme="dark"] .comp-table tbody tr:nth-child(even){ background:rgba(255,255,255,.03); }
+        :root[data-theme="dark"] .comp-table td:first-child{ background:rgba(122,162,255,.1); color:#d6e0ff; }
+        :root[data-theme="dark"] .comp-table .umn{ color:#fca5a5; }
+        :root[data-theme="dark"] .comp-table .lmn{ color:#93c5fd; }
+        /* vs 카드 */
+        :root[data-theme="dark"] .vs-card{ border-color:var(--line); }
+        :root[data-theme="dark"] .vs-card.red{ background:rgba(239,68,68,.1); border-color:rgba(239,68,68,.3); }
+        :root[data-theme="dark"] .vs-card.blue{ background:rgba(59,130,246,.1); border-color:rgba(59,130,246,.3); }
+        :root[data-theme="dark"] .vs-card.red h4{ color:#fca5a5; }
+        :root[data-theme="dark"] .vs-card.blue h4{ color:#93c5fd; }
+        :root[data-theme="dark"] .vs-card .row{ border-bottom-color:rgba(255,255,255,.08); }
+        :root[data-theme="dark"] .vs-card .row span:first-child{ color:var(--ink-3); }
+        :root[data-theme="dark"] .vs-card .row span:last-child{ color:var(--ink); }
+        /* qr 카드 */
+        :root[data-theme="dark"] .qr-card{ background:rgba(20,26,48,.7); border-color:var(--line); }
+        :root[data-theme="dark"] .qr-card h4{ color:#d6e0ff; }
+        :root[data-theme="dark"] .qr-card .qr-row{ border-bottom-color:rgba(255,255,255,.08); }
+        :root[data-theme="dark"] .qr-card .qr-row b{ color:#9dbcff; }
+        /* 경로/노드, bmn */
+        :root[data-theme="dark"] .pathway .node{ background:rgba(122,162,255,.12); border-color:rgba(122,162,255,.3); color:#d6e0ff; }
+        :root[data-theme="dark"] .pathway .node small{ color:#a5b4fc; }
+        :root[data-theme="dark"] .bmn-card{ background:rgba(255,255,255,.04); border-color:var(--line); }
+        /* 근거 박스 / method-note */
+        :root[data-theme="dark"] .evidence{ background:rgba(56,189,248,.1); border-left-color:var(--sky); }
+        :root[data-theme="dark"] .evidence .ev-head{ color:#7dd3fc; }
+        :root[data-theme="dark"] .evidence a{ color:#7dd3fc; }
+        :root[data-theme="dark"] .method-note{ background:rgba(245,158,11,.1); }
+        /* 근거 태그 */
+        :root[data-theme="dark"] .ev-tag.fact{ background:rgba(34,197,94,.16); color:#86efac; }
+        :root[data-theme="dark"] .ev-tag.guide{ background:rgba(59,130,246,.18); color:#bfdbfe; }
+        :root[data-theme="dark"] .ev-tag.review{ background:rgba(245,158,11,.18); color:#fcd34d; }
+        :root[data-theme="dark"] .ev-tag.rct{ background:rgba(139,92,246,.2); color:#ddd6fe; }
+        :root[data-theme="dark"] .ev-tag.assume{ background:rgba(148,163,184,.18); color:#cbd5e1; }
+        /* 운동처방기 폼/결과 */
+        :root[data-theme="dark"] .rx-field label{ color:var(--ink-2); }
+        :root[data-theme="dark"] .rx-field select, :root[data-theme="dark"] .rx-field input, :root[data-theme="dark"] .rx-field textarea{ background:#0f1428; border-color:rgba(165,183,232,.22); color:var(--ink); }
+        :root[data-theme="dark"] .rx-goal-grid label{ background:rgba(255,255,255,.04); border-color:var(--line); color:var(--ink-2); }
+        :root[data-theme="dark"] .rx-btn.sec{ background:rgba(255,255,255,.08); color:var(--ink); }
+        :root[data-theme="dark"] .rx-core{ color:var(--ink-2); }
+        :root[data-theme="dark"] .rx-summary{ background:rgba(122,162,255,.1); border-color:rgba(122,162,255,.3); }
+        :root[data-theme="dark"] .rx-summary h3{ color:#d6e0ff; }
+        :root[data-theme="dark"] .rx-chip.alt{ background:rgba(122,162,255,.15); color:#d6e0ff; border-color:rgba(122,162,255,.3); }
+        :root[data-theme="dark"] .rx-block>h4{ color:#d6e0ff; }
+        :root[data-theme="dark"] .rx-warn{ background:rgba(245,158,11,.1); }
+        :root[data-theme="dark"] .rx-warn>h4{ color:#fcd34d; }
+        :root[data-theme="dark"] .rx-warn li{ color:#fde68a; }
+        /* 국시 게시판 퀴즈 */
+        :root[data-theme="dark"] .quiz-q{ background:rgba(20,26,48,.7); border-color:var(--line); }
+        :root[data-theme="dark"] .quiz-stem{ color:var(--ink); }
+        :root[data-theme="dark"] .quiz-stem .qnum{ background:rgba(122,162,255,.15); color:#d6e0ff; }
+        :root[data-theme="dark"] .quiz-opt{ background:rgba(255,255,255,.04); border-color:var(--line); color:var(--ink-2); }
+        :root[data-theme="dark"] .quiz-opt:hover:not(:disabled){ background:rgba(122,162,255,.12); border-color:rgba(122,162,255,.35); }
+        :root[data-theme="dark"] .quiz-opt .marker{ color:var(--ink-3); }
+        :root[data-theme="dark"] .quiz-opt.correct{ background:rgba(34,197,94,.16); border-color:rgba(34,197,94,.4); color:#86efac; }
+        :root[data-theme="dark"] .quiz-opt.correct .marker{ color:#86efac; }
+        :root[data-theme="dark"] .quiz-opt.wrong{ background:rgba(239,68,68,.16); border-color:rgba(239,68,68,.4); color:#fca5a5; }
+        :root[data-theme="dark"] .quiz-opt.wrong .marker{ color:#fca5a5; }
+        :root[data-theme="dark"] .quiz-exp{ background:rgba(56,189,248,.1); color:#bae6fd; border-left-color:var(--sky); }
+        :root[data-theme="dark"] .quiz-exp .lab{ color:#7dd3fc; }
+        /* 챕터 인라인 퀴즈 */
+        :root[data-theme="dark"] .chapter-quiz{ background:rgba(122,162,255,.08); border-color:rgba(122,162,255,.24); border-left-color:#8b8cff; }
+        :root[data-theme="dark"] .chapter-quiz-label{ color:#c7d2fe; }
+        :root[data-theme="dark"] .chapter-quiz .quiz-stem{ color:var(--ink); }
+        :root[data-theme="dark"] .chapter-quiz-item + .chapter-quiz-item{ border-top-color:rgba(122,162,255,.2); }
+        :root[data-theme="dark"] .chapter-quiz-qnum{ color:#a5b4fc; }
+        /* Tailwind 유틸리티(HTML 인라인) 다크 보정 */
+        :root[data-theme="dark"] .bg-white{ background-color:var(--surface) !important; }
+        :root[data-theme="dark"] .bg-green-100{ background-color:rgba(34,197,94,.15) !important; }
+        :root[data-theme="dark"] .text-gray-900, :root[data-theme="dark"] .text-gray-800, :root[data-theme="dark"] .text-gray-700{ color:var(--ink) !important; }
+        :root[data-theme="dark"] .text-gray-600, :root[data-theme="dark"] .text-gray-500{ color:var(--ink-3) !important; }
+        :root[data-theme="dark"] .text-slate-800, :root[data-theme="dark"] .text-slate-700{ color:var(--ink) !important; }
+        :root[data-theme="dark"] .text-green-600{ color:#34d399 !important; }
+        :root[data-theme="dark"] .text-orange-600{ color:#fb923c !important; }
+        :root[data-theme="dark"] .text-sky-600{ color:#38bdf8 !important; }
+        :root[data-theme="dark"] .text-blue-900, :root[data-theme="dark"] .text-blue-800, :root[data-theme="dark"] .text-blue-700, :root[data-theme="dark"] .text-blue-600{ color:#93c5fd !important; }
+        :root[data-theme="dark"] .text-indigo-800, :root[data-theme="dark"] .text-indigo-700{ color:#c7d2fe !important; }
+
+        /* --- 라이트: 미세 프리미엄 정제(가독성 유지) --- */
+        :root[data-theme="light"] .infographic-section{ box-shadow:0 8px 26px -14px rgba(30,58,138,.18), 0 2px 6px -2px rgba(15,23,42,.06); }
+
+        /* --- 인쇄: 항상 라이트/무배경 강제 --- */
+        @media print{
+          #cosmos, #starfield, #themeToggle{ display:none !important; }
+          :root[data-theme="dark"]{
+            --c-primary:#2563eb; --c-primary-strong:#1d4ed8; --c-primary-deep:#17255a;
+            --c-primary-050:#eff5ff; --c-primary-100:#dbe7fe; --c-primary-border:#cfe0fb;
+            --ink:#0f172a; --ink-2:#334155; --ink-3:#64748b; --ink-4:#94a3b8;
+            --bg:#ffffff; --surface:#ffffff; --line:#e6eaf1;
+            --amber-bg:#fffbeb; --green-bg:#f0fdf4; --sky-bg:#f0f9ff;
+          }
+          :root[data-theme="dark"] body{ background:#fff !important; color:#0f172a !important; }
+          :root[data-theme="dark"] #rxResult, :root[data-theme="dark"] #rxResult *{ color:#0f172a; }
+        }
+
+    
+        /* ==================================================================
+           [대비 수정] 다크 모드에서 밝은 배경이 안 어두워져 생긴 흰글자/저대비 보정
+           ================================================================== */
+        /* ① 내비 배경 어둡게 → 링크·'AI 운동처방' 가독성 확보 */
+        :root[data-theme="dark"] nav{
+          background:rgba(13,18,32,.85) !important;
+          -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+          border-color:rgba(255,255,255,.09) !important; }
+        :root[data-theme="dark"] nav a{ color:var(--ink-2); }
+
+        /* ② 밝은 카드/배경 유틸리티 어둡게(다크 모드 누락분) */
+        :root[data-theme="dark"] .bg-slate-50{ background-color:rgba(255,255,255,.05) !important; border:1px solid rgba(255,255,255,.08); }
+        :root[data-theme="dark"] .bg-red-50{ background-color:rgba(244,63,94,.1) !important; }
+        :root[data-theme="dark"] .bg-blue-100{ background-color:rgba(59,130,246,.2) !important; }
+        :root[data-theme="dark"] .bg-red-100{ background-color:rgba(244,63,94,.2) !important; }
+        :root[data-theme="dark"] .bg-green-100{ background-color:rgba(52,211,153,.18) !important; }
+
+        /* ③ 어두운 텍스트 색을 밝게(다크 모드 누락분) */
+        :root[data-theme="dark"] .text-red-600, :root[data-theme="dark"] .text-red-700{ color:#fca5a5 !important; }
+        :root[data-theme="dark"] .text-blue-500{ color:#93c5fd !important; }
+        :root[data-theme="dark"] .text-green-700{ color:#6ee7b7 !important; }
+        :root[data-theme="dark"] .text-slate-600, :root[data-theme="dark"] .text-slate-500{ color:var(--ink-3) !important; }
+        :root[data-theme="dark"] .text-gray-400{ color:var(--ink-4) !important; }
+
+        /* ④ 색 미지정 카드 제목(예: '근력 운동')이 밝은 본문색을 상속 → 다크 카드 위에서 밝게 유지(가독) */
+        :root[data-theme="dark"] .infographic-section h2:not(.section-title){ color:var(--ink); }
+
+        /* ⑤ 인쇄 시에도 위 보정이 라이트로 강제되도록(기존 인쇄 규칙 보완) */
+        @media print{
+          :root[data-theme="dark"] nav{ background:#fff !important; border-color:#e6eaf1 !important; }
+          :root[data-theme="dark"] nav a{ color:#334155; }
+          :root[data-theme="dark"] .bg-slate-50{ background-color:#f8fafc !important; border:none; }
+          :root[data-theme="dark"] .text-red-600, :root[data-theme="dark"] .text-red-700{ color:#b91c1c !important; }
+          :root[data-theme="dark"] .text-blue-500{ color:#2563eb !important; }
+          :root[data-theme="dark"] .text-green-700{ color:#15803d !important; }
+          :root[data-theme="dark"] .text-slate-600, :root[data-theme="dark"] .text-slate-500{ color:#475569 !important; }
+          :root[data-theme="dark"] .infographic-section h2:not(.section-title){ color:#0f172a; }
+        }
+
+    
+        /* ==================================================================
+           [대비 종합수정 2] 다크 모드 잔여 저대비 일괄 보정
+           (배경만 어둡고 글자색이 짙어 흐린 경우 + 밝은 배경 카드 미보정)
+           ================================================================== */
+        /* ① clinical-feature: 밝은 카드(#f4f7fb) → 다크 글래스 (이미지 1·3의 MCA/ACA/PCA·파킨슨 카드) */
+        :root[data-theme="dark"] .clinical-feature{
+          background:rgba(255,255,255,.045) !important; border-color:rgba(255,255,255,.09) !important; }
+        /* 카드 안 색 미지정 제목/본문은 밝은 본문색을 상속하므로 다크 카드 위에서 가독(추가 안전 규칙) */
+        :root[data-theme="dark"] .clinical-feature h3, :root[data-theme="dark"] .clinical-feature h4,
+        :root[data-theme="dark"] .clinical-feature p, :root[data-theme="dark"] .clinical-feature > .font-bold{ color:var(--ink); }
+
+        /* ② evidence: 배경은 어둡지만 글자색 #0c4a6e가 짙어 흐림 → 밝게 (이미지 2) */
+        :root[data-theme="dark"] .evidence{ color:var(--ink-2) !important; }
+        /* ③ method-note: 동일 패턴(글자 #78350f) */
+        :root[data-theme="dark"] .method-note{ color:var(--ink-2) !important; }
+
+        /* ④ ref-list(참고문헌): 텍스트/링크 밝게 */
+        :root[data-theme="dark"] .ref-list{ color:var(--ink-2); }
+        :root[data-theme="dark"] .ref-list a{ color:#93c5fd; }
+
+        /* ⑤ grade-row(평가 등급표): 밝은 배경 → 다크 + 짙은 글자 → 밝게 */
+        :root[data-theme="dark"] .grade-row{ background:rgba(255,255,255,.04) !important; border-color:rgba(255,255,255,.08); }
+        :root[data-theme="dark"] .grade-row .g{ color:#93c5fd; }
+        :root[data-theme="dark"] .grade-row .d{ color:var(--ink-2); }
+        :root[data-theme="dark"] .grade-row .d strong{ color:var(--ink); }
+
+        /* ⑥ no-results(검색 결과 없음): 밝은 박스 → 다크 */
+        :root[data-theme="dark"] #no-results{ background:rgba(245,158,11,.12) !important; color:#fcd34d !important; border-color:rgba(245,158,11,.3); }
+
+        /* ⑦ modal-content(AI 모달 본문): 짙은 글자 → 밝게 (안전 보정) */
+        :root[data-theme="dark"] .modal-content{ color:var(--ink-2); }
+        :root[data-theme="dark"] .modal-content h3{ color:#dbeafe; }
+        :root[data-theme="dark"] .modal-content h4{ color:#93c5fd; }
+        :root[data-theme="dark"] .modal-close-btn:hover{ color:var(--ink); }
+
+        /* ⑧ 인쇄: 위 보정을 라이트로 되돌려 흑백 출력 가독 유지 */
+        @media print{
+          :root[data-theme="dark"] .clinical-feature{ background:#f4f7fb !important; border-color:#e6eaf1 !important; }
+          :root[data-theme="dark"] .clinical-feature h3, :root[data-theme="dark"] .clinical-feature h4,
+          :root[data-theme="dark"] .clinical-feature p, :root[data-theme="dark"] .clinical-feature > .font-bold{ color:#0f172a; }
+          :root[data-theme="dark"] .evidence{ color:#0c4a6e !important; }
+          :root[data-theme="dark"] .method-note{ color:#78350f !important; }
+          :root[data-theme="dark"] .ref-list{ color:#475569; }
+          :root[data-theme="dark"] .ref-list a{ color:#2563eb; }
+          :root[data-theme="dark"] .grade-row{ background:#f8fafc !important; }
+          :root[data-theme="dark"] .grade-row .g{ color:#1e40af; }
+          :root[data-theme="dark"] .grade-row .d{ color:#334155; }
+          :root[data-theme="dark"] .grade-row .d strong{ color:#0f172a; }
+        }
+
     </style>
 </head>
 <body class="p-4 md:p-8">
+    <script>(function(){var r=document.documentElement;var t=null;try{t=localStorage.getItem("neuropt-theme");}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}r.setAttribute("data-theme",t);})();</script>
+    <div id="cosmos"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <button id="themeToggle" type="button" aria-label="라이트/다크 테마 전환" title="테마 전환">
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+
 
     <header id="page-top" class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-800">신경계물리치료학 및 운동 가이드</h1>
@@ -430,6 +1027,12 @@
                 <a href="#down-syndrome">다운증후군</a>
                 <a href="#ms">다발성 경화증</a>
                 <a href="#gbs">길랭-바레 증후군</a>
+                <a href="#compare">핵심 비교</a>
+                <a href="#assessment">임상 평가</a>
+                <a href="#neural">신경계 기전</a>
+                <a href="#quickref">핵심 요약</a>
+                <a href="#quiz">국시 문제</a>
+                <a href="#references">참고문헌</a>
                 <a href="#ai-support" class="ai-support-link">AI 운동처방</a>
             </div>
         </div>
@@ -538,7 +1141,7 @@
                     </ul>
                     <h3 class="subsection-title"><i class="fas fa-chart-pie"></i>국내 현황 (2022-2023년 기준)</h3>
                     <div class="space-y-4">
-                        <div class="stat-card"><p class="font-bold text-lg">사망원인 5위</p><p class="text-gray-700">인구 10만명 당 49.6명</p></div>
+                        <div class="stat-card"><p class="font-bold text-lg">사망원인 4위 (뇌혈관질환)</p><p class="text-gray-700">통계청 「2024년 사망원인통계」(2025.9 발표) 기준 · 암·심장질환·폐렴 다음</p></div>
                         <div class="stat-card"><p class="font-bold text-lg">환자 수 약 63만 명</p><p class="text-gray-700">고령화로 인해 지속적 증가 추세</p></div>
                     </div>
                 </div>
@@ -562,6 +1165,11 @@
             <p>초기에는 관절 구축, 욕창, 폐렴, 심부정맥혈전증 등 합병증 예방이 최우선입니다. 회복기에는 <strong class="highlight">비정상적 공동운동 패턴을 억제하고 정상적인 움직임을 재학습</strong>하는 데 초점을 맞춥니다. 과제지향 훈련, 강제유도 운동치료, 기능적 전기자극(FES) 등이 효과적입니다.</p>
             <h3 class="subsection-title"><i class="fas fa-dumbbell"></i>운동치료 상세</h3>
             <p>급성기에는 침상 자세 유지, 욕창 방지를 위한 2시간 간격의 체위 변경, 수동적 관절가동범위 운동을 시행합니다. 회복기에는 매트 훈련을 통해 구르기, 일어나 앉기 등 기본적인 동작을 훈련하고, 점진적으로 서기 및 보행 훈련으로 나아갑니다. 부분체중부하 트레드밀 훈련, 고유수용성신경근촉진법(PNF), 보바스 접근법 등 다양한 신경촉진기법을 적용하여 운동 조절 능력을 향상시킵니다.</p>
+            <div class="evidence">
+                <div class="ev-head"><span class="ev-tag guide">가이드라인</span><span class="ev-tag review">체계적 고찰</span>근거 기반 업데이트 — 무엇을 우선할까</div>
+                최신 근거는 신경촉진기법(보바스 등) 자체보다 <strong>과제지향 훈련(task-specific practice)</strong>·치료 강도·반복량을 우선합니다. 2023년 체계적 고찰은 보바스가 과제지향 훈련보다 열등하고 통상치료 대비 우월하지 않다고 보고했습니다(Dorsch 등, J NeuroEng Rehabil 2023). VA/DoD 2024 지침과 NICE/ISWP·ESO 2023도 과제지향 연습, 거울치료, 리듬청각자극(RAS), 전기자극, 경직에 대한 보툴리눔독소를 권고합니다. PNF·보바스는 보조적으로 활용하되 핵심은 기능적 과제의 충분한 반복입니다.
+                <a href="https://doi.org/10.1186/s12984-023-01154-6" target="_blank">Dorsch 2023</a> · <a href="https://www.acpjournals.org/doi/10.7326/ANNALS-24-02205" target="_blank">VA/DoD 2024</a>
+            </div>
             <div class="exam-tip">
                 <p><i class="fas fa-pen-alt mr-2"></i><span class="font-bold">물리치료사 국가고시 팁:</span></p>
                 <ul class="list-disc list-inside mt-2">
@@ -571,7 +1179,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
         
@@ -608,6 +1216,11 @@
             <p>이완 운동을 통해 경축을 감소시키고, 크고 리드미컬한 동작(예: LSVT BIG 프로그램)으로 운동느림증을 개선합니다. <strong class="highlight">시각적/청각적 큐(Cue)</strong>를 이용한 보행 훈련(예: 바닥에 선 긋기, 메트로놈 사용)이 동결보행 개선에 효과적입니다. 또한, 균형 훈련을 통해 낙상을 예방하고 자세 안정성을 높이는 것이 중요합니다.</p>
             <h3 class="subsection-title"><i class="fas fa-dumbbell"></i>운동치료 상세</h3>
             <p>이완운동으로 경축을 완화하고, 유연성 운동으로 관절가동범위를 확보합니다. 가동성 운동을 통해 몸통의 회전 움직임을 증진시켜 구부정한 자세를 개선합니다. 균형훈련으로 자세 불안정성을 개선합니다. 특히 보행훈련 시에는 청각적(메트로놈, 구령) 및 시각적(바닥의 선, 불빛) 단서를 활용하여 보폭을 넓히고 동결 현상을 극복하도록 돕습니다. 호흡운동과 그룹 운동도 긍정적인 효과를 줍니다.</p>
+            <div class="evidence">
+                <div class="ev-head"><span class="ev-tag guide">가이드라인</span><span class="ev-tag review">메타분석</span>외부 단서·진폭 훈련의 근거</div>
+                미국물리치료협회(APTA) 파킨슨병 임상진료지침은 <strong>외부 단서(external cueing)</strong>를 보행 향상과 동결보행(FOG) 감소에 강력 권고합니다(근거 高). 진폭 기반 훈련인 <strong>LSVT-BIG</strong>는 운동 기능 개선이 보고되며, Cochrane 2023 네트워크 메타분석은 다양한 운동 형태가 PD의 운동 증상·삶의 질에 이롭다고 정리했습니다. 다만 단서의 효과는 단기적이라는 지적도 있어 지속적 적용이 권장됩니다.
+                <a href="https://academic.oup.com/ptj/article/102/4/pzab302/6485202" target="_blank">APTA PD CPG 2022</a> · <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013856.pub2/full" target="_blank">Cochrane 2023</a>
+            </div>
             <div class="exam-tip">
                 <p><i class="fas fa-pen-alt mr-2"></i><span class="font-bold">물리치료사 국가고시 팁:</span></p>
                 <ul class="list-disc list-inside mt-2">
@@ -617,7 +1230,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
         
@@ -663,7 +1276,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -701,7 +1314,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -741,7 +1354,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -779,7 +1392,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -819,7 +1432,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -862,7 +1475,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -896,7 +1509,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -933,7 +1546,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -964,7 +1577,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -994,7 +1607,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1031,7 +1644,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1071,7 +1684,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1107,7 +1720,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1145,7 +1758,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1182,7 +1795,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1220,7 +1833,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1256,7 +1869,7 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
         </section>
 
@@ -1294,20 +1907,421 @@
                 </ul>
             </div>
             <div class="gemini-buttons">
-                <button class="gemini-btn" data-action="generate-plan">AI 환자 맞춤형 운동치료 프로그램 생성</button>
+                <button class="gemini-btn" data-action="generate-plan"><i class="fas fa-notes-medical mr-2"></i>이 질환으로 운동처방 만들기</button>
             </div>
+        </section>
+
+
+        <!-- [통합 보강] 핵심 비교·분석 -->
+        <section id="compare" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-scale-balanced mr-3"></i>핵심 비교 · 분석</span></h2>
+            <p class="text-gray-600 mb-4">신경계 임상에서 반드시 감별해야 하는 핵심 개념을 나란히 비교합니다. 국가고시 단골 출제 영역입니다.</p>
+
+            <h3 class="subsection-title"><i class="fas fa-up-down"></i>UMN 손상 vs LMN 손상</h3>
+            <table class="comp-table">
+                <thead><tr><th>비교 항목</th><th>UMN 손상 (위운동신경)</th><th>LMN 손상 (아래운동신경)</th></tr></thead>
+                <tbody>
+                    <tr><td>근긴장도</td><td class="umn">항진 (Hypertonia)</td><td class="lmn">저하 (Hypotonia)</td></tr>
+                    <tr><td>심부건반사(DTR)</td><td class="umn">항진 (Hyperreflexia)</td><td class="lmn">감소 / 소실</td></tr>
+                    <tr><td>근위축</td><td class="umn">없음 (경도 가능, 폐용성)</td><td class="lmn">심한 근위축</td></tr>
+                    <tr><td>바빈스키 징후</td><td class="umn">양성 (+)</td><td class="lmn">음성 (−)</td></tr>
+                    <tr><td>간대성 경련(Clonus)</td><td class="umn">있음</td><td class="lmn">없음</td></tr>
+                    <tr><td>근섬유다발수축(Fasciculation)</td><td class="umn">없음</td><td class="lmn">있음</td></tr>
+                    <tr><td>마비 양상</td><td class="umn">경직성 마비 (속도 의존성)</td><td class="lmn">이완성 마비 (Flaccidity)</td></tr>
+                    <tr><td>영향 범위</td><td class="umn">광범위 (여러 근육군)</td><td class="lmn">국소적 (해당 분절)</td></tr>
+                    <tr><td>대표 질환</td><td class="umn">뇌졸중, TBI, ALS(UMN 부분)</td><td class="lmn">말초신경손상, ALS(LMN 부분)</td></tr>
+                </tbody>
+            </table>
+            <div class="clinical-pearl"><strong>🚨 ALS 핵심 감별 포인트:</strong> ALS는 UMN과 LMN 징후가 <strong>동시에</strong> 나타나는 대표 질환입니다. 두 징후가 함께 존재할 때 ALS를 최우선으로 의심합니다.</div>
+
+            <h3 class="subsection-title"><i class="fas fa-hand-back-fist"></i>강직(Rigidity) vs 경직(Spasticity)</h3>
+            <div class="vs-grid">
+                <div class="vs-card red">
+                    <h4>강직 (Rigidity)</h4>
+                    <div class="row"><span>속도 의존성</span><span>속도 비의존성</span></div>
+                    <div class="row"><span>저항 방향</span><span>굽힘·폄 모두 동일</span></div>
+                    <div class="row"><span>특징</span><span>납관(Lead-pipe)/톱니바퀴(Cogwheel)</span></div>
+                    <div class="row"><span>손상 부위</span><span>바닥핵(Basal Ganglia)</span></div>
+                    <div class="row"><span>경로</span><span>피라미드외계</span></div>
+                    <div class="row"><span>대표 질환</span><span>파킨슨병</span></div>
+                </div>
+                <div class="vs-badge">VS</div>
+                <div class="vs-card blue">
+                    <h4>경직 (Spasticity)</h4>
+                    <div class="row"><span>속도 의존성</span><span>속도 의존성</span></div>
+                    <div class="row"><span>저항 방향</span><span>굽힘근(팔)·폄근(다리) 우세</span></div>
+                    <div class="row"><span>특징</span><span>접이칼(Clasp-knife), Clonus 동반</span></div>
+                    <div class="row"><span>손상 부위</span><span>피질척수로(Corticospinal)</span></div>
+                    <div class="row"><span>경로</span><span>피라미드계</span></div>
+                    <div class="row"><span>대표 질환</span><span>뇌졸중, 뇌성마비, ALS</span></div>
+                </div>
+            </div>
+            <div class="evidence">
+                <div class="ev-head"><span class="ev-tag fact">정의</span>경직의 표준 정의 (근거)</div>
+                경직은 <strong>속도 의존성</strong> 긴장성 신장반사 항진으로 정의됩니다(Lance, 1980의 고전적 정의). 이 속도 의존성 유무가 강직과의 1차 감별점이며, 임상에서 MAS(빠른 수동 신장)로 평가하는 이유이기도 합니다.
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-route"></i>바닥핵(BG) vs 소뇌(Cerebellum) 재활 전략</h3>
+            <div class="vs-grid">
+                <div class="vs-card red">
+                    <h4>바닥핵 손상</h4>
+                    <div class="row"><span>핵심 철학</span><span>내부 신호 우회(Bypass)</span></div>
+                    <div class="row"><span>주요 문제</span><span>시작·리듬·자동화 실패</span></div>
+                    <div class="row"><span>주요 전략</span><span>외부 단서(시·청각), 인지 전략</span></div>
+                    <div class="row"><span>움직임 원칙</span><span>크고, 노력적으로</span></div>
+                    <div class="row"><span>대표 기법</span><span>LSVT-BIG&reg;, 메트로놈 리듬</span></div>
+                    <div class="row"><span>대표 질환</span><span>파킨슨병</span></div>
+                </div>
+                <div class="vs-badge">VS</div>
+                <div class="vs-card blue">
+                    <h4>소뇌 손상</h4>
+                    <div class="row"><span>핵심 철학</span><span>외부 감각으로 보완(Compensation)</span></div>
+                    <div class="row"><span>주요 문제</span><span>정확성·협응·균형 실패</span></div>
+                    <div class="row"><span>주요 전략</span><span>반복 훈련, 감각 피드백 활용</span></div>
+                    <div class="row"><span>움직임 원칙</span><span>안정적이고, 단순하게</span></div>
+                    <div class="row"><span>대표 기법</span><span>몸통 안정화, 시각 피드백 훈련</span></div>
+                    <div class="row"><span>대표 질환</span><span>소뇌 경색/출혈</span></div>
+                </div>
+            </div>
+            <div class="evidence">
+                <div class="ev-head"><span class="ev-tag guide">가이드라인</span><span class="ev-tag rct">RCT</span>파킨슨병의 외부 단서·LSVT-BIG 근거</div>
+                미국물리치료협회(APTA) 파킨슨병 임상진료지침은 보행 향상과 동결보행(FOG) 감소를 위해 <strong>외부 단서(external cueing)</strong>를 적용하도록 권고합니다(근거 수준 高, 권고 강도 强). LSVT-BIG는 진폭 기반 훈련으로 운동 기능 개선이 보고되었습니다.
+                <a href="https://academic.oup.com/ptj/article/102/4/pzab302/6485202" target="_blank">APTA PT CPG for PD, Phys Ther 2022;102:pzab302</a>
+            </div>
+        </section>
+
+        <!-- [통합 보강] 임상 평가 도구 -->
+        <section id="assessment" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-clipboard-check mr-3"></i>임상 평가 도구</span></h2>
+            <p class="text-gray-600 mb-2">뇌졸중 및 신경계 질환의 객관적 평가를 위한 표준화 척도입니다.</p>
+            <div class="assess-pills">
+                <span class="pill">MAS <small>근긴장도</small></span>
+                <span class="pill">BRS <small>회복 단계</small></span>
+                <span class="pill">FMA <small>운동 기능</small></span>
+                <span class="pill">BBS <small>균형</small></span>
+                <span class="pill">ALSFRS-R <small>ALS 기능</small></span>
+                <span class="pill">ASIA <small>척수손상</small></span>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-gauge-high"></i>MAS (Modified Ashworth Scale) — 근긴장도</h3>
+            <p class="text-gray-600 text-sm mb-2">빠른 속도(1초 내)로 수동 관절가동범위 검사를 실시하여 <strong>속도 의존성</strong> 근긴장도를 평가합니다.</p>
+            <div class="grade-row"><div class="g">Grade 0</div><div class="d"><strong>정상</strong> — 근긴장도 증가 없음</div></div>
+            <div class="grade-row"><div class="g">Grade 1</div><div class="d"><strong>Catch &amp; Release</strong> — ROM 끝에서 약간의 저항 후 소실</div></div>
+            <div class="grade-row"><div class="g">Grade 1+</div><div class="d"><strong>Catch &amp; Resistance</strong> — ROM 1/2 이하에서 저항 발생 후 유지</div></div>
+            <div class="grade-row"><div class="g">Grade 2</div><div class="d"><strong>뚜렷한 증가</strong> — ROM 대부분에서 증가(수동 움직임은 용이)</div></div>
+            <div class="grade-row"><div class="g">Grade 3</div><div class="d"><strong>심한 증가</strong> — 수동 움직임이 어려움</div></div>
+            <div class="grade-row"><div class="g">Grade 4</div><div class="d"><strong>강직(Rigid)</strong> — 굽힘 또는 폄 상태로 고정</div></div>
+            <div class="evidence"><div class="ev-head"><span class="ev-tag fact">원전</span>MAS 출처</div>
+                Bohannon &amp; Smith가 Ashworth 척도에 1+ 등급을 추가하여 1987년 제안했습니다. 검사자 간 신뢰도는 부위·연구에 따라 편차가 보고됩니다.
+                <a href="https://academic.oup.com/ptj/article-abstract/67/2/206/2728158" target="_blank">Bohannon &amp; Smith, Phys Ther 1987;67:206</a>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-stairs"></i>BRS (Brunnstrom Recovery Stage) — 회복 단계</h3>
+            <p class="text-gray-600 text-sm mb-2">비정상적 공동운동(Synergy)에서 분리운동으로 이행되는 신경학적 회복 단계를 정성 평가(상지·손·하지 각각).</p>
+            <div class="grade-row"><div class="g">Stage 1</div><div class="d"><strong>이완기</strong> — 수의적 움직임·반사 모두 소실</div></div>
+            <div class="grade-row"><div class="g">Stage 2</div><div class="d"><strong>경직 발생 + 연합반응</strong> — 미세한 수의적 움직임 출현</div></div>
+            <div class="grade-row"><div class="g">Stage 3</div><div class="d"><strong>공동운동 최고조</strong> — 경직 최고조, 굽힘·폄 공동운동만 가능 <em>(국시 핵심)</em></div></div>
+            <div class="grade-row"><div class="g">Stage 4</div><div class="d"><strong>분리운동 시작</strong> — 경직 감소, 일부 분리운동 가능</div></div>
+            <div class="grade-row"><div class="g">Stage 5</div><div class="d"><strong>복잡한 분리운동</strong> — 독립적 관절 움직임, 경직 더욱 감소</div></div>
+            <div class="grade-row"><div class="g">Stage 6</div><div class="d"><strong>정상에 근접</strong> — 정상 분리운동·협응, 경직 소실</div></div>
+
+            <h3 class="subsection-title"><i class="fas fa-person-walking"></i>FMA (Fugl-Meyer Assessment) — 운동 기능</h3>
+            <div class="stat-card mb-2"><p class="font-bold">운동 총점 100점 = 상지 66점 + 하지 34점</p></div>
+            <div class="grade-row"><div class="g">≤ 49점</div><div class="d"><strong>심각(Severe)</strong> — 공동운동 의존</div></div>
+            <div class="grade-row"><div class="g">50–84점</div><div class="d"><strong>중등도(Moderate)</strong> — 분리운동 시작</div></div>
+            <div class="grade-row"><div class="g">85–95점</div><div class="d"><strong>경미(Mild)</strong> — 협응력 호전</div></div>
+            <div class="grade-row"><div class="g">96–100점</div><div class="d"><strong>정상(Normal)</strong> — 독립 기능 가능</div></div>
+            <p class="text-gray-600 text-sm mt-2"><strong>📋 상지 66점 세부:</strong> 반사(2) + 굽힘근 공동운동(12) + 폄근 공동운동(6) + 시너지 결합(6) + 시너지 분리(6) + 정상반사(2) + 손목(10) + 손(14) + 협응·속도(6)</p>
+            <div class="evidence"><div class="ev-head"><span class="ev-tag fact">원전</span>FMA 출처</div>
+                Fugl-Meyer 등이 1975년 뇌졸중 후 편마비 평가법으로 발표한 이래 운동 회복 평가의 표준으로 사용됩니다.
+                <a href="https://pubmed.ncbi.nlm.nih.gov/1135616/" target="_blank">Fugl-Meyer et al., Scand J Rehabil Med 1975;7:13</a>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-scale-unbalanced"></i>BBS (Berg Balance Scale) — 균형·낙상위험</h3>
+            <div class="stat-card mb-2"><p class="font-bold">총점 56점 = 14개 항목 × 0~4점</p></div>
+            <div class="grade-row"><div class="g">&lt; 21점</div><div class="d"><strong>낙상 초고위험</strong> — 휠체어 의존, 전적 보조 필요</div></div>
+            <div class="grade-row"><div class="g">21–40점</div><div class="d"><strong>중등도 위험</strong> — 보행보조기·감독 필요</div></div>
+            <div class="grade-row"><div class="g">41–44점</div><div class="d"><strong>잠재적 위험</strong> — 균형 훈련 필수 포함</div></div>
+            <div class="grade-row"><div class="g">≥ 45점</div><div class="d"><strong>저위험</strong> — 독립적 지역사회 보행 가능</div></div>
+            <p class="text-gray-600 text-sm mt-2"><strong>✅ 14개 항목:</strong> 앉기→서기 / 잡지않고 서기 / 등받이없이 앉기 / 서기→앉기 / 이동 / 눈감고 서기 / 두발모아 서기 / 팔 앞으로 뻗기 / 바닥 물건 줍기 / 뒤돌아보기 / 360° 회전 / 발판에 발 번갈아 올리기 / 탄뎀 서기 / 한발 서기</p>
+            <div class="evidence"><div class="ev-head"><span class="ev-tag review">체계적 고찰</span>BBS 신뢰도·민감도 (근거)</div>
+                뇌졸중 인구 대상 체계적 고찰에서 내적 일치도 Cronbach α=0.92–0.98, 검사자 간 신뢰도 ICC=0.95–0.98로 보고되었습니다(Blum &amp; Korner-Bitensky, 2008). 만성 뇌졸중에서 최소감지변화(MDC95)는 약 5점입니다(Hiengkaew 등, 2012). 단, 일부 연구에서 낙상 자체에 대한 예측력은 제한적입니다.
+                <a href="https://academic.oup.com/ptj/article/88/5/559/2742392" target="_blank">Blum &amp; Korner-Bitensky, Phys Ther 2008;88:559</a>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-notes-medical"></i>ALSFRS-R — ALS 기능 평가</h3>
+            <p class="text-gray-600 text-sm mb-2">ALS 진행 추적의 표준. <strong>48점 만점</strong>(0~4점 × 12개 항목). 점수 하락 <em>속도</em>가 예후 예측에 중요합니다.</p>
+            <div class="grade-row"><div class="g">Bulbar (3)</div><div class="d">말하기 · 침흘림 · 삼킴</div></div>
+            <div class="grade-row"><div class="g">사지 (6)</div><div class="d">글씨쓰기 · 식사도구 · 옷입기/위생 · 침대돌기 · 보행 · 계단오르기</div></div>
+            <div class="grade-row"><div class="g">호흡 (3)</div><div class="d">호흡곤란 · 앉아서 호흡(기좌호흡) · 인공호흡기(NIV) 사용</div></div>
+
+            <h3 class="subsection-title"><i class="fas fa-wheelchair"></i>ASIA 장애척도 (ISNCSCI) — 척수손상</h3>
+            <p class="text-gray-600 text-sm mb-2">척수손상의 완전/불완전 분류 국제 표준. 운동·감각 평가로 예후를 예측합니다.</p>
+            <div class="grade-row"><div class="g">Grade A</div><div class="d"><strong>완전 손상</strong> — S4-5 포함, 손상 레벨 이하 감각·운동 완전 소실</div></div>
+            <div class="grade-row"><div class="g">Grade B</div><div class="d"><strong>불완전(감각 보존)</strong> — S4-5 포함 감각만 보존, 운동 소실</div></div>
+            <div class="grade-row"><div class="g">Grade C</div><div class="d"><strong>불완전(운동 약화)</strong> — 핵심 근육 절반 이상이 도수근력 3 미만</div></div>
+            <div class="grade-row"><div class="g">Grade D</div><div class="d"><strong>불완전(운동 보존)</strong> — 핵심 근육 절반 이상이 도수근력 3 이상</div></div>
+            <div class="grade-row"><div class="g">Grade E</div><div class="d"><strong>정상</strong> — 모든 신경학적 기능 정상</div></div>
+            <div class="method-note"><strong>표기 주의:</strong> 현재 국제 표준 명칭은 <strong>ISNCSCI</strong>(International Standards for Neurological Classification of Spinal Cord Injury)이며, AIS(ASIA Impairment Scale)는 그 분류 등급을 가리킵니다. 가장 최근 개정판은 2019년 revision입니다.</div>
+        </section>
+
+        <!-- [통합 보강] 신경계 기전 -->
+        <section id="neural" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-brain mr-3"></i>신경계 기전</span></h2>
+            <p class="text-gray-600 mb-2">BMN 원리부터 주요 신경로까지, 운동 시스템과 신경 전달 경로를 구조적으로 이해합니다.</p>
+
+            <h3 class="subsection-title"><i class="fas fa-cubes"></i>BMN — 움직임의 3대 요소</h3>
+            <div class="bmn-grid">
+                <div class="bmn-card"><div class="big">🦴</div><p class="font-bold">B · Bone (골격계)</p><p class="text-sm text-gray-600">움직임을 위한 구조적 틀(지레) 제공</p></div>
+                <div class="bmn-card"><div class="big">💪</div><p class="font-bold">M · Muscle (근육계)</p><p class="text-sm text-gray-600">기계적 힘 생성을 위한 수축 실행</p></div>
+                <div class="bmn-card"><div class="big">🧠</div><p class="font-bold">N · Nerve (신경계)</p><p class="text-sm text-gray-600">감각 피드백 기반 운동 명령 개시·조절</p></div>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-timeline"></i>운동 시스템 위계</h3>
+            <div class="pathway">
+                <div class="node">운동 조절<small>Motor Control · 즉각적 통제</small></div>
+                <span class="arrow">→</span>
+                <div class="node">운동 학습<small>Motor Learning · 반복을 통한 변화</small></div>
+                <span class="arrow">→</span>
+                <div class="node">운동 발달<small>Motor Development · 시간에 따른 진전</small></div>
+            </div>
+
+            <h3 class="subsection-title"><i class="fas fa-diagram-project"></i>척수 주요 신경로</h3>
+            <table class="comp-table">
+                <thead><tr><th>신경로</th><th>전달 정보</th><th>특징</th></tr></thead>
+                <tbody>
+                    <tr><td>뒤백색기둥<br><small>Posterior White Column</small></td><td>의식적 고유수용성, 미세 촉각(Epicritic), 진동</td><td>널판다발(하지)·쐐기다발(상지)</td></tr>
+                    <tr><td>척수소뇌로<br><small>Spino-Cerebellar</small></td><td>무의식적 고유수용성 감각</td><td>소뇌로 직접 전달 · 자세·협응·자동 수정</td></tr>
+                    <tr><td>척수시상로<br><small>Spino-Thalamic</small></td><td>통증(Pain), 온도</td><td>앞가쪽 시스템 · 원시적 감각(Protopathic)</td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title"><i class="fas fa-bolt"></i>감각 구심섬유 유형</h3>
+            <table class="comp-table">
+                <thead><tr><th>감각 양상</th><th>축삭 유형</th><th>수용기</th><th>주요 자극원</th></tr></thead>
+                <tbody>
+                    <tr><td>고유수용성</td><td>Ia</td><td>근방추(Muscle Spindle)</td><td>근육의 늘어남(속도)</td></tr>
+                    <tr><td>고유수용성 ⭐</td><td>Ib</td><td>골지힘줄기관(GTO)·인대 수용기</td><td>힘줄·인대의 기계적 장력</td></tr>
+                    <tr><td>고유수용성</td><td>II</td><td>근방추</td><td>근육의 늘어남(길이)</td></tr>
+                    <tr><td>촉각·압박</td><td>Aβ</td><td>마이스너·파치니·루피니·메르켈</td><td>촉각·진동·피부 늘어남</td></tr>
+                    <tr><td>통각·온도(빠른)</td><td>Aδ</td><td>자유신경종말</td><td>조직 손상·온도 변화</td></tr>
+                    <tr><td>통각·온도(느린)</td><td>C(무수초)</td><td>자유신경종말</td><td>조직 손상·온도·가려움</td></tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title"><i class="fas fa-code-branch"></i>겉질계 vs 피질하계</h3>
+            <table class="comp-table">
+                <thead><tr><th>특성</th><th>겉질계 (Cortical/피라미드계)</th><th>피질하계 (Subcortical/피라미드외계)</th></tr></thead>
+                <tbody>
+                    <tr><td>해부학적 경로</td><td class="umn">피라미드계 / 가쪽 운동 신경로</td><td class="lmn">피라미드외계 / 안쪽 운동 신경로</td></tr>
+                    <tr><td>움직임 유형</td><td class="umn">수의적·분리된 정밀 움직임</td><td class="lmn">자동적·자세 유지·거친 움직임</td></tr>
+                    <tr><td>조절 기전</td><td class="umn">피드백(Feedback) 우세</td><td class="lmn">피드포워드(Feed-forward) 우세</td></tr>
+                    <tr><td>주요 표적 뉴런</td><td class="umn">알파 운동뉴런(α-MN)</td><td class="lmn">감마 운동뉴런(γ-MN)</td></tr>
+                    <tr><td>핵심 기능</td><td class="umn">가동성(Mobility)</td><td class="lmn">안정성(Stability)</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence"><div class="ev-head"><span class="ev-tag fact">교과서</span>기전 섹션 근거 성격</div>
+                본 섹션의 신경해부·생리 내용은 표준 신경과학 교과서(예: Kandel, <em>Principles of Neural Science</em>; Purves, <em>Neuroscience</em>)에서 확립된 기초 지식에 해당합니다. 임상 변동 사항이 아니므로 개별 RCT 인용보다 교과서 수준 합의를 근거로 합니다.
+            </div>
+        </section>
+
+        <!-- [통합 보강] 핵심 요약 -->
+        <section id="quickref" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-bookmark mr-3"></i>핵심 요약 (국시·임상 레퍼런스)</span></h2>
+            <p class="text-gray-600 mb-2">시험 전·임상 전 반드시 확인해야 할 핵심 개념을 한 눈에 정리했습니다.</p>
+            <div class="qr-grid">
+                <div class="qr-card"><h4>🧠 손상 위치 → 증상</h4>
+                    <div class="qr-row"><span>대뇌겉질/피질척수로</span><b>경직(Spasticity)</b></div>
+                    <div class="qr-row"><span>바닥핵</span><b>강직(Rigidity)</b></div>
+                    <div class="qr-row"><span>소뇌</span><b>실조(Ataxia)</b></div>
+                    <div class="qr-row"><span>척수 앞뿔</span><b>이완마비+근위축</b></div>
+                    <div class="qr-row"><span>척수 뒤백색기둥</span><b>고유수용성·진동 소실</b></div>
+                    <div class="qr-row"><span>척수시상로</span><b>통증·온도 소실</b></div>
+                </div>
+                <div class="qr-card"><h4>📊 뇌졸중 평가 점수</h4>
+                    <div class="qr-row"><span>MAS</span><b>Grade 0~4</b></div>
+                    <div class="qr-row"><span>BRS</span><b>Stage 1~6</b></div>
+                    <div class="qr-row"><span>FMA</span><b>100점(상지66+하지34)</b></div>
+                    <div class="qr-row"><span>BBS</span><b>56점(14항목)</b></div>
+                </div>
+                <div class="qr-card"><h4>⚠️ BBS 낙상 위험도</h4>
+                    <div class="qr-row"><span>&lt; 21점</span><b>초고위험</b></div>
+                    <div class="qr-row"><span>21~40점</span><b>중등도</b></div>
+                    <div class="qr-row"><span>41~44점</span><b>잠재적</b></div>
+                    <div class="qr-row"><span>≥ 45점</span><b>저위험</b></div>
+                </div>
+                <div class="qr-card"><h4>🩺 ALS 3대 포인트</h4>
+                    <div class="qr-row"><span>손상</span><b>UMN + LMN 동시</b></div>
+                    <div class="qr-row"><span>보존</span><b>감각·자율·안구</b></div>
+                    <div class="qr-row"><span>예후</span><b>대개 발병 3~5년</b></div>
+                    <div class="qr-row"><span>1차 약물</span><b>릴루졸(Riluzole)</b></div>
+                </div>
+                <div class="qr-card"><h4>💊 주요 약물</h4>
+                    <div class="qr-row"><span>릴루졸</span><b>ALS 진행 지연</b></div>
+                    <div class="qr-row"><span>에다라본</span><b>ALS(자유라디칼 제거)</b></div>
+                    <div class="qr-row"><span>바클로펜</span><b>경직 완화(GABA-B)</b></div>
+                    <div class="qr-row"><span>보툴리눔독소</span><b>국소 경직</b></div>
+                    <div class="qr-row"><span>단트롤렌</span><b>근육 내 경직 완화</b></div>
+                    <div class="qr-row"><span>레보도파</span><b>파킨슨 강직·서동</b></div>
+                </div>
+            </div>
+            <div class="evidence"><div class="ev-head"><span class="ev-tag rct">RCT</span><span class="ev-tag review">고찰</span>ALS 약물 근거</div>
+                <strong>릴루졸</strong>(글루탐산 억제, FDA 1995): 생존을 통계적으로 유의하게 연장하나 효과 크기는 작습니다(대략 2~3개월 수준; HR≈0.80). <strong>에다라본/Radicava</strong>(자유라디칼 제거제, FDA IV 2017·경구 2022): 피벗 3상에서 24주 ALSFRS-R 감소를 위약 대비 약 33% 둔화시켰습니다(효과 해석은 연구 간 다소 엇갈림).
+                <a href="https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(22)00320-0/fulltext" target="_blank">eClinicalMedicine 2022</a>
+            </div>
+            <div class="method-note"><strong>예후 표기 보정:</strong> 원자료의 "3~4년"은 진단 후 중앙 생존기간이 대략 2~5년(보고에 따라 24~48개월)으로 다양하게 보고되므로 "대개 3~5년"으로 표기했습니다. 호흡 보조·다학제 케어로 개인차가 큽니다.</div>
+        </section>
+
+        <!-- [국시 문제] 국가고시 대비 확인문제 -->
+        <section id="quiz" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-clipboard-list mr-3"></i>국가고시 대비 확인문제 <span style="font-size:.55em;background:#dc2626;color:#fff;padding:2px 10px;border-radius:999px;vertical-align:middle;font-weight:700;">난이도 상</span></span></h2>
+            <p class="text-gray-600 mb-2">챕터별 5지선다 문제입니다. 보기를 클릭하면 <strong>정답과 해설</strong>이 즉시 표시됩니다. 스스로 풀어보는 자기 시험(retrieval practice)은 단순 재독보다 파지에 효과적입니다.</p>
+            <div id="quizContainer"></div>
+            <div class="method-note" style="margin-top:1rem;"><strong>정확성 안내:</strong> 모든 문항은 본 페이지에 검증해 수록한 내용과 표준 교과서 사실에 근거하며, 정답·오답지를 구조·사실 양면으로 검수했습니다. 실제 시험 대비 시 최신 교재와 함께 확인하시고, 오류를 발견하시면 알려주세요.</div>
+        </section>
+
+        <!-- [통합 보강] 근거 및 참고문헌 -->
+        <section id="references" class="infographic-section">
+            <h2 class="section-title"><span><i class="fas fa-book-medical mr-3"></i>근거 및 참고문헌</span></h2>
+            <div class="method-note" style="border-style:solid;">
+                <strong>작성 방법·범위(투명성 고지):</strong> 아래 출처는 본 페이지 제작 시점에 실제로 검색·확인한 자료입니다.
+                통계·가이드라인은 변동 가능성이 있어 기억이 아닌 검색으로 검증했으며, 핵심 비교/평가/기전/요약 섹션과 뇌졸중·파킨슨·다발성경화증·ALS의 핵심 진술에 우선 근거를 부여했습니다.
+                개별적으로 재검증하지 않은 질환 세부 내용은 원저자(심경섭 교수) 작성 원문을 보존했으며, 추가 검증이 필요한 부분은 후속 보강이 가능합니다.
+            </div>
+            <h3 class="subsection-title"><i class="fas fa-stethoscope"></i>가이드라인 · 체계적 고찰</h3>
+            <ul class="ref-list">
+                <li><span class="ev-tag guide">가이드라인</span>뇌졸중 재활 — VA/DoD Clinical Practice Guideline (2024) 47개 권고: 과제지향 훈련·거울치료·리듬청각자극·전기자극·보툴리눔독소. <a href="https://www.acpjournals.org/doi/10.7326/ANNALS-24-02205" target="_blank">Ann Intern Med 2025 synopsis</a></li>
+                <li><span class="ev-tag guide">가이드라인</span>뇌졸중 상지 회복 — UK NICE/ISWP &amp; ESO 2023(치료 강도 증가 권고). <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11276617/" target="_blank">요약 리뷰(2024)</a></li>
+                <li><span class="ev-tag review">체계적 고찰</span>보바스(Bobath)는 과제지향 훈련보다 열등, 통상치료 대비 우월하지 않음 — Dorsch 등. <a href="https://doi.org/10.1186/s12984-023-01154-6" target="_blank">J NeuroEng Rehabil 2023;20:12</a></li>
+                <li><span class="ev-tag guide">가이드라인</span>파킨슨 물리치료 — APTA PT CPG(외부 단서 강력 권고, LSVT-BIG). <a href="https://academic.oup.com/ptj/article/102/4/pzab302/6485202" target="_blank">Phys Ther 2022;102:pzab302</a></li>
+                <li><span class="ev-tag guide">가이드라인</span>European Physiotherapy Guideline for Parkinson's Disease(KNGF/ParkinsonNet). <a href="https://journals.sagepub.com/doi/full/10.3233/JPD-181383" target="_blank">J Parkinsons Dis 2018</a></li>
+                <li><span class="ev-tag review">메타분석</span>파킨슨 운동 — Cochrane 네트워크 메타분석. <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013856.pub2/full" target="_blank">Cochrane 2023, CD013856</a></li>
+                <li><span class="ev-tag review">체계적 고찰</span>다발성경화증 운동의 안전성·효과(체력·보행·균형·피로·삶의 질 개선). <a href="https://journals.sagepub.com/doi/10.1177/13524585231204459" target="_blank">Mult Scler J 2023</a></li>
+            </ul>
+            <h3 class="subsection-title"><i class="fas fa-ruler"></i>평가 척도 (원전·신뢰도)</h3>
+            <ul class="ref-list">
+                <li>MAS — Bohannon &amp; Smith, <a href="https://academic.oup.com/ptj/article-abstract/67/2/206/2728158" target="_blank">Phys Ther 1987;67:206</a></li>
+                <li>FMA — Fugl-Meyer 등, <a href="https://pubmed.ncbi.nlm.nih.gov/1135616/" target="_blank">Scand J Rehabil Med 1975;7:13</a></li>
+                <li>BBS 신뢰도·타당도(α=0.92–0.98, ICC=0.95–0.98) — Blum &amp; Korner-Bitensky, <a href="https://academic.oup.com/ptj/article/88/5/559/2742392" target="_blank">Phys Ther 2008;88:559</a>; MDC95≈5점 — Hiengkaew 등, Arch Phys Med Rehabil 2012;93:1201</li>
+            </ul>
+            <h3 class="subsection-title"><i class="fas fa-chart-line"></i>국내 역학 통계</h3>
+            <ul class="ref-list">
+                <li><span class="ev-tag fact">통계</span>뇌혈관질환 = 사망원인 4위 — 통계청 「2024년 사망원인통계」(2025.9 발표). <a href="https://www.korea.kr/news/policyNewsView.do?newsId=156721880" target="_blank">정책브리핑</a></li>
+                <li><span class="ev-tag fact">통계</span>뇌졸중 연령표준화 발생률 2023년 113.2건/10만명(2014년 대비 19% 감소) — 질병관리청. <a href="https://www.nih.go.kr/ko/bbs/B0000007/view.do?nttId=13019&menuNo=300829" target="_blank">KDCA</a></li>
+                <li><span class="ev-tag fact">통계</span>국내 뇌졸중 현황 — 대한뇌졸중학회 「뇌졸중 팩트시트 2024」(KSR 기반). <a href="https://www.stroke.or.kr/" target="_blank">대한뇌졸중학회</a></li>
+            </ul>
+            <p class="text-xs text-gray-400 mt-4">※ 링크는 제작 시점 기준 접근 가능 자료이며, 일부는 유료/초록 페이지일 수 있습니다. 본 페이지는 학습 보조 자료로, 실제 임상 판단은 최신 원문과 지도교수·임상 지침을 함께 확인하시기 바랍니다.</p>
         </section>
 
         <!-- AI Clinical Support Tool Section -->
         <section id="ai-support" class="infographic-section">
-            <h2 class="section-title">AI 환자 맞춤형 운동치료 프로그램 생성</h2>
+            <h2 class="section-title"><span><i class="fas fa-robot mr-3"></i>운동처방 생성기 (오프라인 · 규칙 기반)</span></h2>
 
             <div id="aiToolContainer">
-                <p class="mb-4 text-gray-600">아래 입력란에 환자의 주요 정보, 진단명, 평가 소견 등을 입력하고 버튼을 누르면, AI가 맞춤형 운동치료 프로그램을 생성해 드립니다. (예: 65세 남성, 좌측 MCA 뇌경색 발병 3개월, 브룬스트롬 3단계, 경직 약간 있음, 독립적 앉기 가능)</p>
-                <textarea id="patientInfoInput" placeholder="환자 정보 입력..."></textarea>
-                <button id="generatePlanBtn" class="gemini-btn w-full md:w-auto">
-                    <i class="fas fa-cogs mr-2"></i>AI 운동치료 프로그램 생성
-                </button>
+                <p class="mb-4 text-gray-600">환자 정보를 아래 항목에서 선택하면, 표준 재활 원리를 규칙 기반으로 조합한 <strong>단계별 운동치료 프로그램 초안</strong>을 즉시 생성합니다. <strong>인터넷·API 없이 오프라인에서 작동</strong>합니다. (교육·학습용)</p>
+                <div class="rx-form">
+                    <div class="rx-field">
+                        <label for="rxCondition">진단명 *</label>
+                        <select id="rxCondition">
+                            <option value="">— 선택 —</option>
+                        <option value="stroke">뇌졸중 (Stroke)</option>
+                        <option value="parkinson">파킨슨병 (Parkinson)</option>
+                        <option value="dementia">치매 (Dementia)</option>
+                        <option value="ataxia">소뇌실조 (Cerebellar Ataxia)</option>
+                        <option value="cp">뇌성마비 (Cerebral Palsy)</option>
+                        <option value="tbi">외상성 뇌손상 (TBI)</option>
+                        <option value="sci">외상성 척수손상 (SCI)</option>
+                        <option value="tabes-dorsalis">척수매독 (Tabes Dorsalis)</option>
+                        <option value="syringomyelia">척수공동증 (Syringomyelia)</option>
+                        <option value="als">근위축성 가쪽경화증 (ALS)</option>
+                        <option value="pma">진행성 근위축증 (PMA)</option>
+                        <option value="pps">소아마비후 증후군 (PPS)</option>
+                        <option value="spina-bifida">척추갈림증 (Spina Bifida)</option>
+                        <option value="pni">말초신경병증 (Peripheral Neuropathy)</option>
+                        <option value="huntington">헌팅턴병 (Huntington)</option>
+                        <option value="cmt">샤르코-마리-투스병 (CMT)</option>
+                        <option value="friedreich">프리드리히 실조 (Friedreich)</option>
+                        <option value="down-syndrome">다운증후군 (Down Syndrome)</option>
+                        <option value="ms">다발성 경화증 (MS)</option>
+                        <option value="gbs">길랭-바레 증후군 (GBS)</option>
+                        </select>
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxPhase">시기 / 중증도</label>
+                        <select id="rxPhase">
+                            <option value="acute">급성기 (진행성=경도)</option>
+                            <option value="subacute" selected>아급성·회복기 (진행성=중등도)</option>
+                            <option value="chronic">만성·유지기 (진행성=중증)</option>
+                        </select>
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxAge">연령 (선택 · 심박존 계산)</label>
+                        <input type="number" id="rxAge" min="1" max="120" placeholder="예: 65">
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxBrunnstrom">Brunnstrom 단계 (뇌졸중·TBI)</label>
+                        <select id="rxBrunnstrom">
+                            <option value="">해당 없음</option>
+                            <option value="1">1단계 (이완기)</option>
+                            <option value="2">2단계 (경직·연합반응)</option>
+                            <option value="3">3단계 (공동운동 최고조)</option>
+                            <option value="4">4단계 (분리운동 시작)</option>
+                            <option value="5">5단계 (복잡한 분리운동)</option>
+                            <option value="6">6단계 (정상 근접)</option>
+                        </select>
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxMas">경직 (MAS)</label>
+                        <select id="rxMas">
+                            <option value="none">없음 (0)</option>
+                            <option value="mild">경도 (1~1+)</option>
+                            <option value="moderate">중등도 (2)</option>
+                            <option value="severe">중증 (3~4)</option>
+                        </select>
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxAmb">보행 · 기능 수준</label>
+                        <select id="rxAmb">
+                            <option value="">— 선택 —</option>
+                            <option value="bed">침상 수준</option>
+                            <option value="sit">좌위 가능</option>
+                            <option value="stand">기립 가능 (보행 전)</option>
+                            <option value="assist_gait">감독/보조 보행</option>
+                            <option value="indep_gait">독립 보행</option>
+                        </select>
+                    </div>
+                    <div class="rx-field">
+                        <label for="rxFall">낙상 위험 (BBS 기반)</label>
+                        <select id="rxFall">
+                            <option value="auto">자동 (기능수준으로 추정)</option>
+                            <option value="low">저위험 (BBS ≥ 45)</option>
+                            <option value="mod">중등도 (BBS 21~44)</option>
+                            <option value="high">고위험 (BBS &lt; 21)</option>
+                        </select>
+                    </div>
+                    <div class="rx-goals">
+                        <label>치료 목표 (복수 선택)</label>
+                        <div class="rx-goal-grid">
+                            <label><input type="checkbox" name="rxGoal" value="rom" checked> 관절가동범위·경직관리</label>
+                            <label><input type="checkbox" name="rxGoal" value="strength"> 근력</label>
+                            <label><input type="checkbox" name="rxGoal" value="balance" checked> 균형</label>
+                            <label><input type="checkbox" name="rxGoal" value="gait" checked> 보행</label>
+                            <label><input type="checkbox" name="rxGoal" value="ue_hand"> 상지·손 기능</label>
+                            <label><input type="checkbox" name="rxGoal" value="adl"> ADL 자립</label>
+                            <label><input type="checkbox" name="rxGoal" value="aerobic"> 심폐지구력</label>
+                        </div>
+                    </div>
+                    <div class="rx-field rx-goals">
+                        <label for="rxNotes">특이사항 메모 (선택)</label>
+                        <textarea id="rxNotes" rows="2" placeholder="예: 좌측 MCA 경색 3개월, 편측무시 동반"></textarea>
+                    </div>
+                    <div class="rx-actions">
+                        <button id="rxGenerate" class="rx-btn"><i class="fas fa-cogs mr-2"></i>운동처방 생성</button>
+                        <button id="rxReset" class="rx-btn sec"><i class="fas fa-rotate-left mr-2"></i>초기화</button>
+                        <button id="rxPrint" class="rx-btn sec"><i class="fas fa-print mr-2"></i>인쇄 / PDF</button>
+                    </div>
+                </div>
+                <div id="rxResult"></div>
             </div>
         </section>
 
@@ -1319,6 +2333,15 @@
     </a>
 
     <!-- Gemini AI Modal -->
+    <footer class="site-footer">
+        <div class="container mx-auto">
+            <div class="foot-brand">신경계물리치료학 및 운동 가이드</div>
+            <div class="foot-sub">안산대학교 물리치료학과 · 심경섭 교수</div>
+            <div class="foot-meta">신경계물리치료학 · 심장호흡물리치료학 &nbsp;|&nbsp; 교육 · 학습용 자료</div>
+            <div class="foot-copy">© 2026 Ansan University, Department of Physical Therapy</div>
+        </div>
+    </footer>
+
     <div id="geminiModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
@@ -1334,6 +2357,390 @@
         </div>
     </div>
 
+    <script>
+/* =====================================================================
+ * NeuroPT Offline 운동처방 엔진 (규칙 기반, API 불필요)
+ * 구조화 입력 → 근거 기반 단계별 프로그램 HTML 생성
+ * ===================================================================== */
+(function (global) {
+  "use strict";
+
+  // ---------- 근거 스니펫 (검증된 출처) ----------
+  var EV = {
+    task: { tag: "가이드라인", cls: "guide", text: "과제지향 훈련(task-specific practice)·충분한 반복량·치료 강도가 신경촉진기법 자체보다 우선. 보바스는 과제지향 훈련보다 열등(Dorsch 2023).", src: "VA/DoD 2024 · Dorsch 2023" },
+    cue: { tag: "가이드라인", cls: "guide", text: "외부 단서(시각·청각 cueing)는 보행 향상·동결보행(FOG) 감소에 강력 권고(근거 高). LSVT-BIG는 진폭 기반 훈련.", src: "APTA PD CPG 2022" },
+    msex: { tag: "체계적 고찰", cls: "review", text: "운동은 체력·보행·균형·피로·삶의 질을 개선하며 질병 경과 전반에서 안전.", src: "Learmonth 2023, Mult Scler J" },
+    balance: { tag: "체계적 고찰", cls: "review", text: "과제 특이적 균형·반응성(perturbation) 훈련이 낙상위험군에서 효과적. BBS로 재평가.", src: "Blum & Korner-Bitensky 2008" },
+    aerobic: { tag: "원칙", cls: "assume", text: "심폐지구력은 목표심박(HRmax=220−나이)의 중강도 50–70%가 기본. 자율신경 이상 시 심박 대신 RPE(운동자각도) 사용 권장.", src: "ACSM 일반원칙" }
+  };
+
+  // ---------- 원형(archetype): 운동 접근의 뼈대 ----------
+  var ARCH = {
+    central: { // 중추성 상위운동신경 손상(경직성) - 뇌졸중/TBI/CP/MS(경직형)
+      motor: "운동 재학습 중심. 비정상 공동운동·경직을 억제하고 정상 움직임 패턴을 과제 속에서 재훈련.",
+      note: "central"
+    },
+    cerebellar: { // 소뇌성 실조
+      motor: "협응·정확성·균형 회복 중심. 외부 감각(시각) 피드백으로 보완, 몸통·근위부 안정화 후 원위부로.",
+      note: "cerebellar"
+    },
+    hypokinetic: { // 바닥핵(파킨슨)
+      motor: "움직임 시작·리듬·진폭 회복 중심. 외부 단서와 큰 진폭(LSVT-BIG) 전략으로 내부 신호 결핍을 우회.",
+      note: "hypokinetic"
+    },
+    peripheral: { // 말초/LMN
+      motor: "근력·지구력 보존과 재신경지배 촉진 중심. 감각소실 부위 보호, 과사용성 약화(overwork weakness) 방지.",
+      note: "peripheral"
+    },
+    spinal: { // 척수 손상/병변
+      motor: "잔존 기능 최대화·보상 전략 중심. 손상 레벨 이하 기능 유지, 이동·이승(transfer)·휠체어 기술 훈련.",
+      note: "spinal"
+    },
+    mnd: { // 운동신경세포병(ALS)
+      motor: "기능 유지·에너지 보존 중심. 비피로성 저강도 활동, 관절가동범위·호흡 관리. 과부하 금지.",
+      note: "mnd"
+    }
+  };
+
+  // ---------- 질환 지식베이스 ----------
+  function P(arr) { return arr; }
+  var COND = {
+    "stroke": { label: "뇌졸중 (Stroke)", arch: "central", prog: false,
+      core: "혈관별 결손 양상에 따라 편마비·감각·인지 문제를 동반. 초기 합병증 예방 → 회복기 운동 재학습 → 만성기 지역사회 복귀.",
+      precautions: P(["푸셔 증후군 시 비마비측에서 접근해 정중선 인지 유도", "어깨 아탈구·통증 예방(포지셔닝·지지)", "편측무시/실인증 동반 시 안전·환경 조정", "운동 중 혈압·심박 모니터링(재발·심장질환 위험)"]),
+      measures: ["FMA", "BBS", "MAS", "Brunnstrom", "10MWT", "MBI(수정바델)"], useBrunnstrom: true },
+    "parkinson": { label: "파킨슨병 (Parkinson)", arch: "hypokinetic", prog: true,
+      core: "서동·강직·안정시 진전·자세 불안정. 약물 on/off 변동을 고려해 on 시간에 집중 훈련.",
+      precautions: P(["동결보행(FOG)·낙상 주의: 방향전환·좁은 공간에서 단서 활용", "기립성 저혈압 주의(체위 변경 천천히)", "가속보행(festination) 시 시작·정지 훈련", "피로·약효 변동(on/off) 시간대 고려"]),
+      measures: ["MDS-UPDRS III", "Mini-BESTest/BBS", "TUG", "6MWT", "FOG-Q"], useBrunnstrom: false },
+    "dementia": { label: "치매 (Dementia)", arch: "central", prog: true,
+      core: "인지 저하와 함께 균형·보행 저하, 낙상 위험 증가. 규칙적 운동은 기능 유지에 도움.",
+      precautions: P(["단순·일관된 지시와 반복, 익숙한 루틴 사용", "감독하 수행(안전), 환경 단순화", "행동심리증상(BPSD) 시 편안한 분위기 우선"]),
+      measures: ["BBS", "TUG", "6분 보행"], useBrunnstrom: false },
+    "ataxia": { label: "소뇌실조 (Cerebellar Ataxia)", arch: "cerebellar", prog: false,
+      core: "협응 저하·측정이상·의도진전·균형 저하. 근위부 안정화 후 원위부 협응으로 진행.",
+      precautions: P(["낙상 고위험: 지지면 넓히기·보조도구", "고난도 과제는 안정성 확보 후 단계적으로", "시각 피드백 활용(어두운 환경 주의)"]),
+      measures: ["SARA", "BBS", "TUG"], useBrunnstrom: false },
+    "cp": { label: "뇌성마비 (Cerebral Palsy)", arch: "central", prog: false,
+      core: "비진행성 운동장애이나 근골격 이차 변형은 진행 가능. 성장·구축 관리가 중요.",
+      precautions: P(["관절 구축·측만 예방(스트레칭·포지셔닝)", "경직 관리와 기능 훈련 병행", "성장기 변화 정기 재평가"]),
+      measures: ["GMFM", "BBS", "MAS"], useBrunnstrom: false },
+    "tbi": { label: "외상성 뇌손상 (TBI)", arch: "central", prog: false,
+      core: "운동·인지·행동 문제 복합. 각성·인지 수준에 맞춰 자극·과제 난이도 조절.",
+      precautions: P(["인지·행동(초조·탈억제) 고려, 구조화된 환경", "자율신경 불안정(storming)·피로 모니터링", "발작·이소성 골화 등 합병증 관찰"]),
+      measures: ["FMA", "BBS", "MAS", "RLA 인지단계"], useBrunnstrom: true },
+    "sci": { label: "외상성 척수손상 (SCI)", arch: "spinal", prog: false,
+      core: "손상 레벨·완전성(ASIA)에 따라 기능 목표 결정. 이동·이승·휠체어·기립 기술 훈련.",
+      precautions: P(["자율신경 반사부전(AD, T6 이상): 급성 고혈압·두통 시 즉시 유발원 제거", "기립성 저혈압(점진적 기립·복대)", "욕창 예방(압력 분산·체위 변경)", "체온조절 장애·감각소실 부위 보호"]),
+      measures: ["ISNCSCI(ASIA)", "SCIM", "WISCI II"], useBrunnstrom: false },
+    "tabes-dorsalis": { label: "척수매독 (Tabes Dorsalis)", arch: "spinal", prog: true,
+      core: "뒤기둥 침범으로 감각성 실조·심부감각 소실. 시각 보상·안정화 훈련.",
+      precautions: P(["감각성 운동실조·낙상: 시각 단서·넓은 지지면", "발 감각소실 → 발 관리·상처 예방", "롬버그 양성: 어두운 곳 주의"]),
+      measures: ["BBS", "TUG", "감각검사"], useBrunnstrom: false },
+    "syringomyelia": { label: "척수공동증 (Syringomyelia)", arch: "spinal", prog: true,
+      core: "공동 확장으로 분리성 감각소실(통온각)·근위축 진행. 감각소실 보호가 핵심.",
+      precautions: P(["망토형 통온각 소실 → 화상·외상 예방", "진행성: 정기 재평가", "상지 근위축·경직 혼재 가능"]),
+      measures: ["ISNCSCI 유사 평가", "MMT", "감각검사"], useBrunnstrom: false },
+    "als": { label: "근위축성 가쪽경화증 (ALS)", arch: "mnd", prog: true,
+      core: "UMN+LMN 동시 침범, 진행성. 기능 유지·에너지 보존·호흡 관리 중심.",
+      precautions: P(["과부하성 약화 금지: 저강도·비피로성, 이심성/최대저항 운동 피함", "호흡 기능 저하 모니터링(NIV 고려)", "에너지 보존·낙상 예방·구축 예방", "삼킴·의사소통 문제 시 다학제 연계"]),
+      measures: ["ALSFRS-R", "MMT", "FVC(폐활량)"], useBrunnstrom: false },
+    "pma": { label: "진행성 근위축증 (PMA)", arch: "peripheral", prog: true,
+      core: "LMN 침범 위주 진행성 근위축. 비피로성 운동으로 잔존 기능 유지.",
+      precautions: P(["과사용성 약화 방지(저강도)", "구축·변형 예방", "진행 속도 고려한 목표 설정"]),
+      measures: ["MMT", "기능적 이동평가"], useBrunnstrom: false },
+    "pps": { label: "소아마비후 증후군 (PPS)", arch: "peripheral", prog: true,
+      core: "과거 폴리오 후 수십 년 뒤 새로운 약화·피로·통증. 과사용 회피가 핵심.",
+      precautions: P(["과사용 금지: 비피로성·에너지 보존이 최우선", "통증 유발 활동 조절, 보조도구 적극 활용", "새로운 약화는 무리한 강화로 악화 가능"]),
+      measures: ["MMT", "피로·통증 척도"], useBrunnstrom: false },
+    "spina-bifida": { label: "척추갈림증 (Spina Bifida)", arch: "spinal", prog: false,
+      core: "선천성 신경관 결손. 손상 레벨 이하 마비·감각소실, 이차 합병증 관리.",
+      precautions: P(["감각소실·욕창 예방(발·둔부)", "라텍스 알레르기 주의", "수두증/션트·척수유착 증상 관찰", "발 변형·관절 관리"]),
+      measures: ["GMFM", "ISNCSCI 유사", "이동평가"], useBrunnstrom: false },
+    "pni": { label: "말초신경병증 (Peripheral Neuropathy)", arch: "peripheral", prog: false,
+      core: "말초신경 손상으로 근력·감각 저하. 보호·재신경지배 촉진·보상.",
+      precautions: P(["감각소실 부위 보호(화상·상처 예방)", "탈신경 근육 과신장 주의", "재신경지배 시기 고려한 점진적 강화"]),
+      measures: ["MMT", "감각검사", "10MWT"], useBrunnstrom: false },
+    "huntington": { label: "헌팅턴병 (Huntington)", arch: "central", prog: true,
+      core: "무도증·인지·정신 증상 동반 진행성. 안전·기능 유지·낙상 예방.",
+      precautions: P(["무도증에 의한 낙상·외상 주의(환경 안전)", "인지·행동 변화 고려, 단순 지시", "체중감소·연하장애 다학제 관리"]),
+      measures: ["UHDRS-TMS", "BBS", "TUG"], useBrunnstrom: false },
+    "cmt": { label: "샤르코-마리-투스병 (CMT)", arch: "peripheral", prog: true,
+      core: "유전성 말초신경병. 원위부 약화·족하수·감각저하 진행.",
+      precautions: P(["족하수 → 발목보조기(AFO), 발 변형 관리", "과사용성 약화 방지(저·중강도)", "감각저하 → 발 관리·균형 훈련"]),
+      measures: ["MMT", "10MWT", "균형평가"], useBrunnstrom: false },
+    "friedreich": { label: "프리드리히 실조 (Friedreich)", arch: "cerebellar", prog: true,
+      core: "소뇌+뒤기둥 침범 진행성 실조. 심근병증 동반 → 심장 부하 주의.",
+      precautions: P(["심근병증 동반: 심장 부하·고강도 운동 신중(의료진 협의)", "실조·낙상: 안정화·시각 피드백", "측만·발 변형 관리"]),
+      measures: ["SARA", "BBS", "심장평가 연계"], useBrunnstrom: false },
+    "down-syndrome": { label: "다운증후군 (Down Syndrome)", arch: "central", prog: false,
+      core: "저긴장·관절 과가동성·발달지연. 안정성·근력·운동조절 훈련.",
+      precautions: P(["환축추 불안정: 목 굴곡·충돌운동·구르기 등 신중(선별 확인)", "저긴장·인대 이완 → 관절 보호·안정화", "선천성 심장질환 동반 여부 확인"]),
+      measures: ["GMFM", "BBS", "근력평가"], useBrunnstrom: false },
+    "ms": { label: "다발성 경화증 (MS)", arch: "central", prog: true,
+      core: "중추 탈수초로 다양한 결손(경직·실조·피로·시각). 재발·완화 경과 고려.",
+      precautions: P(["열 민감성(Uhthoff): 과열 회피(서늘한 환경·냉각)", "피로 관리: 에너지 보존·간헐적 휴식", "재발기 강도 조절", "실조·경직 혼재 시 개별 접근"]),
+      measures: ["EDSS", "T25FW(25보행)", "BBS", "MFIS(피로)"], useBrunnstrom: false },
+    "gbs": { label: "길랭-바레 증후군 (GBS)", arch: "peripheral", prog: false, acuteHeavy: true,
+      core: "급성 염증성 탈수초. 상행성 마비 후 대개 회복. 시기별 접근이 관건.",
+      precautions: P(["급성기: 과피로·이심성 운동 회피(재신경지배 부담)", "호흡근 침범·자율신경 불안정 모니터링", "신경병증성 통증 관리", "회복기 점진적·비피로성 강화"]),
+      measures: ["MRC sum score", "GBS 장애척도", "10MWT"], useBrunnstrom: false }
+  };
+
+  // ---------- 질환 특이 핵심 포인트(세분화 규칙) ----------
+  var SPECIFIC = {
+    "stroke": ["과제지향 반복 훈련을 최우선: 보행·상지 기능 과제를 다량 반복(강도·반복량이 회복의 핵심)", "적절한 대상에서 CIMT(건측 억제)·거울치료로 상지 회복 촉진", "족하수 시 기능적 전기자극(FES) 또는 발목보조기(AFO) 병용, 보행에 리듬청각자극(RAS)으로 대칭성·속도 개선"],
+    "parkinson": ["on 시간대에 큰 진폭 훈련(LSVT-BIG), 이중과제·인지부하 점진 도입", "동결보행(FOG)에 시각(바닥선)·청각(메트로놈) 외부 단서 적용", "자세 불안정에 반응성 균형(perturbation) 훈련 추가"],
+    "ataxia": ["근위부→원위부 순서로 안정성 확보 후 협응 과제 진행", "프렌켈(Frenkel) 운동 등 시각 피드백 기반 협응 훈련, 필요 시 원위부 무게추로 측정이상 감소 시도", "보행 시 지지면 확대·리듬 단서 활용"],
+    "cp": ["GMFCS 수준에 맞춘 기능 목표 설정, 성장기 구축 예방 스트레칭·자세관리 병행", "선택적 근력강화는 경직 악화 없이 기능 향상에 기여", "보조기·보조도구로 이동 효율 확보"],
+    "tbi": ["Rancho Los Amigos 인지단계에 맞춰 자극·과제 난이도 조절", "각성·주의 저하 시 짧고 구조화된 세션", "전정·균형 재활 병행"],
+    "sci": ["손상 레벨별 기능 목표 설정(이승·휠체어 기술 집중), 잔존근 강화+보상 병행", "불완전 손상에서는 체중지지 보행훈련(BWSTT) 고려", "T6 이상: 자율신경 반사부전 예방·즉시 대응 프로토콜 숙지"],
+    "als": ["저강도·비피로성 유지 운동만: 이심성·최대저항·탈진 유발 운동 회피(과부하성 약화)", "관절가동범위·연부조직 신장으로 구축·통증 예방", "호흡물리치료·에너지 보존, 진행에 따라 보조공학·다학제 연계"],
+    "ms": ["열 민감성(Uhthoff): 서늘한 환경·냉각, 시원한 시간대 운동", "피로 관리 중심의 간헐적 운동, 중강도가 안전·효과적", "재발기 강도 하향, 완화기에 점진적 증가"],
+    "gbs": ["급성기: 관절가동범위·포지셔닝·호흡관리 위주, 과피로·이심성 운동 회피", "회복기: 재신경지배에 맞춘 점진적·비피로성 강화", "신경병증성 통증·자율신경 변동 모니터링"],
+    "huntington": ["무도증 환경 안전(모서리 보호·낙상 예방), 큰 움직임·리듬 과제로 기능 유지", "인지 저하 고려한 단순·일관 지시", "체간 안정·보행 훈련으로 이동 독립 최대화"],
+    "dementia": ["익숙한 루틴·단순 지시·다감각 단서로 참여 유도", "규칙적 유산소+균형 운동이 기능·낙상 예방에 도움", "보호자 교육·환경 단순화"],
+    "cmt": ["족하수·발변형에 AFO, 저·중강도 강화(과사용 회피)", "균형·발목 안정성 훈련과 발 관리 교육", "원위부 신장·관절가동범위 유지"],
+    "friedreich": ["심근병증 동반 → 고강도 운동은 의료진 협의 후 신중", "실조에 안정화·시각 피드백, 측만·발 변형 관리", "심장·호흡 상태 정기 재평가"],
+    "down-syndrome": ["환축추 불안정 선별 후 목 굴곡·충돌 운동 신중", "저긴장·과가동성에 관절 안정화·근력강화", "심장질환 동반 여부 확인 후 유산소 처방"],
+    "pps": ["과사용 금지 원칙: 비피로성·에너지 보존 최우선", "보조도구 적극 활용으로 관절 보호", "새로운 약화는 무리한 강화로 악화될 수 있음에 유의"],
+    "tabes-dorsalis": ["감각성 운동실조에 시각 보상·넓은 지지면", "롬버그 양성 → 어두운 환경 주의", "발 감각소실 관리·상처 예방"]
+  };
+
+  // ---------- 검증된 참고문헌(실제 확인 출처) ----------
+  var REF = {
+    vadod:      { t: "뇌졸중 재활 임상진료지침 — VA/DoD 2024 (과제지향·거울치료·RAS·전기자극·BTX)", u: "https://www.acpjournals.org/doi/10.7326/ANNALS-24-02205" },
+    dorsch:     { t: "보바스는 과제지향 훈련보다 열등 — Dorsch 2023, J NeuroEng Rehabil", u: "https://doi.org/10.1186/s12984-023-01154-6" },
+    aptaPD:     { t: "파킨슨 물리치료 임상진료지침 — APTA, Phys Ther 2022 (외부 단서 강력권고, LSVT-BIG)", u: "https://academic.oup.com/ptj/article/102/4/pzab302/6485202" },
+    cochranePD: { t: "파킨슨 운동 네트워크 메타분석 — Cochrane 2023, CD013856", u: "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013856.pub2/full" },
+    euPD:       { t: "European Physiotherapy Guideline for Parkinson's Disease (KNGF/ParkinsonNet)", u: "https://journals.sagepub.com/doi/full/10.3233/JPD-181383" },
+    msSafe:     { t: "MS 운동의 안전성·효과 체계적 고찰 — Learmonth 2023, Mult Scler J", u: "https://journals.sagepub.com/doi/10.1177/13524585231204459" },
+    alsDrug:    { t: "ALS 약물(릴루졸·에다라본) 근거 — eClinicalMedicine 2022", u: "https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(22)00320-0/fulltext" },
+    bbs:        { t: "Berg 균형척도 신뢰도·타당도 — Blum & Korner-Bitensky, Phys Ther 2008", u: "https://academic.oup.com/ptj/article/88/5/559/2742392" }
+  };
+  function refsFor(condId, arch, cond) {
+    var keys = [];
+    if (arch === "central") keys = ["vadod", "dorsch"];
+    else if (arch === "hypokinetic") keys = ["aptaPD", "cochranePD", "euPD"];
+    else if (arch === "mnd") keys = ["alsDrug"];
+    if (condId === "ms") keys.push("msSafe");
+    // 평가도구에 BBS 포함 시 근거 첨부
+    if (cond && cond.measures && cond.measures.indexOf("BBS") >= 0 && keys.indexOf("bbs") < 0) keys.push("bbs");
+    var seen = {}, out = [];
+    keys.forEach(function (k) { if (REF[k] && !seen[k]) { seen[k] = 1; out.push(REF[k]); } });
+    return out;
+  }
+
+  // ---------- 단계 콘텐츠 ----------
+  function phaseLabel(cond, phase) {
+    if (cond.prog) return { acute: "경도 (초기)", subacute: "중등도 (중기)", chronic: "중증 (후기)" }[phase];
+    return { acute: "급성기", subacute: "아급성·회복기", chronic: "만성·유지기" }[phase];
+  }
+  function phaseGoals(cond, phase) {
+    if (cond.prog) {
+      return {
+        acute: { 목적: "최대 기능 유지·이차 손상 예방", 종류: "유산소+저항운동, 유연성, 유산소성 지구력, 환자교육", 강도: "중강도(비피로성), RPE 11–13", 주의: "과부하·과열·피로 회피" },
+        subacute: { 목적: "보상 전략·안전·자립 유지", 종류: "보상 훈련, 보조도구 적용, 에너지 보존, 균형·이동 훈련", 강도: "저–중강도, 자주·짧게", 주의: "낙상·피로·통증 관리" },
+        chronic: { 목적: "관절가동범위·안위 유지, 합병증 예방", 종류: "수동·능동보조 ROM, 포지셔닝, 호흡관리, 보호자 교육", 강도: "저강도·수동 중심", 주의: "구축·욕창·흡인 예방" }
+      }[phase];
+    }
+    return {
+      acute: { 목적: "합병증 예방·조기 가동", 종류: "포지셔닝(2시간 체위변경), 수동 ROM, 침상 가동성, 조기 기립", 강도: "저강도·빈번", 주의: "욕창·구축·DVT·폐렴 예방" },
+      subacute: { 목적: "운동 재학습·기능 회복", 종류: "과제지향 훈련, 점진적 이동·균형·보행, 근력, 상지 기능", 강도: "중강도, 반복량 확보", 주의: "대상성 패턴·과사용 주의" },
+      chronic: { 목적: "지역사회 복귀·체력·자기관리", 종류: "고난도 균형·보행, 유산소, 이중과제, 자조 프로그램", 강도: "중–고강도(개별화)", 주의: "이차적 기능저하 예방" }
+    }[phase];
+  }
+
+  // ---------- Brunnstrom 단계별 접근 ----------
+  function brunnstromPlan(stage) {
+    var s = String(stage);
+    var map = {
+      "1": { t: "1단계 (이완기)", d: "아탈구 예방 포지셔닝, 수동 ROM, 체중지지·촉진(tapping)으로 근활성 유도, 감각 자극." },
+      "2": { t: "2단계 (경직·연합반응 출현)", d: "연합반응 활용한 초기 근활성, 능동보조 ROM, 체중지지, 경직 유발 자세 회피." },
+      "3": { t: "3단계 (공동운동 최고조)", d: "체중지지로 공동운동·경직 억제, 공동운동에서 벗어나는 능동보조 움직임 시작, 몸통 조절." },
+      "4": { t: "4단계 (분리운동 시작)", d: "분리운동 촉진, 과제지향 훈련·기능적 도달, 점진적 근력, 기준 충족 시 CIMT 고려." },
+      "5": { t: "5단계 (복잡한 분리운동)", d: "복합 분리운동, 정밀·기능적 과제, 양손 협응, 지구력." },
+      "6": { t: "6단계 (정상 근접)", d: "협응·속도, 이중과제, 정교한 손 기능, 지역사회 활동." }
+    };
+    return map[s] || null;
+  }
+
+  // ---------- 보행/기능 수준별 진행 ----------
+  function ambulationPlan(level) {
+    var map = {
+      bed: { t: "침상 수준", d: "침상 가동성(구르기·브릿징·앙와위↔좌위), 좌위 균형 준비, 관절 보호." },
+      sit: { t: "좌위 가능", d: "정적→동적 좌위 균형, 몸통 조절, 앉기↔서기 준비, 체중이동." },
+      stand: { t: "기립 가능(보행 전)", d: "앉기↔서기 반복, 기립 정적→동적 균형, 체중이동, 예비 보행(pre-gait)." },
+      assist_gait: { t: "감독/보조 보행", d: "평행봉·보조도구 보행, 부분체중부하 트레드밀(BWSTT), 보행 지구력, 안전 감독." },
+      indep_gait: { t: "독립 보행", d: "고난도 보행(속도·장애물·지역사회), 계단, 이중과제 보행, 방향전환." }
+    };
+    return map[level] || null;
+  }
+
+  // ---------- 경직(MAS) 관리 ----------
+  function spasticityPlan(mas) {
+    if (mas === "none") return null;
+    var base = "지속적 신전(prolonged stretch)·포지셔닝, 능동보조 ROM, 경직 유발 자극 최소화.";
+    if (mas === "mild") return { level: "경도 (MAS 1–1+)", d: base + " 기능 훈련과 병행." };
+    if (mas === "moderate") return { level: "중등도 (MAS 2)", d: base + " 구축 예방(스플린트 고려), 통증 관리." };
+    return { level: "중증 (MAS 3–4)", d: base + " 구축·변형 위험 높음 → 국소 경직에 보툴리눔독소, 심하면 바클로펜 등 약물·의료진 연계 고려." };
+  }
+
+  // ---------- 목표별 중재 ----------
+  function goalInterventions(goals, cond) {
+    var out = [];
+    var isPD = cond.arch === "hypokinetic";
+    var isMS = cond.label.indexOf("다발성") >= 0;
+    var G = {
+      rom: { title: "관절가동범위·경직 관리", body: "수동·능동보조 ROM, 지속적 신전, 포지셔닝, 필요 시 스플린트." },
+      strength: { title: "근력 강화", body: "과제 관련 점진적 저항운동(PRE). 진행성/말초 질환은 비피로성 저–중강도." },
+      balance: { title: "균형 훈련", body: "정적→동적→반응성(perturbation) 균형, 감각 조건 변화, 지지면·기저면 조절.", ev: EV.balance },
+      gait: { title: "보행 훈련", body: isPD ? "외부 단서(메트로놈·바닥선) 활용 보행, 큰 보폭, 시작·정지·방향전환, BWSTT." : "과제지향 보행, 지구력, 지역사회 보행, 필요 시 BWSTT·보조도구.", ev: isPD ? EV.cue : EV.task },
+      ue_hand: { title: "상지·손 기능", body: "과제지향 상지 훈련, 정밀·양손 협응. 뇌졸중에서 기준 충족 시 CIMT.", ev: EV.task },
+      adl: { title: "일상생활동작(ADL)", body: "이승·이동, 옷입기·위생 등 기능적 과제 반복, 보조도구·환경 수정." }
+      /* 심폐지구력(aerobic)은 전용 심박존 블록에서 별도 처리 */
+    };
+    goals.forEach(function (g) { if (G[g]) out.push(G[g]); });
+    return out;
+  }
+
+  // ---------- 심박수 존 ----------
+  function hrZones(age) {
+    if (!age || age <= 0 || age > 120) return null;
+    var max = 220 - age;
+    return { max: max, modLo: Math.round(max * 0.5), modHi: Math.round(max * 0.7), vigLo: Math.round(max * 0.7), vigHi: Math.round(max * 0.85) };
+  }
+
+  // ---------- HTML 유틸 ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+  function evBox(ev) {
+    if (!ev) return "";
+    return '<div class="evidence" style="margin-top:0.6rem"><div class="ev-head"><span class="ev-tag ' + ev.cls + '">' + ev.tag + '</span>근거</div>' + esc(ev.text) + ' <em style="color:#0369a1">(' + esc(ev.src) + ')</em></div>';
+  }
+
+  // ---------- 메인 생성기 ----------
+  function generateNeuroPlan(inp) {
+    var cond = COND[inp.condition];
+    if (!cond) return '<p class="text-red-600">진단명을 선택해 주세요.</p>';
+    var arch = ARCH[cond.arch];
+    var phL = phaseLabel(cond, inp.phase);
+    var pg = phaseGoals(cond, inp.phase);
+    var goals = inp.goals || [];
+    var H = [];
+
+    // 1. 요약 헤더
+    H.push('<div class="rx-summary"><h3><i class="fas fa-file-medical mr-2"></i>' + esc(cond.label) + ' — 운동치료 프로그램(초안)</h3>');
+    H.push('<div class="rx-chips">');
+    H.push('<span class="rx-chip">' + esc(phL) + '</span>');
+    if (inp.age) H.push('<span class="rx-chip">' + esc(inp.age) + '세</span>');
+    if (cond.useBrunnstrom && inp.brunnstrom) H.push('<span class="rx-chip">Brunnstrom ' + esc(inp.brunnstrom) + '단계</span>');
+    var masLabel = { none: "경직 없음", mild: "경직 경도", moderate: "경직 중등도", severe: "경직 중증" }[inp.mas] || "";
+    if (masLabel) H.push('<span class="rx-chip">' + esc(masLabel) + '</span>');
+    var ambP = ambulationPlan(inp.ambulation);
+    if (ambP) H.push('<span class="rx-chip">' + esc(ambP.t) + '</span>');
+    H.push('</div>');
+    H.push('<p class="rx-core">' + esc(cond.core) + '</p>');
+    H.push('<p class="rx-core" style="color:#1e40af"><strong>운동 접근 원칙:</strong> ' + esc(arch.motor) + '</p></div>');
+
+    // 2. 안전·주의사항
+    var precs = cond.precautions.slice();
+    var sp = spasticityPlan(inp.mas);
+    var fall = inp.fallRisk;
+    if (fall === "high" || (fall === "auto" && (inp.ambulation === "assist_gait" || inp.ambulation === "stand"))) {
+      precs.unshift("낙상 고위험: 감독하 수행·환경 안전 확보(난간·미끄럼 방지)");
+    }
+    H.push('<div class="rx-block rx-warn"><h4><i class="fas fa-triangle-exclamation mr-2"></i>안전 · 주의사항</h4><ul>');
+    precs.forEach(function (p) { H.push('<li>' + esc(p) + '</li>'); });
+    H.push('</ul></div>');
+
+    // 3. 현재 단계 프로그램(표)
+    H.push('<div class="rx-block"><h4><i class="fas fa-layer-group mr-2"></i>현재 단계 프로그램 — ' + esc(phL) + '</h4>');
+    H.push('<table class="comp-table"><thead><tr><th>항목</th><th>내용</th></tr></thead><tbody>');
+    ["목적", "종류", "강도", "주의"].forEach(function (k) {
+      H.push('<tr><td>' + k + '</td><td>' + esc(pg[k]) + '</td></tr>');
+    });
+    H.push('</tbody></table></div>');
+
+    // 4. 운동 재학습 세부(Brunnstrom / 보행수준 / 경직)
+    var details = [];
+    if (cond.useBrunnstrom && inp.brunnstrom) {
+      var bp = brunnstromPlan(inp.brunnstrom);
+      if (bp) details.push({ t: "운동회복 단계별 접근 · " + bp.t, d: bp.d });
+    }
+    if (ambP) details.push({ t: "이동·보행 진행 · " + ambP.t, d: ambP.d });
+    if (sp) details.push({ t: "경직 관리 · " + sp.level, d: sp.d });
+    if (details.length) {
+      H.push('<div class="rx-block"><h4><i class="fas fa-diagram-project mr-2"></i>맞춤 세부 전략</h4>');
+      details.forEach(function (d) {
+        H.push('<div class="clinical-feature"><p class="font-bold" style="color:#1e40af">' + esc(d.t) + '</p><p>' + esc(d.d) + '</p></div>');
+      });
+      H.push('</div>');
+    }
+
+    // 4.5 질환 특이 핵심 포인트(세분화)
+    var spec = SPECIFIC[inp.condition];
+    if (spec && spec.length) {
+      H.push('<div class="rx-block"><h4><i class="fas fa-notes-medical mr-2"></i>질환 특이 핵심 포인트</h4><ul>');
+      spec.forEach(function (p) { H.push('<li>' + esc(p) + '</li>'); });
+      H.push('</ul></div>');
+    }
+
+    // 5. 목표별 중재
+    var gi = goalInterventions(goals, cond);
+    if (gi.length) {
+      H.push('<div class="rx-block"><h4><i class="fas fa-bullseye mr-2"></i>목표별 권장 중재</h4>');
+      gi.forEach(function (item) {
+        H.push('<div class="clinical-feature"><p class="font-bold">' + esc(item.title) + '</p><p>' + esc(item.body) + '</p>' + (item.ev ? evBox(item.ev) : "") + '</div>');
+      });
+      H.push('</div>');
+    }
+
+    // 6. 심폐지구력(심박존)
+    if (goals.indexOf("aerobic") >= 0) {
+      var z = hrZones(inp.age);
+      H.push('<div class="rx-block"><h4><i class="fas fa-heart-pulse mr-2"></i>심폐지구력 처방</h4>');
+      if (z) {
+        H.push('<table class="comp-table"><thead><tr><th>구간</th><th>목표 심박수</th><th>비고</th></tr></thead><tbody>');
+        H.push('<tr><td>최대심박(추정)</td><td>' + z.max + ' bpm</td><td>220 − 나이</td></tr>');
+        H.push('<tr><td>중강도 50–70%</td><td>' + z.modLo + '–' + z.modHi + ' bpm</td><td>심폐지구력·지방연소</td></tr>');
+        H.push('<tr><td>고강도 70–85%</td><td>' + z.vigLo + '–' + z.vigHi + ' bpm</td><td>개별화, 신중 적용</td></tr>');
+        H.push('</tbody></table>');
+      } else {
+        H.push('<p>나이를 입력하면 목표 심박수 구간이 계산됩니다.</p>');
+      }
+      H.push('<p class="text-sm" style="color:#64748b;margin-top:.4rem">※ 척수손상·GBS 등 자율신경 이상 시 심박이 부정확할 수 있어 RPE(11–13/20)를 함께 사용합니다.</p>' + evBox(EV.aerobic) + '</div>');
+    }
+
+    // 7. 권장 재평가 도구
+    H.push('<div class="rx-block"><h4><i class="fas fa-clipboard-check mr-2"></i>권장 평가·재평가 도구</h4><div class="rx-chips">');
+    cond.measures.forEach(function (m) { H.push('<span class="rx-chip alt">' + esc(m) + '</span>'); });
+    H.push('</div></div>');
+
+    // 8. 메모
+    if (inp.notes && inp.notes.trim()) {
+      H.push('<div class="rx-block"><h4><i class="fas fa-pen mr-2"></i>입력 메모</h4><p style="white-space:pre-wrap">' + esc(inp.notes.trim()) + '</p></div>');
+    }
+
+    // 8.5 관련 근거 · 참고문헌(자동 첨부)
+    var refs = refsFor(inp.condition, cond.arch, cond);
+    H.push('<div class="rx-block"><h4><i class="fas fa-book-medical mr-2"></i>관련 근거 · 참고문헌</h4>');
+    if (refs.length) {
+      H.push('<ul class="ref-list">');
+      refs.forEach(function (r) { H.push('<li>' + esc(r.t) + ' <a href="' + r.u + '" target="_blank" rel="noopener">[원문]</a></li>'); });
+      H.push('</ul>');
+    }
+    H.push('<p class="text-sm" style="color:#64748b;margin-top:.3rem">그 외 세부 중재는 표준 신경계 물리치료 원리(교과서 수준)에 기반합니다. 링크는 온라인에서 열립니다.</p></div>');
+
+    // 9. 면책
+    H.push('<div class="method-note" style="margin-top:1rem"><strong>면책:</strong> 본 결과는 표준 재활 원리를 규칙 기반으로 조합한 <strong>교육·학습용 초안</strong>입니다. 실제 환자 적용 전 담당 의료진의 평가와 임상 판단, 최신 지침 확인이 반드시 필요합니다.</div>');
+
+    return H.join("\n");
+  }
+
+  global.NeuroRx = { generate: generateNeuroPlan, conditions: COND };
+
+})(typeof window !== "undefined" ? window : global);
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Notification Management ---
@@ -1404,8 +2811,6 @@
             const modalContent = document.getElementById('modalContent');
             const modalLoader = document.getElementById('modalLoader');
             const modalCloseBtn = document.getElementById('modalClose');
-            const generatePlanBtn = document.getElementById('generatePlanBtn');
-            const patientInfoInput = document.getElementById('patientInfoInput');
 
             const openModal = () => modal.classList.add('show');
             const closeModal = () => modal.classList.remove('show');
@@ -1415,113 +2820,77 @@
                 if (e.target === modal) closeModal();
             });
 
-            // 교수님 맞춤형 시스템 프롬프트 (페르소나, 출력 형태, 판단 기준 내장)
-            const systemPrompt = `당신은 임상 경험이 풍부한 베테랑 물리치료사이자 대학교수입니다. 
-다음 기준을 엄격히 적용하여 최고 수준의 전문가적 답변을 일관되게 생성하십시오.
-1. 임상적 적용 가능성, 물리치료학적 근거(EBP), 학생의 이해도를 기준으로 삼아 작성할 것.
-2. 불필요하고 장황한 서론이나 모호한 표현은 철저히 배제할 것.
-3. 프로그램을 '초기, 중기, 후기' 단계로 나누어 각 단계별 [목적, 종류, 빈도, 강도, 세트, 주의사항]을 포함할 것.
-4. 긴 줄글 대신 개조식(Bulleted list)과 표(Table)를 적극 활용할 것.
-5. 전문 용어는 영어(의학 용어 전체 이름)를 반드시 병기할 것.
-6. 마크다운(Markdown) 포맷을 엄격하게 유지하여 출력할 것.`;
-
-            // 지수 백오프(Exponential Backoff)를 적용한 재시도 로직
-            async function fetchWithRetry(url, options) {
-                const delays = [1000, 2000, 4000, 8000, 16000];
-                let lastError = null;
-
-                for (let i = 0; i <= delays.length; i++) {
-                    try {
-                        const response = await fetch(url, options);
-                        if (response.ok) {
-                            return response;
-                        }
-                        lastError = new Error(`HTTP error! status: ${response.status}`);
-                    } catch (error) {
-                        lastError = error;
-                    }
-                    if (i < delays.length) {
-                        await new Promise(resolve => setTimeout(resolve, delays[i]));
-                    }
-                }
-                throw lastError;
+            // ===== 오프라인 규칙 기반 운동처방 엔진 연결 (API 불필요) =====
+            const rxEl = {
+                cond: document.getElementById('rxCondition'),
+                phase: document.getElementById('rxPhase'),
+                age: document.getElementById('rxAge'),
+                brunn: document.getElementById('rxBrunnstrom'),
+                mas: document.getElementById('rxMas'),
+                amb: document.getElementById('rxAmb'),
+                fall: document.getElementById('rxFall'),
+                notes: document.getElementById('rxNotes'),
+                result: document.getElementById('rxResult')
+            };
+            function rxCollectGoals() {
+                return Array.prototype.map.call(
+                    document.querySelectorAll('input[name="rxGoal"]:checked'),
+                    function (c) { return c.value; }
+                );
             }
-
-            // --- Gemini Text API Call ---
-            async function callTextApi(userPrompt, buttonToDisable) {
-                modalContent.innerHTML = '';
-                modalLoader.classList.remove('hidden');
-                if(buttonToDisable) buttonToDisable.disabled = true;
-                openModal();
-
-                try {
-                    // Vercel의 Serverless Function으로 요청 전달 (API 키 노출 방지)
-                    const response = await fetchWithRetry(`/api/generate`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            prompt: userPrompt,
-                            systemPrompt: systemPrompt
-                        })
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (!response.ok) {
-                        throw new Error(result.error || `HTTP error! status: ${response.status}`);
-                    }
-                    
-                    const text = result.text;
-
-                    if (text) {
-                        // marked.js를 사용하여 마크다운을 HTML로 완벽하게 변환하여 렌더링
-                        modalContent.innerHTML = marked.parse(text);
+            const rxGenerateBtn = document.getElementById('rxGenerate');
+            if (rxGenerateBtn) {
+                rxGenerateBtn.addEventListener('click', function () {
+                    if (!rxEl.cond.value) { showNotification('진단명을 선택해 주세요.', true); return; }
+                    const inp = {
+                        condition: rxEl.cond.value,
+                        phase: rxEl.phase.value || 'subacute',
+                        age: rxEl.age.value ? parseInt(rxEl.age.value, 10) : null,
+                        brunnstrom: rxEl.brunn.value || '',
+                        mas: rxEl.mas.value || 'none',
+                        ambulation: rxEl.amb.value || '',
+                        fallRisk: rxEl.fall.value || 'auto',
+                        goals: rxCollectGoals(),
+                        notes: rxEl.notes.value || ''
+                    };
+                    if (window.NeuroRx && window.NeuroRx.generate) {
+                        rxEl.result.innerHTML = window.NeuroRx.generate(inp);
+                        rxEl.result.style.display = 'block';
+                        rxEl.result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        showNotification('운동처방 초안이 생성되었습니다.');
                     } else {
-                        modalContent.textContent = 'AI로부터 유효한 답변을 받지 못했습니다.';
+                        rxEl.result.innerHTML = '<p class="text-red-600">엔진 로드에 실패했습니다. 페이지를 새로고침해 주세요.</p>';
+                        rxEl.result.style.display = 'block';
                     }
-
-                } catch (error) {
-                    console.error("AI API call failed:", error);
-                    modalContent.innerHTML = `
-                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
-                            <p class="text-red-700 font-bold text-lg"><i class="fas fa-exclamation-triangle mr-2"></i>AI 서비스 호출에 실패했습니다.</p>
-                            <p class="text-sm mt-2 text-gray-700"><strong>에러 내용:</strong> ${error.message}</p>
-                            <p class="text-sm mt-2 text-gray-600">Canvas 환경에서 API 키 주입 지연이 발생했거나 일시적인 네트워크 오류일 수 있습니다. 잠시 후 다시 시도해 주세요.</p>
-                        </div>
-                    `;
-                } finally {
-                    modalLoader.classList.add('hidden');
-                    if(buttonToDisable) buttonToDisable.disabled = false;
-                }
-            }
-
-            // --- Event Listeners ---
-            document.querySelectorAll('button[data-action="generate-plan"]').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const section = e.target.closest('.infographic-section');
-                    const diseaseName = section.querySelector('.section-title span').textContent.trim();
-                    const aiSupportSection = document.getElementById('ai-support');
-                    
-                    patientInfoInput.value = `[질환명: ${diseaseName}]\n환자의 주요 정보, 평가 소견 등을 여기에 입력하세요.\n(예: 65세 남성, 우측 편마비, Brunnstrom stage 3, MAS G1+)`;
-
-                    const offsetPosition = aiSupportSection.getBoundingClientRect().top + window.pageYOffset - 20;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-
-                    patientInfoInput.focus();
                 });
-            });
+            }
+            const rxResetBtn = document.getElementById('rxReset');
+            if (rxResetBtn) {
+                rxResetBtn.addEventListener('click', function () {
+                    rxEl.result.innerHTML = ''; rxEl.result.style.display = 'none';
+                    document.querySelectorAll('input[name="rxGoal"]').forEach(function (c) { c.checked = false; });
+                    if (rxEl.age) rxEl.age.value = '';
+                    if (rxEl.notes) rxEl.notes.value = '';
+                });
+            }
+            const rxPrintBtn = document.getElementById('rxPrint');
+            if (rxPrintBtn) { rxPrintBtn.addEventListener('click', function () { if (!rxEl.result || !rxEl.result.innerHTML.trim()) { showNotification('먼저 운동처방을 생성해 주세요.', true); return; } window.print(); }); }
 
-            generatePlanBtn.addEventListener('click', (e) => {
-                const patientInfo = patientInfoInput.value.trim();
-                if (!patientInfo) {
-                    showNotification('환자 정보를 입력해주세요.', true);
-                    return;
-                }
-                modalTitle.textContent = 'AI 맞춤형 운동처방';
-                
-                const prompt = `다음에 제시된 환자 정보를 바탕으로, 전문가 수준의 구체적인 주간 운동치료 프로그램을 처방해주세요.\n\n[환자 정보]\n${patientInfo}`;
-                
-                callTextApi(prompt, e.target);
+            // 각 질환 섹션 버튼 → 폼의 진단명 자동 선택 + AI 섹션으로 스크롤
+            document.querySelectorAll('button[data-action="generate-plan"]').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    const section = e.target.closest('.infographic-section');
+                    if (section && rxEl.cond) {
+                        const key = section.id;
+                        const opt = rxEl.cond.querySelector('option[value="' + key + '"]');
+                        if (opt) rxEl.cond.value = key;
+                    }
+                    const ai = document.getElementById('ai-support');
+                    if (ai) {
+                        const y = ai.getBoundingClientRect().top + window.pageYOffset - 20;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                });
             });
         });
 
@@ -1552,6 +2921,1101 @@
             `;
             resultDiv.classList.remove('hidden');
         }
+    </script>
+    <script>
+    /* 국시 확인문제 데이터 + 렌더러 (오프라인) */
+// 국가고시 대비 5지선다 확인문제 (난이도 상). a = 정답 인덱스(0~4)
+var QUIZ = [
+  { ch: "올바른 운동법 · 운동강도", items: [
+    { q: "운동 강도 설정을 위한 목표심박수에 대한 설명으로 옳은 것은?",
+      opts: ["최대심박수는 '200 − 나이'로 추정한다.",
+             "최대심박수는 '220 − 나이'로 추정하며, 중강도는 그 50~70%이다.",
+             "고강도는 최대심박수의 30~40% 범위이다.",
+             "자율신경 이상 환자에서도 심박수가 가장 정확한 강도 지표이다.",
+             "심박수는 운동 강도와 무관하다."],
+      a: 1, ex: "추정 최대심박수 = 220 − 나이. 중강도 50~70%, 고강도 70~85%. 자율신경 이상 시 심박수가 부정확하여 RPE를 병용한다." },
+    { q: "자율신경계 이상(척수손상·GBS 등)이 있는 환자의 운동 강도 모니터링으로 가장 적절한 것은?",
+      opts: ["목표심박수만을 사용한다.",
+             "운동자각도(RPE)를 함께 사용한다.",
+             "혈압만으로 강도를 결정한다.",
+             "강도 모니터링은 불필요하다.",
+             "항상 최대심박수까지 도달하도록 유도한다."],
+      a: 1, ex: "자율신경 이상 시 심박수 반응이 왜곡되므로 운동자각도(RPE, 예: 11~13/20)를 함께 사용해 강도를 조절한다." }
+  ]},
+  { ch: "뇌졸중 (Stroke)", items: [
+    { q: "뇌졸중 후 운동 재활의 근거에 대한 설명으로 가장 옳은 것은?",
+      opts: ["보바스 접근법이 과제지향 훈련보다 상지 기능 회복에 우월하다.",
+             "과제지향 훈련과 충분한 반복량, 치료 강도가 회복의 핵심이다.",
+             "치료 강도는 기능 결과에 영향을 주지 않는다.",
+             "거울치료와 CIMT는 효과가 전혀 입증되지 않았다.",
+             "조기 재활보다 장기간 침상 안정이 우선 권장된다."],
+      a: 1, ex: "최신 근거(VA/DoD 2024, Dorsch 2023)는 과제지향 훈련·반복량·강도를 우선하며, 보바스는 과제지향 훈련보다 열등하다고 본다. 거울치료·CIMT는 적절 대상에서 효과가 있다." },
+    { q: "뇌졸중 환자의 밀기 증후군(pusher syndrome)에 대한 접근으로 옳은 것은?",
+      opts: ["환자가 미는 방향(마비측)으로 더 기울이도록 강화한다.",
+             "비마비측(건측) 공간과 수직 시각 단서를 활용해 정중선 인지를 유도한다.",
+             "시각 수직 단서 사용은 피한다.",
+             "정중선 인지 훈련은 금기이다.",
+             "능동적 자세 조절보다 수동적 지지에만 의존한다."],
+      a: 1, ex: "밀기 증후군은 마비측으로 밀며 교정에 저항한다. 건측 공간과 수직 시각 참조를 이용해 능동적으로 정중선을 인지·회복하도록 훈련한다." }
+  ]},
+  { ch: "파킨슨병 (Parkinson)", items: [
+    { q: "파킨슨병 환자의 물리치료에 대한 설명으로 가장 옳은 것은?",
+      opts: ["동결보행에는 외부 단서 사용을 피해야 한다.",
+             "외부 시·청각 단서와 큰 진폭 훈련(LSVT-BIG)이 권장된다.",
+             "약물 off 시간대에 집중적으로 고강도 훈련을 시행한다.",
+             "자세 불안정은 약물로 잘 조절되므로 균형훈련은 불필요하다.",
+             "작고 신중한 움직임을 반복하도록 교육한다."],
+      a: 1, ex: "외부 단서(바닥선·메트로놈)와 큰 진폭 훈련(LSVT-BIG)이 보행·동결보행에 강력 권고된다. 훈련은 약효가 있는 on 시간대에 시행한다." },
+    { q: "파킨슨병에서 나타나는 근긴장 이상의 특징으로 옳은 것은?",
+      opts: ["속도 의존성 경직", "접이칼(clasp-knife) 현상", "톱니바퀴(cogwheel) 강직", "간대성 경련 동반", "심부건반사 항진"],
+      a: 2, ex: "파킨슨병은 속도 비의존성 강직으로 톱니바퀴·납관 현상을 보인다. 속도 의존성·접이칼·간대성 경련·심부건반사 항진은 피질척수로 병변의 경직에 해당한다." }
+  ]},
+  { ch: "치매 (Dementia)", items: [
+    { q: "치매 환자의 운동치료 접근으로 옳은 것은?",
+      opts: ["매번 복잡하고 다양한 지시를 바꾸어 제시한다.",
+             "익숙한 루틴과 단순·일관된 지시, 반복을 활용한다.",
+             "규칙적 운동은 기능 유지에 도움이 되지 않는다.",
+             "낙상 위험은 인지저하와 무관하다.",
+             "감독 없이 독립 수행을 우선한다."],
+      a: 1, ex: "인지저하를 고려해 익숙한 루틴·단순 지시·반복을 사용하고, 낙상 위험이 높으므로 감독하 안전하게 시행한다. 규칙적 운동은 기능 유지에 도움이 된다." }
+  ]},
+  { ch: "소뇌실조 (Cerebellar Ataxia)", items: [
+    { q: "소뇌 손상 환자의 재활 원칙으로 옳은 것은?",
+      opts: ["원위부부터 훈련하여 점차 근위부 안정성을 확보한다.",
+             "근위부 안정성을 먼저 확보한 후 원위부 협응으로 진행한다.",
+             "시각 피드백은 협응 훈련에 방해가 되므로 배제한다.",
+             "크고 빠른 움직임을 우선 훈련한다.",
+             "주된 문제는 움직임의 시작 실패이다."],
+      a: 1, ex: "소뇌 손상은 협응·정확성·균형의 문제이므로 근위부·몸통 안정화 후 원위부 협응으로 진행하고, 시각 피드백을 활용하며 안정적·단순한 움직임을 훈련한다." },
+    { q: "소뇌 병변에서 관찰되는 소견으로 옳은 것은?",
+      opts: ["안정시 진전(resting tremor)", "의도진전(intention tremor)과 측정이상(dysmetria)", "톱니바퀴 강직", "이완성 마비와 근위축", "바빈스키 양성과 간대성 경련"],
+      a: 1, ex: "소뇌 병변은 의도진전·측정이상·조화운동불능 등이 특징이다. 안정시 진전은 파킨슨, 톱니바퀴 강직은 바닥핵, 이완마비·근위축은 LMN, 바빈스키·간대성 경련은 UMN 소견이다." }
+  ]},
+  { ch: "뇌성마비 (Cerebral Palsy)", items: [
+    { q: "뇌성마비에 대한 설명으로 옳은 것은?",
+      opts: ["진행성 신경질환이다.",
+             "뇌병변 자체는 비진행성이나 이차적 근골격 변형은 진행할 수 있다.",
+             "근골격 변형은 발생하지 않는다.",
+             "경직형은 소뇌 병변에서 기인한다.",
+             "성장과 무관하게 관리 계획이 고정된다."],
+      a: 1, ex: "뇌성마비의 뇌병변은 비진행성이지만 구축·측만 등 이차적 근골격 변형은 성장과 함께 진행할 수 있어 정기적 재평가와 예방이 필요하다. 경직형은 피질척수로 병변과 관련된다." }
+  ]},
+  { ch: "외상성 뇌손상 (TBI)", items: [
+    { q: "외상성 뇌손상(TBI) 환자의 재활에서 고려할 사항으로 옳은 것은?",
+      opts: ["인지·행동 문제는 물리치료와 무관하다.",
+             "Rancho Los Amigos 인지기능 수준에 맞추어 자극·과제 난이도를 조절한다.",
+             "각성 저하 환자에게 복잡한 다단계 지시를 우선한다.",
+             "이소성 골화(HO)는 TBI에서 발생하지 않는다.",
+             "자율신경 폭풍(storming)은 무시해도 된다."],
+      a: 1, ex: "TBI는 인지·행동 문제가 복합되므로 Rancho Los Amigos 인지단계에 맞춰 환경·과제를 조절한다. 이소성 골화·자율신경 불안정 등 합병증 모니터링이 필요하다." }
+  ]},
+  { ch: "외상성 척수손상 (SCI)", items: [
+    { q: "T6 이상 척수손상 환자에서 자율신경 반사부전(AD)이 발생했을 때 가장 우선적인 처치는?",
+      opts: ["즉시 환자를 눕힌다.",
+             "유발 원인(방광 팽창 등)을 찾아 제거하고 환자를 앉힌다.",
+             "하지를 거상한다.",
+             "혈압을 올리는 약물을 투여한다.",
+             "운동을 지속하며 경과를 관찰한다."],
+      a: 1, ex: "자율신경 반사부전은 급성 고혈압 응급이다. 환자를 앉혀 기립성으로 혈압을 낮추고, 방광 팽창 등 유발 자극을 즉시 제거하며 조이는 것을 푼다. 눕히거나 하지 거상은 혈압을 더 올린다." },
+    { q: "C6 완전 척수손상 환자에서 기대할 수 있는 기능으로 가장 적절한 것은?",
+      opts: ["손의 내재근을 이용한 정교한 잡기",
+             "손목 폄근을 이용한 건고정(tenodesis) 잡기",
+             "발목 배측굴곡을 이용한 보행",
+             "삼두근을 이용한 강한 팔꿈치 폄",
+             "호흡근 완전 마비로 인공호흡기에 전적으로 의존"],
+      a: 1, ex: "C6은 손목 폄근(ECR)이 보존되어 손목 폄에 따른 건고정 잡기가 가능하다. 손 내재근은 C8~T1, 삼두근은 C7, 가로막은 C3~5(호흡 보존)로, 해당 기능들과 구분된다." }
+  ]},
+  { ch: "척수매독 (Tabes Dorsalis)", items: [
+    { q: "척수매독(tabes dorsalis)의 특징으로 옳은 것은?",
+      opts: ["앞뿔세포 침범으로 이완성 마비가 주 증상이다.",
+             "뒤기둥 침범으로 감각성 운동실조와 심부감각 소실이 나타난다.",
+             "통각·온도각이 선택적으로 소실된다.",
+             "롬버그 검사는 음성이다.",
+             "시각을 이용한 보상은 효과가 없다."],
+      a: 1, ex: "척수매독은 뒤기둥(후주) 변성으로 고유수용성·진동감각이 소실되어 감각성 운동실조와 롬버그 양성을 보인다. 통온각 선택적 소실은 척수공동증의 특징이며, 시각 보상 훈련이 도움이 된다." }
+  ]},
+  { ch: "척수공동증 (Syringomyelia)", items: [
+    { q: "척수공동증(syringomyelia)의 전형적 감각 소실 양상은?",
+      opts: ["모든 감각의 완전 소실",
+             "망토형 분포의 통각·온도각 소실(분리성 감각소실)",
+             "고유수용성·진동감각의 선택적 소실",
+             "한쪽 편측의 전 감각 소실",
+             "감각은 보존되고 운동만 소실"],
+      a: 1, ex: "척수 중심부 공동이 교차하는 척수시상로 섬유를 침범해 망토형(cape) 분포로 통각·온도각이 소실되고 고유수용성은 비교적 보존되는 분리성 감각소실이 특징이다." }
+  ]},
+  { ch: "근위축성 가쪽경화증 (ALS)", items: [
+    { q: "ALS 환자의 운동치료에서 가장 중요한 원칙은?",
+      opts: ["최대 저항 운동으로 근력을 최대한 강화한다.",
+             "이심성 수축 운동을 집중적으로 실시한다.",
+             "저강도·비피로성 운동으로 기능을 유지하고 과부하성 약화를 피한다.",
+             "피로가 올 때까지 반복하여 지구력을 높인다.",
+             "운동은 금기이므로 완전히 제한한다."],
+      a: 2, ex: "ALS는 과부하성 약화(overwork weakness) 위험이 있어 저강도·비피로성 운동으로 기능을 유지하고 이심성·최대저항·탈진 유발 운동을 피한다." },
+    { q: "ALS 치료제에 대한 설명으로 옳은 것은?",
+      opts: ["릴루졸은 도파민 효현제이다.",
+             "릴루졸은 글루탐산 분비를 억제하며 생존을 다소 연장한다.",
+             "에다라본은 근이완제이다.",
+             "두 약물 모두 질병을 완치시킨다.",
+             "에다라본은 경구로만 투여된다."],
+      a: 1, ex: "릴루졸은 글루탐산 분비 억제제로 생존을 약 2~3개월 연장한다. 에다라본은 자유라디칼 제거제로 정맥주사(2017)와 경구(2022) 제형이 있으며, 두 약물 모두 완치제가 아니다." }
+  ]},
+  { ch: "진행성 근위축증 (PMA)", items: [
+    { q: "진행성 근위축증(PMA)에 대한 설명으로 옳은 것은?",
+      opts: ["위운동신경세포(UMN) 징후가 주로 나타난다.",
+             "아래운동신경세포(LMN) 침범 위주의 진행성 근위축이다.",
+             "감각 소실이 특징이다.",
+             "비진행성 질환이다.",
+             "과사용 운동이 권장된다."],
+      a: 1, ex: "PMA는 아래운동신경세포(LMN) 침범이 우세한 진행성 운동신경세포 질환으로 근위축·근력저하가 진행하며, 감각은 보존되고 과사용성 약화를 피해야 한다." }
+  ]},
+  { ch: "소아마비후 증후군 (PPS)", items: [
+    { q: "소아마비후 증후군(PPS)의 운동치료 원칙으로 옳은 것은?",
+      opts: ["과사용을 통해 새로운 약화를 극복한다.",
+             "비피로성·에너지 보존을 최우선으로 하며 과사용을 피한다.",
+             "통증 유발 활동을 적극 권장한다.",
+             "보조도구 사용은 금기이다.",
+             "고강도 저항운동이 표준 처방이다."],
+      a: 1, ex: "PPS의 새로운 약화·피로는 과사용으로 악화될 수 있어 비피로성 운동·에너지 보존이 핵심이며 보조도구를 적극 활용한다." }
+  ]},
+  { ch: "척추갈림증 (Spina Bifida)", items: [
+    { q: "척추갈림증(이분척추) 환자의 관리에서 주의할 점으로 옳은 것은?",
+      opts: ["감각이 정상이므로 욕창 위험이 없다.",
+             "손상 레벨 이하 감각소실로 욕창·화상 예방이 중요하며 라텍스 알레르기에 주의한다.",
+             "라텍스 알레르기와는 무관하다.",
+             "수두증·션트 문제는 물리치료와 무관하다.",
+             "발 변형은 발생하지 않는다."],
+      a: 1, ex: "손상 레벨 이하 감각소실로 욕창·화상 예방이 중요하고, 이분척추 환자에서 라텍스 알레르기 빈도가 높다. 수두증/션트, 발 변형 등도 함께 관리한다." }
+  ]},
+  { ch: "말초신경병증 (Peripheral Neuropathy)", items: [
+    { q: "말초신경 손상(PNI) 환자의 재활에서 옳은 것은?",
+      opts: ["감각소실 부위는 보호가 불필요하다.",
+             "탈신경된 근육을 적극적으로 과신장시킨다.",
+             "감각소실 부위 보호와 재신경지배 시기를 고려한 점진적 강화가 필요하다.",
+             "재신경지배와 무관하게 즉시 최대 강화를 시행한다.",
+             "신경 재생은 원위부에서 근위부 방향으로 진행한다."],
+      a: 2, ex: "감각소실 부위는 화상·상처 예방이 필요하고, 탈신경 근육의 과신장을 피하며, 재신경지배 시기에 맞춘 점진적 강화를 시행한다. 신경 재생은 근위부에서 원위부로 진행한다." }
+  ]},
+  { ch: "헌팅턴병 (Huntington)", items: [
+    { q: "헌팅턴병의 특징으로 옳은 것은?",
+      opts: ["상염색체 열성 유전 질환이다.",
+             "무도증(chorea)과 인지·정신 증상을 동반하는 진행성 질환이다.",
+             "안정시 진전이 주 증상이다.",
+             "감각 소실이 특징이다.",
+             "소뇌 위축이 일차 병변이다."],
+      a: 1, ex: "헌팅턴병은 상염색체 우성 유전(CAG 반복)으로 선조체(꼬리핵) 변성에 의한 무도증과 인지·정신 증상이 진행한다." }
+  ]},
+  { ch: "샤르코-마리-투스병 (CMT)", items: [
+    { q: "샤르코-마리-투스병(CMT)에 대한 설명으로 옳은 것은?",
+      opts: ["중추신경계 탈수초 질환이다.",
+             "유전성 말초신경병으로 원위부 근위축과 족하수가 특징이다.",
+             "근위부에서 시작하여 원위부로 진행한다.",
+             "감각은 완전히 보존된다.",
+             "발목보조기(AFO) 사용은 금기이다."],
+      a: 1, ex: "CMT는 유전성 말초신경병으로 원위부(하지 우세) 근위축·족하수·감각저하가 특징이며, 족하수에 AFO가 도움이 된다." }
+  ]},
+  { ch: "프리드리히 운동실조 (Friedreich)", items: [
+    { q: "프리드리히 운동실조(Friedreich ataxia)에 대한 설명으로 옳은 것은?",
+      opts: ["상염색체 우성 유전이다.",
+             "소뇌·뒤기둥 침범에 의한 진행성 실조이며 심근병증을 동반할 수 있다.",
+             "심장은 침범되지 않는다.",
+             "감각은 완전히 보존된다.",
+             "고강도 운동에 제한이 없다."],
+      a: 1, ex: "프리드리히 운동실조는 상염색체 열성 유전으로 소뇌·뒤기둥·척수 변성에 의한 진행성 실조를 보이며, 비대성 심근병증을 흔히 동반해 고강도 운동 시 주의가 필요하다." }
+  ]},
+  { ch: "다운증후군 (Down Syndrome)", items: [
+    { q: "다운증후군 환자의 운동치료 시 주의사항으로 옳은 것은?",
+      opts: ["환축추 불안정(AAI) 위험으로 목의 과도한 굴곡·충돌 운동에 주의한다.",
+             "근긴장이 항진되어 있어 스트레칭이 금기이다.",
+             "관절 과가동성이 없어 관절 보호가 불필요하다.",
+             "선천성 심장질환과는 무관하다.",
+             "저긴장이 있으므로 근력강화는 효과가 없다."],
+      a: 0, ex: "다운증후군은 환축추 불안정 위험이 있어 목 과굴곡·충돌 운동에 주의한다(선별 확인). 저긴장·인대 이완으로 과가동성이 흔해 관절 안정화·근력강화가 필요하고, 선천성 심장질환 동반 여부를 확인한다." }
+  ]},
+  { ch: "다발성 경화증 (MS)", items: [
+    { q: "다발성 경화증 환자의 운동치료 시 고려사항으로 옳은 것은?",
+      opts: ["체온 상승은 증상에 영향을 주지 않는다.",
+             "열 민감성(Uhthoff 현상)을 고려해 과열을 피하고 서늘한 환경에서 운동한다.",
+             "운동은 질병 경과를 악화시키므로 금기이다.",
+             "재발기에도 고강도 운동을 그대로 지속한다.",
+             "피로는 무시하고 최대 강도로 훈련한다."],
+      a: 1, ex: "MS는 열 민감성(Uhthoff)이 있어 서늘한 환경·냉각을 활용하고, 피로 관리를 위해 중강도로 간헐적 운동을 하며 재발기에는 강도를 낮춘다. 운동 자체는 안전·유익하다(Learmonth 2023)." }
+  ]},
+  { ch: "길랭-바레 증후군 (GBS)", items: [
+    { q: "길랭-바레 증후군(GBS)의 시기별 물리치료에 대한 설명으로 옳은 것은?",
+      opts: ["급성기에 고강도 저항운동으로 근력을 빠르게 회복시킨다.",
+             "급성기에는 관절가동범위·포지셔닝·호흡관리를 중심으로 한다.",
+             "회복기에도 과사용을 유도하는 것이 바람직하다.",
+             "자율신경 불안정은 GBS와 무관하다.",
+             "하행성 마비가 특징이다."],
+      a: 1, ex: "GBS 급성기에는 관절가동범위·포지셔닝·호흡관리 위주로 접근하고 과피로·이심성 운동을 피한다. 회복기에는 점진적·비피로성 강화를 하며, 상행성 마비와 자율신경 불안정을 모니터링한다." }
+  ]},
+  { ch: "핵심 비교 · 감별", items: [
+    { q: "아래운동신경세포(LMN) 손상에서 나타나는 소견으로 옳은 것은?",
+      opts: ["경직(spasticity)", "심부건반사 항진", "바빈스키 징후 양성", "근섬유다발수축(fasciculation)", "간대성 경련(clonus)"],
+      a: 3, ex: "LMN 손상은 이완성 마비·근긴장 저하·반사 감소·근위축·근섬유다발수축이 특징이다. 경직·반사항진·바빈스키·간대성 경련은 UMN 소견이다." },
+    { q: "근위축성 측삭경화증(ALS)의 신경학적 특징으로 가장 옳은 것은?",
+      opts: ["감각 소실이 뚜렷하다.",
+             "위운동신경세포(UMN)와 아래운동신경세포(LMN) 징후가 동시에 나타난다.",
+             "안구운동장애가 초기부터 심하다.",
+             "자율신경 기능이 조기에 소실된다.",
+             "인지기능이 항상 정상으로 유지된다."],
+      a: 1, ex: "ALS는 UMN과 LMN 징후가 동시에 나타나는 대표 질환이다. 감각·자율신경·안구운동은 비교적 보존되며, 일부에서 전두측두엽 인지 변화가 동반될 수 있다." },
+    { q: "강직(rigidity)과 경직(spasticity)의 감별로 옳은 것은?",
+      opts: ["경직은 속도 비의존성이다.",
+             "강직은 톱니바퀴·납관 현상을 보이며 바닥핵 병변과 관련된다.",
+             "경직은 굽힘·폄 전 범위에서 균일한 저항을 보인다.",
+             "강직은 접이칼 현상과 간대성 경련을 동반한다.",
+             "경직은 피라미드외로 손상에서 기인한다."],
+      a: 1, ex: "강직은 속도 비의존성으로 톱니바퀴·납관 현상을 보이고 바닥핵과 관련된다. 경직은 속도 의존성으로 접이칼 현상·간대성 경련을 동반하며 피질척수로(피라미드계) 병변에서 기인한다." },
+    { q: "바닥핵 손상(파킨슨)과 소뇌 손상의 재활 전략 차이로 옳은 것은?",
+      opts: ["바닥핵 손상에서는 외부 단서를 배제하고 내부 리듬에만 의존시킨다.",
+             "소뇌 손상에서는 크고 노력적인 움직임을 최우선으로 한다.",
+             "바닥핵 손상에서는 외부 시·청각 단서로 움직임 시작을 촉진한다.",
+             "소뇌 손상의 주된 문제는 움직임 시작 실패이다.",
+             "두 경우 모두 피드포워드 제어가 핵심 전략이다."],
+      a: 2, ex: "바닥핵 손상은 움직임 시작·리듬·자동화의 문제로 외부 단서·큰 진폭 전략으로 우회한다. 소뇌 손상은 정확성·협응의 문제로 안정적·단순한 움직임과 감각 피드백을 활용한다." }
+  ]},
+  { ch: "임상 평가 도구", items: [
+    { q: "브룬스트롬 회복단계(BRS)에 대한 설명으로 옳은 것은?",
+      opts: ["1단계에서 경직이 최고조에 이른다.",
+             "3단계에서는 공동운동에서 완전히 벗어난 분리운동이 가능하다.",
+             "경직은 3단계에서 최고조에 달한 후 이후 단계에서 감소한다.",
+             "6단계에서도 경직이 뚜렷하게 남는다.",
+             "2단계에서는 수의적 움직임이 완전히 소실된다."],
+      a: 2, ex: "BRS는 1단계 이완, 2단계 경직·연합반응 출현, 3단계 공동운동·경직 최고조, 4~5단계 분리운동 시작·증가, 6단계 정상 근접(경직 소실)로 진행한다." },
+    { q: "수정 애쉬워스 척도(MAS)에서 'ROM의 1/2 이하 범위에서 걸림 후 저항이 유지되는' 등급은?",
+      opts: ["Grade 1", "Grade 1+", "Grade 2", "Grade 3", "Grade 4"],
+      a: 1, ex: "Grade 1+는 걸림(catch) 후 ROM의 1/2 미만 범위에서 최소 저항이 유지되는 상태이다. Grade 2는 대부분의 ROM에서 저항이 증가하나 수동 움직임은 용이하다." },
+    { q: "Fugl-Meyer 운동 평가(FMA)에 대한 설명으로 옳은 것은?",
+      opts: ["총점 100점 중 상지 34점, 하지 66점으로 구성된다.",
+             "총점 100점 만점 중 상지가 66점을 차지한다.",
+             "50점 이하는 경미한 손상으로 분류된다.",
+             "점수가 낮을수록 운동 기능이 우수하다.",
+             "균형 항목만으로 구성된다."],
+      a: 1, ex: "FMA 운동 총점은 100점(상지 66 + 하지 34)이며, 점수가 높을수록 기능이 우수하다. 49점 이하는 심각, 96점 이상은 정상 범주로 분류한다." },
+    { q: "버그 균형척도(BBS)에 대한 설명으로 옳은 것은?",
+      opts: ["총점은 100점이다.",
+             "20개 항목으로 구성된다.",
+             "45점 이상이면 독립적 지역사회 보행이 가능한 낙상 저위험군이다.",
+             "점수가 낮을수록 균형이 우수하다.",
+             "21점 미만은 낙상 저위험을 의미한다."],
+      a: 2, ex: "BBS는 14개 항목(각 0~4점) 총 56점 만점이며, 45점 이상은 낙상 저위험, 21점 미만은 낙상 초고위험을 의미한다." },
+    { q: "ASIA(ISNCSCI) 손상척도에 대한 설명으로 옳은 것은?",
+      opts: ["Grade A는 불완전 손상을 의미한다.",
+             "Grade B는 손상 레벨 이하 운동은 보존되나 감각이 소실된 상태이다.",
+             "Grade C는 손상 레벨 이하 핵심 근육의 절반 이상이 근력등급 3 미만이다.",
+             "Grade D는 모든 신경 기능이 정상인 상태이다.",
+             "Grade E는 완전 손상을 의미한다."],
+      a: 2, ex: "Grade A는 완전 손상, B는 감각만 보존, C는 손상 레벨 이하 핵심 근육의 절반 이상이 근력등급 3 미만, D는 절반 이상이 3 이상, E는 정상이다." },
+    { q: "ALS 기능평가척도 개정판(ALSFRS-R)에 대한 설명으로 옳은 것은?",
+      opts: ["총점 100점 만점이다.",
+             "12개 항목을 0~4점으로 평가하여 48점 만점이다.",
+             "점수가 높을수록 기능장애가 심하다.",
+             "감각 기능을 평가 항목에 포함한다.",
+             "균형 능력을 주로 평가한다."],
+      a: 1, ex: "ALSFRS-R은 연수·사지·호흡 기능 12개 항목을 각 0~4점으로 평가하여 48점 만점이며, 점수가 낮을수록 기능장애가 심하다. 감각·균형은 평가하지 않는다." }
+  ]},
+  { ch: "신경계 기전", items: [
+    { q: "의식적 고유수용성 감각과 미세 촉각, 진동감각을 전달하는 신경로는?",
+      opts: ["척수시상로(spinothalamic tract)", "뒤백색기둥(posterior/dorsal column)", "척수소뇌로(spinocerebellar tract)", "겉질척수로(corticospinal tract)", "그물척수로(reticulospinal tract)"],
+      a: 1, ex: "뒤백색기둥(후주)은 의식적 고유수용성·미세촉각·진동감각을 전달한다(널판다발=하지, 쐐기다발=상지). 척수시상로는 통온각, 척수소뇌로는 무의식적 고유수용성을 전달한다." },
+    { q: "통증과 온도 감각을 전달하며 앞가쪽 시스템에 속하는 신경로는?",
+      opts: ["뒤백색기둥", "척수소뇌로", "척수시상로", "널판다발(fasciculus gracilis)", "쐐기다발(fasciculus cuneatus)"],
+      a: 2, ex: "척수시상로는 통증·온도(원시감각)를 전달하는 앞가쪽 시스템이다. 널판다발·쐐기다발은 뒤백색기둥의 구성으로 고유수용성·미세촉각을 전달한다." },
+    { q: "골지힘줄기관(GTO)의 장력 정보를 전달하는 구심성 신경섬유는?",
+      opts: ["Ia", "Ib", "II", "Aδ", "C"],
+      a: 1, ex: "Ib 섬유는 골지힘줄기관(GTO)의 힘줄·인대 장력을 전달한다. Ia·II는 근방추(늘어남), Aδ·C는 통각·온도를 전달한다." },
+    { q: "겉질계(피라미드계)와 피질하계(피라미드외로)에 대한 설명으로 옳은 것은?",
+      opts: ["피라미드계는 자동적 자세 유지와 거친 움직임을 담당한다.",
+             "피라미드외로는 수의적·분리된 정밀 움직임을 담당한다.",
+             "피라미드계는 주로 알파 운동뉴런을, 피라미드외로는 감마 운동뉴런을 주요 표적으로 한다.",
+             "피라미드계의 핵심 기능은 안정성(stability)이다.",
+             "피라미드외로는 피드백 제어가 우세하다."],
+      a: 2, ex: "피라미드계(겉질계)는 수의적·분리 정밀 움직임(가동성)을 담당하며 알파 운동뉴런을 주 표적으로 한다. 피라미드외로(피질하계)는 자동적 자세·안정성(피드포워드)을 담당하며 감마 운동뉴런을 조절한다." }
+  ]}
+];
+
+    (function () {
+      var CIRC = ["\u2460", "\u2461", "\u2462", "\u2463", "\u2464"];
+      function renderQuiz() {
+        var host = document.getElementById("quizContainer");
+        if (!host || typeof QUIZ === "undefined") return;
+        host.innerHTML = "";
+        var total = 0, state = { answered: 0, correct: 0 };
+        QUIZ.forEach(function (c) { total += c.items.length; });
+
+        var bar = document.createElement("div");
+        bar.className = "quiz-scorebar";
+        var scoreEl = document.createElement("span");
+        var resetBtn = document.createElement("button");
+        resetBtn.type = "button";
+        resetBtn.textContent = "\uc804\uccb4 \ucd08\uae30\ud654";
+        resetBtn.addEventListener("click", renderQuiz);
+        bar.appendChild(scoreEl);
+        bar.appendChild(resetBtn);
+        host.appendChild(bar);
+        function updateScore() {
+          scoreEl.textContent = "푼 문항 " + state.answered + " / " + total + "  ·  정답 " + state.correct;
+        }
+        updateScore();
+
+        var qCounter = 0;
+        QUIZ.forEach(function (c) {
+          var wrap = document.createElement("div");
+          wrap.className = "quiz-chapter";
+          var head = document.createElement("h3");
+          head.className = "subsection-title";
+          var icon = document.createElement("i");
+          icon.className = "fas fa-pen-alt";
+          head.appendChild(icon);
+          head.appendChild(document.createTextNode(c.ch));
+          wrap.appendChild(head);
+
+          c.items.forEach(function (it) {
+            qCounter++;
+            var qd = document.createElement("div");
+            qd.className = "quiz-q";
+            var stem = document.createElement("div");
+            stem.className = "quiz-stem";
+            var num = document.createElement("span");
+            num.className = "qnum";
+            num.textContent = "Q" + qCounter;
+            stem.appendChild(num);
+            stem.appendChild(document.createTextNode(it.q));
+            qd.appendChild(stem);
+
+            var opts = document.createElement("div");
+            opts.className = "quiz-opts";
+            var exp = document.createElement("div");
+            exp.className = "quiz-exp";
+            var done = false;
+
+            it.opts.forEach(function (o, idx) {
+              var b = document.createElement("button");
+              b.className = "quiz-opt";
+              b.type = "button";
+              var mk = document.createElement("span");
+              mk.className = "marker";
+              mk.textContent = CIRC[idx];
+              var tx = document.createElement("span");
+              tx.textContent = o;
+              b.appendChild(mk);
+              b.appendChild(tx);
+              b.addEventListener("click", function () {
+                if (done) return;
+                done = true;
+                state.answered++;
+                var buttons = opts.querySelectorAll(".quiz-opt");
+                for (var k = 0; k < buttons.length; k++) buttons[k].disabled = true;
+                buttons[it.a].classList.add("correct");
+                if (idx === it.a) { state.correct++; }
+                else { b.classList.add("wrong"); }
+                exp.innerHTML = "";
+                var lab = document.createElement("span");
+                lab.className = "lab";
+                lab.textContent = "\ud574\uc124 \u00b7 \uc815\ub2f5 " + CIRC[it.a] + "  ";
+                exp.appendChild(lab);
+                exp.appendChild(document.createTextNode(it.ex));
+                exp.classList.add("show");
+                updateScore();
+              });
+              opts.appendChild(b);
+            });
+            qd.appendChild(opts);
+            qd.appendChild(exp);
+            wrap.appendChild(qd);
+          });
+          host.appendChild(wrap);
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderQuiz);
+      } else {
+        renderQuiz();
+      }
+    })();
+
+    </script>
+    <script>
+    /* 챕터별 인라인 확인문제(그룹형: 챕터당 다문항) + 렌더러 (오프라인) */
+var CHAPTER_Q = [
+  {
+    "id": "general-exercise",
+    "items": [
+      {
+        "q": "운동 처방의 기본 원리에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "과부하(overload)의 원리는 평소보다 낮은 강도로 운동해야 한다는 것이다.",
+          "특이성(specificity)의 원리에 따라 훈련 효과는 훈련한 과제·근육에 특이적으로 나타난다.",
+          "가역성(reversibility)의 원리는 한 번 얻은 효과가 사라지지 않는다는 것이다.",
+          "개별성의 원리는 모든 대상에게 동일한 처방을 적용하는 것이다.",
+          "FITT는 빈도·강도·유형의 세 요소만을 의미한다."
+        ],
+        "a": 1,
+        "ex": "특이성의 원리상 효과는 훈련한 과제·근육·에너지 시스템에 특이적으로 나타난다. 과부하는 평소보다 높은 자극, 가역성은 중단 시 효과 소실, FITT는 빈도·강도·시간·유형 네 요소이다."
+      }
+    ]
+  },
+  {
+    "id": "stroke",
+    "items": [
+      {
+        "q": "뇌졸중 후 편마비측 어깨 관리로 옳은 것은?",
+        "opts": [
+          "이완기에는 팔의 무게를 지지하지 않고 방치한다.",
+          "도르래(overhead pulley) 운동으로 관절가동범위를 적극 확대한다.",
+          "아탈구·통증 예방을 위해 포지셔닝과 지지를 제공한다.",
+          "통증이 있어도 최대 범위로 강하게 수동관절운동을 시행한다.",
+          "어깨 문제는 뇌졸중 재활과 무관하다."
+        ],
+        "a": 2,
+        "ex": "이완기 어깨는 아탈구 위험이 있어 포지셔닝·지지가 필요하다. 머리 위 도르래 운동은 충돌·통증을 유발할 수 있어 권장되지 않으며, 통증 유발 강한 수동운동도 피한다."
+      },
+      {
+        "q": "뇌졸중 후 편측무시(unilateral neglect)에 대한 접근으로 옳은 것은?",
+        "opts": [
+          "무시측 자극을 피하고 건측만 사용하도록 훈련한다.",
+          "무시측(환측) 공간으로 주의를 유도하고 그쪽에 자극·물건을 배치한다.",
+          "편측무시는 주로 좌반구 손상에서 나타난다.",
+          "편측무시는 시야 결손(반맹)과 동일한 것이다.",
+          "편측무시는 재활 대상이 아니다."
+        ],
+        "a": 1,
+        "ex": "편측무시는 무시측으로 주의를 유도하고 환경을 그쪽에 배치해 인식을 촉진한다. 우반구(특히 마루엽) 손상에서 좌측 무시로 흔하며, 주의(attention)의 문제로 시야 결손(반맹)과는 구별된다."
+      },
+      {
+        "q": "뇌졸중 후 상지의 굽힘 공동운동(flexor synergy) 패턴으로 옳은 것은?",
+        "opts": [
+          "어깨 모음(내전)과 팔꿈치 폄을 포함한다.",
+          "팔꿈치 굽힘과 아래팔 뒤침(supination)을 포함한다.",
+          "손목·손가락 폄이 우세하다.",
+          "어깨 안쪽돌림(내회전)이 특징이다.",
+          "하지 굽힘 공동운동과 동일한 패턴이다."
+        ],
+        "a": 1,
+        "ex": "상지 굽힘 공동운동은 어깨뼈 뒤당김·올림, 어깨 벌림+가쪽돌림, 팔꿈치 굽힘, 아래팔 뒤침, 손목·손가락 굽힘으로 구성된다. 따라서 팔꿈치 굽힘·아래팔 뒤침이 포함되고, 어깨는 벌림·가쪽돌림이다."
+      }
+    ]
+  },
+  {
+    "id": "parkinson",
+    "items": [
+      {
+        "q": "파킨슨병의 임상 특징으로 옳은 것은?",
+        "opts": [
+          "안정시 진전은 수의적 움직임을 시작하면 심해진다.",
+          "서동증(bradykinesia)은 움직임의 크기와 속도가 감소하는 것이다.",
+          "가속보행(festination)은 보폭이 커지고 느려지는 현상이다.",
+          "자세 불안정은 병의 가장 초기에 먼저 나타난다.",
+          "강직(rigidity)은 속도 의존성이다."
+        ],
+        "a": 1,
+        "ex": "서동증은 움직임의 크기·속도 감소이다. 안정시 진전은 수의적 움직임 시 감소하고, 가속보행은 보폭이 작아지고 빨라지며, 자세 불안정은 후기 증상, 강직은 속도 비의존성이다."
+      },
+      {
+        "q": "파킨슨병 동결보행(freezing of gait)에 대한 중재로 옳은 것은?",
+        "opts": [
+          "빠르게 걷도록 재촉하여 동결을 극복하게 한다.",
+          "바닥의 선(시각 단서)이나 리듬(청각 단서)을 이용해 보행 시작을 유도한다.",
+          "동결 구간에서 대화하며 걷는 이중과제를 권장한다.",
+          "방향 전환 시 좁게 회전하도록 교육한다.",
+          "외부 단서는 오히려 동결을 악화시키므로 피한다."
+        ],
+        "a": 1,
+        "ex": "동결보행에는 바닥선·메트로놈 같은 외부 시·청각 단서가 효과적이다. 이중과제는 동결을 악화시키고, 좁은 회전은 동결을 유발하므로 넓게 회전하도록 교육한다."
+      },
+      {
+        "q": "파킨슨병의 자세·균형 관리로 옳은 것은?",
+        "opts": [
+          "자세 불안정은 레보도파로 잘 조절되므로 균형훈련은 불필요하다.",
+          "레보도파에 잘 반응하지 않는 자세 불안정에는 반응성 자세조절(외란) 훈련이 도움이 된다.",
+          "굽은 자세(camptocormia)는 파킨슨병과 무관하다.",
+          "낙상 위험은 질병의 가장 초기에 가장 높다.",
+          "균형훈련은 약효가 없는 off 시간대에 집중한다."
+        ],
+        "a": 1,
+        "ex": "자세 불안정은 레보도파 반응이 낮은 축성 증상으로, 반응성 자세조절(외란) 훈련·큰 진폭 움직임이 도움이 된다. 낙상 위험은 후기에 높고, 훈련은 약효가 있는 on 시간대에 시행한다."
+      }
+    ]
+  },
+  {
+    "id": "dementia",
+    "items": [
+      {
+        "q": "치매 환자 재활에서 권장되는 접근으로 옳은 것은?",
+        "opts": [
+          "새롭고 복잡한 운동 순서를 매 회기 변경한다.",
+          "이중과제 위주로 인지 부하를 최대화한다.",
+          "절차적 기억을 활용해 반복적·익숙한 과제를 훈련한다.",
+          "오류를 많이 경험하게 하여 학습을 유도한다.",
+          "운동은 인지에 영향을 주지 않으므로 불필요하다."
+        ],
+        "a": 2,
+        "ex": "치매에서는 절차적(암묵적) 기억이 비교적 보존되므로 반복적·익숙한 과제와 오류 없는 학습(errorless learning)이 효과적이다. 복잡한 이중과제·잦은 변경은 부담을 준다."
+      }
+    ]
+  },
+  {
+    "id": "ataxia",
+    "items": [
+      {
+        "q": "소뇌실조 환자에게 적용하는 중재로 옳은 것은?",
+        "opts": [
+          "빠르고 큰 탄도성 움직임을 우선 훈련한다.",
+          "프렌켈(Frenkel) 운동으로 시각 피드백 하에 협응을 훈련한다.",
+          "시각을 완전히 차단한 상태에서만 균형을 훈련한다.",
+          "원위부 무게추 적용은 실조를 반드시 악화시키므로 절대 금기이다.",
+          "조화운동못함증(dysdiadochokinesia)은 소뇌와 무관하다."
+        ],
+        "a": 1,
+        "ex": "프렌켈 운동은 시각 피드백을 이용한 협응 훈련이다. 원위부 무게추는 일부에서 실조성 진전을 줄이기도 해 절대 금기가 아니며, 조화운동못함증은 대표적 소뇌 징후이다."
+      },
+      {
+        "q": "소뇌 병변에서 나타날 수 있는 증상으로 옳은 것은?",
+        "opts": [
+          "근긴장 항진(경직)",
+          "안구진탕(nystagmus)과 단속적 언어(scanning speech)",
+          "안정시 진전",
+          "심부감각의 선택적 소실",
+          "근섬유다발수축(fasciculation)"
+        ],
+        "a": 1,
+        "ex": "소뇌 병변은 안구진탕·단속적(스캐닝) 언어·근긴장 저하·의도진전·측정이상·조화운동못함증이 특징이다. 근긴장 항진·안정시 진전·심부감각 소실·근섬유다발수축은 다른 부위 병변의 소견이다."
+      }
+    ]
+  },
+  {
+    "id": "cp",
+    "items": [
+      {
+        "q": "뇌성마비의 분류·특징으로 옳은 것은?",
+        "opts": [
+          "경직형(spastic)은 뇌성마비 중 가장 드문 유형이다.",
+          "대동작 기능 분류체계(GMFCS)는 이동 능력을 5단계로 분류한다.",
+          "무정위형(dyskinetic)은 피질척수로 병변에서 기인한다.",
+          "경직형 양측마비(diplegia)에서는 상지가 하지보다 심하게 침범된다.",
+          "뇌성마비는 반드시 지적장애를 동반한다."
+        ],
+        "a": 1,
+        "ex": "GMFCS는 대동작 기능을 5단계로 분류한다. 경직형이 가장 흔하고, 무정위형은 바닥핵 병변과 관련되며, 양측마비는 하지가 더 침범되고, 지적장애가 항상 동반되는 것은 아니다."
+      }
+    ]
+  },
+  {
+    "id": "tbi",
+    "items": [
+      {
+        "q": "외상성 뇌손상(TBI) 환자 관리로 옳은 것은?",
+        "opts": [
+          "글래스고 혼수척도(GCS)는 점수가 높을수록 의식 저하가 심하다.",
+          "초조(agitation) 시기에는 자극을 줄이고 구조화된 환경을 제공한다.",
+          "외상후 기억상실(PTA)이 길수록 예후가 좋다.",
+          "각성 저하 환자에게는 모든 감각 자극을 완전히 차단한다.",
+          "이소성 골화(HO)는 TBI에서 발생하지 않는다."
+        ],
+        "a": 1,
+        "ex": "초조 시기에는 자극을 줄이고 구조화·안정된 환경을 제공한다. GCS는 낮을수록(3~15) 의식 저하가 심하고, PTA가 길수록 예후가 나쁘며, 각성 저하 시 조절된 감각 자극을 제공한다."
+      }
+    ]
+  },
+  {
+    "id": "sci",
+    "items": [
+      {
+        "q": "척수손상 환자의 임상 관리로 옳은 것은?",
+        "opts": [
+          "척수쇼크(spinal shock) 시기에는 심부건반사가 항진된다.",
+          "C7 신경근이 보존되면 팔꿈치 폄(삼두근)이 가능해 이승이 쉬워진다.",
+          "기립성 저혈압은 손상 레벨과 무관하다.",
+          "완전손상(ASIA A)에서도 손상 레벨 이하 운동이 일부 보존된다.",
+          "욕창 예방을 위한 체위 변경은 불필요하다."
+        ],
+        "a": 1,
+        "ex": "C7이 보존되면 삼두근에 의한 팔꿈치 폄으로 이승이 수월해진다. 척수쇼크 시기에는 반사가 소실(이완)되며, 기립성 저혈압은 상위 손상에서 흔하고, ASIA A는 완전손상이다."
+      },
+      {
+        "q": "척수손상의 손상 레벨과 기능의 연결로 옳은 것은?",
+        "opts": [
+          "C4 완전손상 — 손목 폄으로 건고정 잡기가 가능하다.",
+          "C5 완전손상 — 어깨·팔꿈치 굽힘(이두근)은 가능하나 손목·손 기능은 어렵다.",
+          "T1 완전손상 — 보조기 없이 독립 보행이 가능하다.",
+          "L4 완전손상 — 호흡근 마비로 인공호흡기에 의존한다.",
+          "C6 완전손상 — 삼두근으로 강한 팔꿈치 폄이 가능하다."
+        ],
+        "a": 1,
+        "ex": "C5는 어깨세모근·이두근이 보존되어 어깨 벌림·팔꿈치 굽힘이 가능하나 손목 폄(C6)·손 기능은 어렵다. 손목 폄 건고정은 C6, 삼두근은 C7이며, T1·L4는 호흡근(가로막 C3~5)과 무관하다."
+      },
+      {
+        "q": "척수손상 합병증 관리로 옳은 것은?",
+        "opts": [
+          "욕창은 감각이 보존된 부위에만 발생한다.",
+          "기립성 저혈압에는 점진적 기립, 복대·압박스타킹을 적용한다.",
+          "깊은정맥혈전증(DVT)은 척수손상과 무관하다.",
+          "이소성 골화(HO)는 관절가동범위를 증가시킨다.",
+          "자율신경 반사부전 발생 시 즉시 환자를 눕힌다."
+        ],
+        "a": 1,
+        "ex": "기립성 저혈압은 점진적 기립·복대·압박스타킹으로 관리한다. 욕창은 감각소실 부위에서 위험이 크고, DVT 위험이 높으며, 이소성 골화는 가동범위를 감소시키고, 자율신경 반사부전 시에는 앉혀야 한다."
+      }
+    ]
+  },
+  {
+    "id": "tabes-dorsalis",
+    "items": [
+      {
+        "q": "척수매독(tabes dorsalis)과 관련된 소견으로 옳은 것은?",
+        "opts": [
+          "매독균 감염과 무관한 유전질환이다.",
+          "아가일-로버트슨 동공(빛에는 반응하지 않으나 조절에는 반응)이 나타날 수 있다.",
+          "통각이 예민해져 심한 통증에 과민 반응한다.",
+          "심부감각은 정상적으로 보존된다.",
+          "롬버그 검사는 항상 음성이다."
+        ],
+        "a": 1,
+        "ex": "척수매독은 3기 매독의 뒤기둥 변성으로, 아가일-로버트슨 동공·심부감각 소실·롬버그 양성·전격통이 특징이다. 감각 소실로 무통성 샤르코 관절이 생길 수 있다."
+      }
+    ]
+  },
+  {
+    "id": "syringomyelia",
+    "items": [
+      {
+        "q": "척수물구멍증(syringomyelia)에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "증상은 대개 하지에서 가장 먼저 시작된다.",
+          "공동 부위의 앞뿔세포 침범으로 상지 근위축·이완성 약화가 나타날 수 있다.",
+          "척수 뒤기둥이 가장 먼저 침범된다.",
+          "키아리(Chiari) 기형 등과는 관련이 없다.",
+          "감각은 전혀 소실되지 않는다."
+        ],
+        "a": 1,
+        "ex": "공동은 주로 목척수 중심부에서 확장되어 앞뿔세포(상지 LMN 징후)와 교차하는 척수시상로(통온각)를 침범한다. 상지·손에서 먼저 나타나고 키아리 기형과 동반이 흔하다."
+      }
+    ]
+  },
+  {
+    "id": "als",
+    "items": [
+      {
+        "q": "ALS의 임상 경과·관리로 옳은 것은?",
+        "opts": [
+          "감각신경 침범으로 저림·통증이 주 증상이다.",
+          "호흡근 약화가 진행하면 비침습적 환기(NIV)를 고려한다.",
+          "안구운동과 방광 기능이 가장 먼저 소실된다.",
+          "인지기능은 어떤 경우에도 침범되지 않는다.",
+          "근력 향상을 위해 고강도 저항운동이 표준이다."
+        ],
+        "a": 1,
+        "ex": "호흡근 약화 진행 시 NIV를 고려한다. 감각·안구운동·방광은 비교적 늦게까지 보존되고, 일부에서 전두측두엽 인지 변화가 동반되며, 고강도 저항운동은 과부하성 약화 위험으로 피한다."
+      },
+      {
+        "q": "ALS의 증상으로 옳은 것은?",
+        "opts": [
+          "감각 저하가 초기 주 증상이다.",
+          "연수(bulbar) 침범 시 삼킴곤란(연하장애)과 구음장애가 나타난다.",
+          "방광·직장 기능이 조기에 소실된다.",
+          "위운동신경세포만 침범되어 이완성 마비만 나타난다.",
+          "안구운동장애가 첫 증상으로 흔하다."
+        ],
+        "a": 1,
+        "ex": "ALS는 연수 침범 시 연하장애·구음장애가 나타난다. 감각·방광·안구운동은 비교적 늦게까지 보존되고, 위·아래운동신경세포가 함께 침범되어 경직과 이완성 약화가 공존한다."
+      }
+    ]
+  },
+  {
+    "id": "pma",
+    "items": [
+      {
+        "q": "진행성 근위축증(PMA)과 ALS의 감별로 옳은 것은?",
+        "opts": [
+          "PMA는 위·아래운동신경세포가 모두 침범된다.",
+          "PMA는 아래운동신경세포만 침범되어 경직·반사항진이 없다.",
+          "PMA는 감각소실이 주 증상이다.",
+          "PMA는 비진행성 질환이다.",
+          "PMA에서는 바빈스키 징후가 양성이다."
+        ],
+        "a": 1,
+        "ex": "PMA는 아래운동신경세포만 침범해 경직·반사항진·바빈스키 같은 위운동신경세포 징후가 없다는 점에서, 두 신경세포가 모두 침범되는 ALS와 감별된다."
+      }
+    ]
+  },
+  {
+    "id": "pps",
+    "items": [
+      {
+        "q": "소아마비후 증후군(PPS)에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "급성 폴리오 바이러스 감염이 재활성화된 것이다.",
+          "과거 폴리오 후 수십 년 뒤 새로운 근력저하·피로·통증이 나타난다.",
+          "피로를 무시하고 최대 강도로 훈련하면 회복된다.",
+          "감각신경 손상이 주된 병태이다.",
+          "보조도구 사용은 증상을 악화시킨다."
+        ],
+        "a": 1,
+        "ex": "PPS는 바이러스 재활성화가 아니라, 비대해진 운동단위의 과부하·퇴행으로 수십 년 뒤 새로운 약화·피로·통증이 나타나는 것으로, 비피로성 운동과 보조도구 활용이 핵심이다."
+      }
+    ]
+  },
+  {
+    "id": "spina-bifida",
+    "items": [
+      {
+        "q": "척추갈림증(이분척추) 관리에서 옳은 것은?",
+        "opts": [
+          "수막척수류(myelomeningocele)는 가장 경미한 형태이다.",
+          "수두증 동반 시 션트 기능 이상(두통·구토 등) 징후를 관찰한다.",
+          "신경인성 방광은 이분척추와 무관하다.",
+          "손상 레벨은 기능 예후와 무관하다.",
+          "감각이 정상이라 발 관리가 필요 없다."
+        ],
+        "a": 1,
+        "ex": "수두증이 흔히 동반되어 션트 기능 이상(두개내압 상승: 두통·구토 등)을 관찰해야 한다. 수막척수류는 가장 중증형이며, 신경인성 방광·발 관리·손상 레벨별 기능 예후를 함께 고려한다."
+      }
+    ]
+  },
+  {
+    "id": "pni",
+    "items": [
+      {
+        "q": "말초신경 손상·재생에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "손상 부위의 근위부에서 왈러 변성(Wallerian degeneration)이 일어난다.",
+          "축삭 재생 속도는 대략 하루 1mm 정도이다.",
+          "티넬 징후(Tinel's sign)는 신경 재생과 무관하다.",
+          "신경 재생은 원위부에서 근위부 방향으로 진행한다.",
+          "탈신경된 근육은 위축 없이 그대로 유지된다."
+        ],
+        "a": 1,
+        "ex": "축삭 재생은 대략 하루 1mm이다. 왈러 변성은 손상 부위의 원위부에서 일어나고, 티넬 징후는 재생 축삭의 선단을 나타내며, 재생은 근위부에서 원위부로 진행한다."
+      }
+    ]
+  },
+  {
+    "id": "huntington",
+    "items": [
+      {
+        "q": "헌팅턴병의 병태·경과로 옳은 것은?",
+        "opts": [
+          "원인 유전자의 CAG 반복 확장과 관련되며, 세대가 지날수록 조기 발병할 수 있다.",
+          "소뇌의 일차적 위축이 특징이다.",
+          "무도증은 전 병기 동안 동일한 강도로 유지된다.",
+          "감각신경 손상이 주 증상이다.",
+          "체중은 증가하는 경향을 보인다."
+        ],
+        "a": 0,
+        "ex": "헌팅턴병은 CAG 삼염기 반복 확장과 관련되며 세대가 지날수록 조기 발병하는 예측현상을 보인다. 선조체(꼬리핵) 위축이 특징이고, 후기에는 강직·운동감소형으로 바뀔 수 있으며 체중감소가 흔하다."
+      }
+    ]
+  },
+  {
+    "id": "cmt",
+    "items": [
+      {
+        "q": "샤르코-마리-투스병(CMT)의 특징적 소견으로 옳은 것은?",
+        "opts": [
+          "근위부 근육이 원위부보다 먼저·심하게 위축된다.",
+          "오목발(pes cavus)·망치발가락 등 발 변형이 흔하다.",
+          "중추신경계 병변이 일차적 원인이다.",
+          "감각은 완전히 정상으로 유지된다.",
+          "후천성(비유전성) 질환이다."
+        ],
+        "a": 1,
+        "ex": "CMT는 유전성 말초신경병으로 원위부(하지 우세) 위축과 함께 오목발·망치발가락 등 발 변형이 흔하고, 종아리 위축으로 '황새다리' 모양을 보인다."
+      }
+    ]
+  },
+  {
+    "id": "friedreich",
+    "items": [
+      {
+        "q": "프리드리히 운동실조의 임상 특징으로 옳은 것은?",
+        "opts": [
+          "심부건반사가 항진되는 것이 특징이다.",
+          "다리 반사 소실과 함께 발바닥 폄반응(바빈스키)이 동반될 수 있다.",
+          "당뇨병과는 관련이 없다.",
+          "척추측만은 발생하지 않는다.",
+          "상염색체 우성 유전이다."
+        ],
+        "a": 1,
+        "ex": "프리드리히 운동실조는 발목반사 등 심부건반사 소실과 발바닥 폄반응(바빈스키)이 함께 나타나는 것이 특징이다(말초+피질척수로 침범). 당뇨병·척추측만·비대성 심근병증을 흔히 동반하며 상염색체 열성이다."
+      }
+    ]
+  },
+  {
+    "id": "down-syndrome",
+    "items": [
+      {
+        "q": "다운증후군의 특징으로 옳은 것은?",
+        "opts": [
+          "근긴장이 항진되어 관절 강직이 흔하다.",
+          "21번 삼염색체에 의한 것으로 저긴장·관절 과가동성을 보인다.",
+          "선천성 심장질환 동반은 매우 드물다.",
+          "운동발달이 또래보다 빠르다.",
+          "인대가 단단하여 관절 보호가 불필요하다."
+        ],
+        "a": 1,
+        "ex": "다운증후군은 21번 삼염색체(trisomy 21)에 의한 것으로 저긴장·인대 이완·관절 과가동성을 보인다. 선천성 심장질환 동반이 흔하고 운동발달이 지연되어 관절 보호·안정화가 필요하다."
+      }
+    ]
+  },
+  {
+    "id": "ms",
+    "items": [
+      {
+        "q": "다발성 경화증의 특징·관리로 옳은 것은?",
+        "opts": [
+          "말초신경의 탈수초 질환이다.",
+          "재발-완화형이 가장 흔한 초기 경과이다.",
+          "운동은 재발을 유발하므로 절대 금기이다.",
+          "피로는 드물게 나타나는 증상이다.",
+          "시신경염은 나타나지 않는다."
+        ],
+        "a": 1,
+        "ex": "다발성 경화증은 중추신경계 탈수초 질환으로 재발-완화형이 가장 흔한 초기 경과이다. 피로가 가장 흔한 증상이며 시신경염이 초기 증상으로 흔하고, 운동은 안전·유익하다."
+      },
+      {
+        "q": "다발성 경화증의 흔한 증상·경과로 옳은 것은?",
+        "opts": [
+          "감각 이상·시력 저하·피로 등 다양한 증상이 재발과 함께 나타난다.",
+          "증상은 항상 좌우 대칭으로 나타난다.",
+          "인지 기능은 어떤 경우에도 침범되지 않는다.",
+          "방광 기능장애는 나타나지 않는다.",
+          "증상은 한 번 나타나면 절대 호전되지 않는다."
+        ],
+        "a": 0,
+        "ex": "다발성 경화증은 시공간적으로 산재하는 병변으로 감각 이상·시신경염(시력 저하)·피로·운동 약화 등 다양한 증상이 재발과 함께 나타난다. 비대칭적이며 인지·방광 침범이 흔하고, 재발-완화형에서는 호전된다."
+      }
+    ]
+  },
+  {
+    "id": "gbs",
+    "items": [
+      {
+        "q": "길랭-바레 증후군(GBS)의 특징으로 옳은 것은?",
+        "opts": [
+          "대개 하행성으로 마비가 진행한다.",
+          "원위부에서 시작해 상행하는 대칭성 이완성 마비와 반사 소실이 특징이다.",
+          "심부건반사가 항진된다.",
+          "대부분 만성 진행성 경과를 보인다.",
+          "선행 감염 병력과는 전혀 무관하다."
+        ],
+        "a": 1,
+        "ex": "GBS는 원위부에서 시작해 상행하는 대칭성 이완성 마비와 반사 소실이 특징이며, 대개 선행 감염 후 단상성으로 발생해 회복된다."
+      }
+    ]
+  },
+  {
+    "id": "compare",
+    "items": [
+      {
+        "q": "위운동신경세포(UMN) 손상의 소견으로 옳은 것은?",
+        "opts": [
+          "근긴장 저하(이완성)",
+          "근위축이 조기에 뚜렷함",
+          "심부건반사 항진과 바빈스키 양성",
+          "근섬유다발수축(fasciculation)",
+          "반사 소실"
+        ],
+        "a": 2,
+        "ex": "UMN 손상은 경직·심부건반사 항진·바빈스키 양성·간대성 경련이 특징이다. 근긴장 저하·조기 근위축·근섬유다발수축·반사 소실은 아래운동신경세포(LMN) 손상의 소견이다."
+      }
+    ]
+  },
+  {
+    "id": "assessment",
+    "items": [
+      {
+        "q": "임상 평가 도구에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "도수근력검사(MMT) 3등급은 중력을 이기고 최대 저항에 버티는 수준이다.",
+          "일어나 걷기 검사(TUG)에서 소요 시간이 길수록 낙상 위험이 높다.",
+          "MAS 4등급은 경직이 전혀 없는 상태이다.",
+          "10m 보행검사는 균형만을 평가한다.",
+          "브룬스트롬 6단계는 경직이 최고조인 상태이다."
+        ],
+        "a": 1,
+        "ex": "TUG는 소요 시간이 길수록 낙상 위험이 높다. MMT 3등급은 중력을 이기고 전 범위 움직이나 저항에는 버티지 못하는 수준, MAS 4는 강직 상태, 10MWT는 보행 속도, 브룬스트롬 경직 최고조는 3단계이다."
+      }
+    ]
+  },
+  {
+    "id": "neural",
+    "items": [
+      {
+        "q": "근방추와 신장반사에 대한 설명으로 옳은 것은?",
+        "opts": [
+          "근방추는 힘줄의 장력을 감지한다.",
+          "Ia 구심성 섬유는 근육의 신장 속도와 길이 변화를 전달한다.",
+          "골지힘줄기관은 근육의 길이를 감지한다.",
+          "신장반사는 다중연접(polysynaptic) 반사이다.",
+          "감마 운동뉴런은 골격근의 힘을 직접 생성한다."
+        ],
+        "a": 1,
+        "ex": "근방추의 Ia 섬유는 신장 속도·길이 변화를 전달한다. 근방추는 길이, 골지힘줄기관은 장력을 감지하며, 신장반사는 단일연접(monosynaptic) 반사이고, 감마 운동뉴런은 방추내근을 지배해 방추 민감도를 조절한다."
+      }
+    ]
+  },
+  {
+    "id": "quickref",
+    "items": [
+      {
+        "q": "다음 신경계 질환과 특징의 연결로 옳은 것은?",
+        "opts": [
+          "파킨슨병 — 의도진전",
+          "소뇌 병변 — 측정이상(dysmetria)",
+          "ALS — 감각소실",
+          "헌팅턴병 — 상염색체 열성",
+          "다발성 경화증 — 말초신경 탈수초"
+        ],
+        "a": 1,
+        "ex": "소뇌 병변은 측정이상이 특징이다. 파킨슨병은 안정시 진전(의도진전은 소뇌), ALS는 감각 보존, 헌팅턴병은 상염색체 우성, 다발성 경화증은 중추신경계 탈수초이다."
+      }
+    ]
+  }
+];
+
+    (function () {
+      var CIRC = ["\u2460", "\u2461", "\u2462", "\u2463", "\u2464"];
+      function buildOne(item, container, index, total) {
+        container.innerHTML = "";
+        if (total > 1) {
+          var qh = document.createElement("div");
+          qh.className = "chapter-quiz-qnum";
+          qh.textContent = "문제 " + (index + 1);
+          container.appendChild(qh);
+        }
+        var stem = document.createElement("div");
+        stem.className = "quiz-stem";
+        stem.textContent = item.q;
+        container.appendChild(stem);
+
+        var opts = document.createElement("div");
+        opts.className = "quiz-opts";
+        var exp = document.createElement("div");
+        exp.className = "quiz-exp";
+        var retry = document.createElement("button");
+        retry.type = "button";
+        retry.className = "chapter-quiz-retry";
+        retry.textContent = "다시 풀기";
+        retry.style.display = "none";
+        retry.addEventListener("click", function () { buildOne(item, container, index, total); });
+
+        var done = false;
+        item.opts.forEach(function (o, idx) {
+          var b = document.createElement("button");
+          b.className = "quiz-opt";
+          b.type = "button";
+          var mk = document.createElement("span");
+          mk.className = "marker";
+          mk.textContent = CIRC[idx];
+          var tx = document.createElement("span");
+          tx.textContent = o;
+          b.appendChild(mk);
+          b.appendChild(tx);
+          b.addEventListener("click", function () {
+            if (done) return;
+            done = true;
+            var bs = opts.querySelectorAll(".quiz-opt");
+            for (var k = 0; k < bs.length; k++) bs[k].disabled = true;
+            bs[item.a].classList.add("correct");
+            if (idx !== item.a) b.classList.add("wrong");
+            exp.innerHTML = "";
+            var lab = document.createElement("span");
+            lab.className = "lab";
+            lab.textContent = "해설 · 정답 " + CIRC[item.a] + "  ";
+            exp.appendChild(lab);
+            exp.appendChild(document.createTextNode(item.ex));
+            exp.classList.add("show");
+            retry.style.display = "inline-block";
+          });
+          opts.appendChild(b);
+        });
+        container.appendChild(opts);
+        container.appendChild(exp);
+        container.appendChild(retry);
+      }
+
+      function renderInline() {
+        if (typeof CHAPTER_Q === "undefined") return;
+        CHAPTER_Q.forEach(function (group) {
+          var sec = document.getElementById(group.id);
+          if (!sec) return;
+          if (sec.querySelector(".chapter-quiz")) return; /* 중복 방지 */
+          var box = document.createElement("div");
+          box.className = "chapter-quiz";
+          var label = document.createElement("div");
+          label.className = "chapter-quiz-label";
+          var ic = document.createElement("i");
+          ic.className = "fas fa-clipboard-check";
+          label.appendChild(ic);
+          var cnt = group.items.length;
+          label.appendChild(document.createTextNode(cnt > 1 ? (" 확인문제 (" + cnt + "문항)") : " 확인문제"));
+          box.appendChild(label);
+          group.items.forEach(function (item, qi) {
+            var qwrap = document.createElement("div");
+            qwrap.className = "chapter-quiz-item";
+            buildOne(item, qwrap, qi, cnt);
+            box.appendChild(qwrap);
+          });
+          sec.appendChild(box);
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderInline);
+      } else {
+        renderInline();
+      }
+    })();
+
+    </script>
+
+    <script>
+    /* 코스믹 테마: 별필드 렌더 + 테마 토글 (오프라인) */
+    (function () {
+      var root = document.documentElement;
+      var canvas = document.getElementById("starfield");
+      var ctx = canvas ? canvas.getContext("2d") : null;
+      var stars = [];
+      function genStars() {
+        stars = [];
+        var n = Math.min(240, Math.floor((window.innerWidth * window.innerHeight) / 8500));
+        for (var i = 0; i < n; i++) {
+          stars.push({ x: Math.random(), y: Math.random(), r: Math.random() * 1.3 + 0.2, a: Math.random() * 0.6 + 0.35 });
+        }
+      }
+      function draw() {
+        if (!ctx) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (root.getAttribute("data-theme") !== "dark") return; /* 라이트: 별 없음 */
+        if (!stars.length) genStars();
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          ctx.globalAlpha = s.a;
+          ctx.fillStyle = (i % 23 === 0) ? "#a5b4fc" : (i % 17 === 0) ? "#7dd3fc" : "#ffffff";
+          ctx.beginPath();
+          ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+      function setTheme(t) {
+        root.setAttribute("data-theme", t);
+        try { localStorage.setItem("neuropt-theme", t); } catch (e) {}
+        draw();
+      }
+      var btn = document.getElementById("themeToggle");
+      if (btn) btn.addEventListener("click", function () {
+        setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+      });
+      if (canvas) { genStars(); draw(); }
+      var rt;
+      window.addEventListener("resize", function () {
+        clearTimeout(rt);
+        rt = setTimeout(function () { genStars(); draw(); }, 200);
+      });
+    })();
     </script>
 </body>
 </html>
